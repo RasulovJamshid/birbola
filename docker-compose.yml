@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  birbola-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: birbola-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - birbola-network
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "com.birbola.service=frontend"
+
+networks:
+  birbola-network:
+    driver: bridge
