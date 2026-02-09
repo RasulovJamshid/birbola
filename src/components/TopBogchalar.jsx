@@ -1,8 +1,12 @@
+'use client'
+
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { ChevronLeft, ChevronRight, Star, MapPin, Loader2 } from 'lucide-react'
 import { getKindergartens } from '../services/api'
-import Logo from '../assets/birbola.svg'
+// Assets now served from public folder
+const Logo = '/assets/birbola.svg'
+const RocketIcon = '/assets/rocket.svg'
 
 // Fallback data in case API fails
 const fallbackKindergartens = [
@@ -55,7 +59,7 @@ const RADIUS_X = 420 // horizontal radius of the arc
 const RADIUS_Y = 140 // vertical depth of the arc
 
 const TopBogchalar = () => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [activeIndex, setActiveIndex] = useState(1)
   const [activeTab, setActiveTab] = useState('bogcha')
   const [kindergartens, setKindergartens] = useState(fallbackKindergartens)
@@ -65,16 +69,16 @@ const TopBogchalar = () => {
   useEffect(() => {
     async function fetchTopKindergartens() {
       try {
-        const response = await getKindergartens({ 
-          pageSize: 10, 
+        const response = await getKindergartens({
+          pageSize: 10,
           pageNumber: 1,
           score: 4 // Get top-rated kindergartens
         })
-        
-        const items = Array.isArray(response) 
-          ? response 
+
+        const items = Array.isArray(response)
+          ? response
           : response?.data || response?.items || []
-        
+
         if (items.length > 0) {
           setKindergartens(items)
         }
@@ -85,7 +89,7 @@ const TopBogchalar = () => {
         setLoading(false)
       }
     }
-    
+
     fetchTopKindergartens()
   }, [])
 
@@ -100,7 +104,7 @@ const TopBogchalar = () => {
   const handleCardClick = (kg, index) => {
     if (index === activeIndex) {
       // Navigate to detail page if clicking the active card
-      navigate(`/kindergarten/${kg.id}`)
+      router.push(`/kindergarten/${kg.id}`)
     } else {
       // Otherwise just focus the card
       setActiveIndex(index)
@@ -109,7 +113,7 @@ const TopBogchalar = () => {
 
   const getCardStyle = (index) => {
     const total = kindergartens.length
-    
+
     // Calculate normalized offset from active index
     let offset = (index - activeIndex) % total
     if (offset < -total / 2) offset += total
@@ -168,21 +172,36 @@ const TopBogchalar = () => {
   }
 
   return (
-    <section className="top-bogchalar-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 relative overflow-hidden" style={{
+      background: 'linear-gradient(180deg, #7B1FA2 0%, #4A148C 50%, #1A0B2E 100%)',
+      position: 'relative'
+    }}>
+      {/* Noise overlay with transparency */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
+        backgroundImage: 'url(/assets/top/noise.png)',
+        backgroundRepeat: 'repeat',
+        backgroundSize: 'auto'
+      }} />
+      {/* Background Effects */}
+      <div className="bg-grid opacity-70" />
+      <div className="pink-rising-arc -top-[450px]" />
+      <div className="section-glow bottom-0 left-1/4 glow-blue opacity-40" />
+      <div className="section-glow bottom-0 right-1/4 glow-pink opacity-30" />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-12 relative z-10">
+        <div className="flex items-center justify-between mb-16 relative z-10">
           <div className="top-bogchalar-title">
-            <span className="text-3xl md:text-4xl font-bold text-white">Top</span>
+            <h2 className="text-white">Top</h2>
             <div className="top-bogchalar-badge-container">
               <span className="top-bogchalar-badge-text">bog'chalar</span>
             </div>
-            <span className="text-3xl">🚀</span>
+            <img src={RocketIcon} alt="rocket" className="w-12 h-12" />
           </div>
-          
+
           {/* Barchasi Button */}
-          <button 
-            onClick={() => navigate('/search')}
+          <button
+            onClick={() => router.push('/search')}
             className="flex items-center gap-2 px-6 py-2.5 bg-[#d946ef] text-white font-medium rounded-full hover:bg-[#c026d3] transition-all shadow-lg"
           >
             Barchasi
@@ -200,7 +219,7 @@ const TopBogchalar = () => {
           )}
 
           {/* Cards Container */}
-          <div 
+          <div
             className={`relative w-full h-full flex items-center justify-center transition-opacity ${loading ? 'opacity-0' : 'opacity-100'}`}
             style={{ transformStyle: 'preserve-3d' }}
           >
@@ -245,7 +264,7 @@ const TopBogchalar = () => {
                           {renderStars(kg.score || kg.rating || 5)}
                         </div>
                       </div>
-                      <button 
+                      <button
                         onClick={(e) => e.stopPropagation()}
                         className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
                       >
@@ -259,13 +278,13 @@ const TopBogchalar = () => {
           </div>
 
           {/* Navigation Arrows */}
-          <button 
+          <button
             onClick={handlePrev}
             className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all z-50 shadow-lg"
           >
             <ChevronLeft size={24} />
           </button>
-          <button 
+          <button
             onClick={handleNext}
             className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all z-50 shadow-lg"
           >
@@ -279,11 +298,10 @@ const TopBogchalar = () => {
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
-                index === activeIndex 
-                  ? 'bg-white w-6' 
-                  : 'bg-white/40 hover:bg-white/60'
-              }`}
+              className={`w-2 h-2 rounded-full transition-all ${index === activeIndex
+                ? 'bg-white w-6'
+                : 'bg-white/40 hover:bg-white/60'
+                }`}
             />
           ))}
         </div>

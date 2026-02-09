@@ -1,12 +1,16 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ChevronLeft, ChevronDown, Star, MapPin, Search, SlidersHorizontal, Loader2, X, Filter } from 'lucide-react'
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { ChevronLeft, ChevronDown, Star, MapPin, Search, SlidersHorizontal, X, Filter, RotateCcw, Utensils, Languages, CalendarDays } from 'lucide-react'
 import Header from './Header'
 import Footer from './Footer'
+import KindergartenCard from './KindergartenCard'
+import SearchSkeleton from './SearchSkeleton'
 import { useKindergartens, useDistricts } from '../hooks/useKindergartens'
 import { Features, LanguagesEnum, WorkingDaysOfWeek, Meals } from '../services/api'
 
-// Feature labels in Uzbek
+// Labels mapping
 const featureLabels = {
   [Features.POOL]: 'Basseyn',
   [Features.MOSQUE]: 'Masjid',
@@ -16,45 +20,40 @@ const featureLabels = {
   [Features.MEDICAL]: 'Tibbiy xizmat'
 }
 
-// Language labels
 const languageLabels = {
-  [LanguagesEnum.UZBEK]: "O'zbek tili",
-  [LanguagesEnum.RUSSIAN]: 'Rus tili',
-  [LanguagesEnum.ENGLISH]: 'Ingliz tili',
-  [LanguagesEnum.ARABIC]: 'Arab tili',
-  [LanguagesEnum.KOREAN]: 'Koreys tili',
-  [LanguagesEnum.CHINESE]: 'Xitoy tili',
-  [LanguagesEnum.TURKISH]: 'Turk tili'
+  [LanguagesEnum.UZBEK]: "O'zbek",
+  [LanguagesEnum.RUSSIAN]: 'Rus',
+  [LanguagesEnum.ENGLISH]: 'Ingliz',
+  [LanguagesEnum.ARABIC]: 'Arab',
+  [LanguagesEnum.KOREAN]: 'Koreys',
+  [LanguagesEnum.CHINESE]: 'Xitoy',
+  [LanguagesEnum.TURKISH]: 'Turk'
 }
 
-// Working days labels
 const workingDaysLabels = {
-  [WorkingDaysOfWeek.MONDAY]: 'Dushanba',
-  [WorkingDaysOfWeek.TUESDAY]: 'Seshanba',
-  [WorkingDaysOfWeek.WEDNESDAY]: 'Chorshanba',
-  [WorkingDaysOfWeek.THURSDAY]: 'Payshanba',
-  [WorkingDaysOfWeek.FRIDAY]: 'Juma',
-  [WorkingDaysOfWeek.SATURDAY]: 'Shanba',
-  [WorkingDaysOfWeek.SUNDAY]: 'Yakshanba'
+  [WorkingDaysOfWeek.MONDAY]: 'Du',
+  [WorkingDaysOfWeek.TUESDAY]: 'Se',
+  [WorkingDaysOfWeek.WEDNESDAY]: 'Ch',
+  [WorkingDaysOfWeek.THURSDAY]: 'Pa',
+  [WorkingDaysOfWeek.FRIDAY]: 'Ju',
+  [WorkingDaysOfWeek.SATURDAY]: 'Sha',
+  [WorkingDaysOfWeek.SUNDAY]: 'Ya'
 }
 
-// Meals labels
 const mealsLabels = {
-  [Meals.NONE]: 'Ovqatsiz',
+  [Meals.NONE]: 'Yo\'q',
   [Meals.BREAKFAST]: 'Nonushta',
   [Meals.LUNCH]: 'Tushlik',
-  [Meals.DINNER]: 'Kechki ovqat',
-  [Meals.FULL]: "To'liq ovqat"
+  [Meals.DINNER]: 'Kechki',
+  [Meals.FULL]: "To'liq"
 }
 
-// Working schedule options
 const workingScheduleOptions = [
   { value: 5, label: '5 kunlik' },
   { value: 6, label: '6 kunlik' },
   { value: 7, label: '7 kunlik' }
 ]
 
-// Rating options
 const ratingOptions = [
   { value: 5, label: '5 yulduz' },
   { value: 4, label: '4+ yulduz' },
@@ -64,8 +63,9 @@ const ratingOptions = [
 ]
 
 const SearchResults = () => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedFeatures, setSelectedFeatures] = useState([])
   const [selectedLanguages, setSelectedLanguages] = useState([])
@@ -73,7 +73,8 @@ const SearchResults = () => {
   const [selectedMeals, setSelectedMeals] = useState('')
   const [selectedRating, setSelectedRating] = useState('')
   const [workingSchedule, setWorkingSchedule] = useState('')
-  const [priceRange, setPriceRange] = useState([500000, 250000000])
+  const [priceRange, setPriceRange] = useState([0, 250000000])
+  const [appliedPriceRange, setAppliedPriceRange] = useState([0, 250000000])
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
   
   const { 
@@ -87,33 +88,49 @@ const SearchResults = () => {
   
   const { districts } = useDistricts()
 
-  // Apply filters
-  const handleApplyFilters = () => {
-    // Calculate working days based on schedule selection
-    let workingDays = selectedWorkingDays
-    if (workingSchedule === '5') {
-      workingDays = [0, 1, 2, 3, 4] // Mon-Fri
-    } else if (workingSchedule === '6') {
-      workingDays = [0, 1, 2, 3, 4, 5] // Mon-Sat
-    } else if (workingSchedule === '7') {
-      workingDays = [0, 1, 2, 3, 4, 5, 6] // Mon-Sun
-    }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [searchQuery])
 
+  useEffect(() => {
     updateFilters({
-      search: searchQuery,
+      search: debouncedSearchQuery,
+      districtId: selectedDistrict ? [parseInt(selectedDistrict)] : [],
+      features: selectedFeatures,
+      languageGroups: selectedLanguages,
+      workingDaysInWeek: selectedWorkingDays,
+      meals: selectedMeals ? parseInt(selectedMeals) : undefined,
+      score: selectedRating ? parseFloat(selectedRating) : undefined,
+      priceRangeStart: appliedPriceRange[0] > 0 ? appliedPriceRange[0] : null,
+      priceRangeEnd: appliedPriceRange[1] < 250000000 ? appliedPriceRange[1] : null,
+      pageNumber: 1
+    })
+  }, [debouncedSearchQuery])
+
+  const handleApplyFilters = () => {
+    let workingDays = selectedWorkingDays
+    if (workingSchedule === '5') workingDays = [0, 1, 2, 3, 4]
+    else if (workingSchedule === '6') workingDays = [0, 1, 2, 3, 4, 5]
+    else if (workingSchedule === '7') workingDays = [0, 1, 2, 3, 4, 5, 6]
+
+    setAppliedPriceRange(priceRange)
+    updateFilters({
+      search: debouncedSearchQuery,
       districtId: selectedDistrict ? [parseInt(selectedDistrict)] : [],
       features: selectedFeatures,
       languageGroups: selectedLanguages,
       workingDaysInWeek: workingDays,
       meals: selectedMeals ? parseInt(selectedMeals) : undefined,
       score: selectedRating ? parseFloat(selectedRating) : undefined,
-      priceRangeStart: priceRange[0],
-      priceRangeEnd: priceRange[1],
+      priceRangeStart: priceRange[0] > 0 ? priceRange[0] : null,
+      priceRangeEnd: priceRange[1] < 250000000 ? priceRange[1] : null,
       pageNumber: 1
     })
   }
 
-  // Reset all filters
   const handleResetFilters = () => {
     setSearchQuery('')
     setSelectedDistrict('')
@@ -123,7 +140,8 @@ const SearchResults = () => {
     setSelectedMeals('')
     setSelectedRating('')
     setWorkingSchedule('')
-    setPriceRange([500000, 250000000])
+    setPriceRange([0, 250000000])
+    setAppliedPriceRange([0, 250000000])
     
     updateFilters({
       search: '',
@@ -139,190 +157,50 @@ const SearchResults = () => {
     })
   }
 
-  // Toggle feature selection
   const toggleFeature = (feature) => {
-    setSelectedFeatures(prev => 
-      prev.includes(feature) 
-        ? prev.filter(f => f !== feature)
-        : [...prev, feature]
-    )
+    setSelectedFeatures(prev => prev.includes(feature) ? prev.filter(f => f !== feature) : [...prev, feature])
   }
 
-  // Toggle language selection
   const toggleLanguage = (language) => {
-    setSelectedLanguages(prev => 
-      prev.includes(language) 
-        ? prev.filter(l => l !== language)
-        : [...prev, language]
-    )
+    setSelectedLanguages(prev => prev.includes(language) ? prev.filter(l => l !== language) : [...prev, language])
   }
 
-  // Toggle working day selection
   const toggleWorkingDay = (day) => {
-    setSelectedWorkingDays(prev => 
-      prev.includes(day) 
-        ? prev.filter(d => d !== day)
-        : [...prev, day]
-    )
-    setWorkingSchedule('') // Clear schedule when manually selecting days
+    setSelectedWorkingDays(prev => prev.includes(day) ? prev.filter(d => d !== day) : [...prev, day])
+    setWorkingSchedule('')
   }
 
-  // Handle search on Enter key
   const handleSearchKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleApplyFilters()
-    }
-  }
-
-  const renderStars = (rating) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`w-5 h-5 ${i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
-      />
-    ))
-  }
-
-  // Sodiq School Logo SVG Component
-  const SodiqLogo = () => (
-    <svg viewBox="0 0 200 240" className="w-28 h-36">
-      {/* Top section with S */}
-      <rect x="40" y="20" width="55" height="70" rx="4" fill="#f97316" />
-      <text x="67" y="68" fill="white" fontSize="36" fontWeight="bold" textAnchor="middle">S</text>
-      
-      {/* Top right decorative pattern */}
-      <g fill="#f97316">
-        <path d="M105 20 L160 20 L160 35 L120 35 L105 20Z" />
-        <path d="M105 90 L160 90 L160 75 L120 75 L105 90Z" />
-        <path d="M120 35 L160 35 L160 75 L120 75 L120 35Z" />
-        <polygon points="120,45 140,55 120,65" fill="#1a1a4e" />
-        <polygon points="160,45 140,55 160,65" fill="#1a1a4e" />
-      </g>
-      
-      {/* Middle connecting bar */}
-      <rect x="40" y="95" width="120" height="20" fill="#f97316" />
-      <g fill="#1a1a4e">
-        <polygon points="55,100 70,107 55,114" />
-        <polygon points="85,100 100,107 85,114" />
-        <polygon points="115,100 130,107 115,114" />
-        <polygon points="145,100 160,107 145,114" />
-      </g>
-      
-      {/* Bottom shield with S */}
-      <path d="M40 120 L160 120 L160 180 L100 220 L40 180 Z" fill="#f97316" />
-      <path d="M55 135 L145 135 L145 175 L100 200 L55 175 Z" fill="#1a1a4e" />
-      <text x="100" y="178" fill="white" fontSize="32" fontWeight="bold" textAnchor="middle">S</text>
-      
-      {/* Horizontal lines at bottom */}
-      <line x1="60" y1="205" x2="140" y2="205" stroke="#f97316" strokeWidth="3" />
-      <line x1="70" y1="212" x2="130" y2="212" stroke="#f97316" strokeWidth="3" />
-      <line x1="80" y1="219" x2="120" y2="219" stroke="#f97316" strokeWidth="3" />
-    </svg>
-  )
-
-  const renderCardImage = (type) => {
-    switch (type) {
-      case 'orange-logo':
-        return (
-          <div className="w-full h-full bg-[#1a1a4e] flex items-center justify-center rounded-2xl">
-            <SodiqLogo />
-          </div>
-        )
-      case 'green-logo':
-        return (
-          <div className="w-full h-full bg-[#22c55e] flex items-center justify-center rounded-2xl">
-            <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
-              <path d="M30 80V30L70 20V70L30 80Z" fill="white" fillOpacity="0.9"/>
-              <path d="M70 20L85 35V85L70 70V20Z" fill="white" fillOpacity="0.7"/>
-              <path d="M55 15L70 20L55 25V15Z" fill="white" fillOpacity="0.8"/>
-            </svg>
-          </div>
-        )
-      case 'blue-logo':
-        return (
-          <div className="w-full h-full bg-[#22c55e] flex items-center justify-center rounded-2xl">
-            <div className="bg-[#1a1a4e] w-20 h-20 rounded-lg flex items-center justify-center">
-              <SodiqLogo />
-            </div>
-          </div>
-        )
-      case 'building':
-        return (
-          <div className="w-full h-full rounded-2xl overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop" 
-              alt="School building"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        )
-      case 'building-green':
-        return (
-          <div className="w-full h-full rounded-2xl overflow-hidden relative">
-            <img 
-              src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop" 
-              alt="School building"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute top-2 right-2 bg-[#22c55e] text-white text-xs px-2 py-1 rounded font-bold">
-              SOMO SCHOOL
-            </div>
-          </div>
-        )
-      default:
-        return (
-          <div className="w-full h-full bg-gray-200 flex items-center justify-center rounded-2xl">
-            <span className="text-gray-400">No image</span>
-          </div>
-        )
-    }
+    if (e.key === 'Enter') setDebouncedSearchQuery(searchQuery)
   }
 
   const renderPagination = () => {
     const { currentPage, totalPages } = pagination
-    const pages = []
-    
     if (totalPages <= 1) return null
-
-    // Calculate visible page range
+    
+    const pages = []
     const maxVisible = 5
     let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2))
     let endPage = Math.min(totalPages, startPage + maxVisible - 1)
-    
+
     if (endPage - startPage < maxVisible - 1) {
       startPage = Math.max(1, endPage - maxVisible + 1)
     }
 
-    // First page
     if (startPage > 1) {
       pages.push(
-        <button
-          key={1}
-          onClick={() => setPage(1)}
-          className="w-8 h-8 rounded-lg text-sm font-medium transition-all bg-[#2a2a4a] text-white hover:bg-[#3a3a5a]"
-        >
-          1
-        </button>
+        <button key={1} onClick={() => setPage(1)} className="w-10 h-10 rounded-xl text-sm font-bold transition-all bg-white/5 text-gray-400 hover:text-white hover:bg-white/10">1</button>
       )
-      if (startPage > 2) {
-        pages.push(
-          <span key="ellipsis-start" className="w-8 h-8 flex items-center justify-center text-white">
-            ...
-          </span>
-        )
-      }
+      if (startPage > 2) pages.push(<span key="dots-1" className="text-gray-600 px-1">...</span>)
     }
 
-    // Visible pages
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
         <button
           key={i}
           onClick={() => setPage(i)}
-          className={`w-8 h-8 rounded-lg text-sm font-medium transition-all ${
-            currentPage === i 
-              ? 'bg-cyan-400 text-white' 
-              : 'bg-[#2a2a4a] text-white hover:bg-[#3a3a5a]'
+          className={`w-10 h-10 rounded-xl text-sm font-bold transition-all ${
+            currentPage === i ? 'bg-[#d946ef] text-white shadow-lg shadow-[#d946ef]/20' : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'
           }`}
         >
           {i}
@@ -330,407 +208,265 @@ const SearchResults = () => {
       )
     }
 
-    // Last page
     if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        pages.push(
-          <span key="ellipsis-end" className="w-8 h-8 flex items-center justify-center text-white">
-            ...
-          </span>
-        )
-      }
+      if (endPage < totalPages - 1) pages.push(<span key="dots-2" className="text-gray-600 px-1">...</span>)
       pages.push(
-        <button
-          key={totalPages}
-          onClick={() => setPage(totalPages)}
-          className="w-8 h-8 rounded-lg text-sm font-medium transition-all bg-[#2a2a4a] text-white hover:bg-[#3a3a5a]"
-        >
-          {totalPages}
-        </button>
+        <button key={totalPages} onClick={() => setPage(totalPages)} className="w-10 h-10 rounded-xl text-sm font-bold transition-all bg-white/5 text-gray-400 hover:text-white hover:bg-white/10">{totalPages}</button>
       )
     }
-
     return pages
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
-      {/* Header */}
+    <div className="min-h-screen bg-[#0f0a1f] selection:bg-[#d946ef]/30 font-sans">
       <Header className="relative" />
 
-      {/* Search Bar Section */}
-      <div className="px-4 sm:px-6 lg:px-8 py-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-[#1e1e3f] border border-[#3a3a6a] rounded-2xl px-4 py-3 flex flex-col md:flex-row items-stretch md:items-center gap-4">
-            {/* Back Button & Title */}
-            <div className="flex items-center gap-3">
-              <button 
-                onClick={() => navigate('/')}
-                className="w-8 h-8 rounded-full border border-gray-500 flex items-center justify-center text-gray-400 hover:border-gray-400 hover:text-white transition-all"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <span className="text-white font-medium text-lg">Bog'chalar</span>
-            </div>
+      <div className="sticky top-0 z-40 bg-[#0f0a1f]/80 backdrop-blur-xl border-b border-white/5 py-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-4">
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => router.push('/')}
+              className="group w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#d946ef]/50 transition-all"
+            >
+              <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
+            </button>
+            <h1 className="text-xl font-bold text-white tracking-tight">
+              Bog'chalar <span className="hidden sm:inline text-[#d946ef] text-sm font-normal ml-2 opacity-80">{pagination.totalItems} ta topildi</span>
+            </h1>
+          </div>
 
-            {/* Search Input */}
-            <div className="flex-1 relative max-w-xl">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-              <input
-                type="text"
-                placeholder="Izlash"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleSearchKeyDown}
-                className="w-full bg-[#2a2a4a]/50 text-white placeholder-gray-500 pl-11 pr-4 py-2.5 rounded-full border border-transparent focus:outline-none focus:border-[#3a3a6a] text-sm"
-              />
-            </div>
-
-            {/* Sort Dropdown */}
-            <div className="relative ml-auto">
-              <button className="flex items-center gap-3 bg-transparent text-gray-400 hover:text-white px-4 py-2 rounded-full transition-all">
-                <span className="text-sm">Yangilari</span>
-                <SlidersHorizontal size={16} />
+          <div className="flex-1 relative group h-12">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#d946ef] transition-colors" size={18} />
+            <input
+              type="text"
+              placeholder="Nomi bo'yicha izlash..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearchKeyDown}
+              className="w-full h-full bg-[#1a152e] text-white placeholder-gray-400 pl-12 pr-12 rounded-2xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#d946ef]/20 focus:border-[#d946ef]/50 transition-all text-sm"
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+                <X size={16} />
               </button>
+            )}
+          </div>
+
+          <div className="flex items-center gap-2 h-12">
+            <button 
+              onClick={() => setIsMobileFilterOpen(true)}
+              className="lg:hidden flex items-center justify-center gap-2 h-full px-5 bg-[#d946ef] text-white rounded-2xl font-bold shadow-lg shadow-[#d946ef]/20 transition-all active:scale-95"
+            >
+              <Filter size={18} />
+            </button>
+            <div className="hidden md:flex items-center gap-2 h-full px-4 bg-[#1a152e] rounded-2xl border border-white/10 transition-colors hover:bg-white/10 group relative">
+              <SlidersHorizontal size={16} className="text-gray-400 group-hover:text-[#d946ef] transition-colors" />
+              <select className="bg-transparent text-white text-sm outline-none cursor-pointer h-full border-none appearance-none pr-6">
+                <option value="new" className="bg-[#1a152e] text-white">Eng yangilari</option>
+                <option value="rating" className="bg-[#1a152e] text-white">Reyting baland</option>
+              </select>
+              <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none group-hover:text-white transition-colors" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-[#ebe5f5] rounded-3xl p-6">
-            <div className="flex flex-col lg:flex-row gap-6 relative">
-              {/* Filter Sidebar */}
-              <div className="w-full lg:w-72 lg:flex-shrink-0 lg:sticky lg:top-6 lg:h-fit z-30">
-                {/* Mobile Filter Toggle */}
-                <button
-                  onClick={() => setIsMobileFilterOpen(true)}
-                  className="lg:hidden w-full mb-4 bg-white text-gray-900 font-medium py-3 rounded-2xl shadow-sm flex items-center justify-center gap-2"
-                >
-                  <Filter size={20} />
-                  Filtrlash
-                </button>
+      <main className="px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 items-start relative">
+          
+          {isMobileFilterOpen && (
+            <div className="fixed inset-0 z-[60] bg-[#0f0a1f]/80 backdrop-blur-sm lg:hidden" onClick={() => setIsMobileFilterOpen(false)} />
+          )}
 
-                {/* Mobile Filter Overlay */}
-                <div 
-                  className={`fixed inset-0 z-40 bg-black/50 lg:hidden transition-opacity duration-300 ${
-                    isMobileFilterOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-                  }`}
-                  onClick={() => setIsMobileFilterOpen(false)}
-                />
+          <aside className={`
+            fixed inset-y-4 left-4 right-4 z-[70] bg-[#1a152e] rounded-[2.5rem] p-8 overflow-y-auto custom-scrollbar transition-all duration-500
+            lg:static lg:block lg:w-72 lg:flex-shrink-0 lg:sticky lg:top-32 lg:bg-white/5 lg:border lg:border-white/10 lg:p-8 lg:z-30 lg:rounded-[2.5rem]
+            ${isMobileFilterOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-full opacity-0 scale-95 lg:translate-y-0 lg:opacity-100 lg:scale-100 hidden'}
+          `}>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <Filter size={18} className="text-[#d946ef]" /> Filterlar
+              </h2>
+              <button onClick={handleResetFilters} className="p-2 rounded-xl hover:bg-white/5 text-gray-500 hover:text-[#d946ef] transition-all">
+                <RotateCcw size={16} />
+              </button>
+            </div>
 
-                <div className={`
-                  fixed inset-y-0 left-0 z-50 w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out p-6 overflow-y-auto custom-scrollbar
-                  lg:transform-none lg:static lg:w-full lg:rounded-3xl lg:shadow-sm lg:block lg:max-h-[calc(100vh-48px)]
-                  ${isMobileFilterOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-                `}>
-                  <div className="flex items-center justify-between mb-5">
-                    <h3 className="text-lg font-bold text-gray-900">Filter</h3>
-                    <div className="flex items-center gap-4">
-                      <button 
-                        onClick={handleResetFilters}
-                        className="text-xs text-[#d946ef] hover:underline"
-                      >
-                        Tozalash
-                      </button>
-                      <button 
-                        onClick={() => setIsMobileFilterOpen(false)}
-                        className="lg:hidden text-gray-400 hover:text-gray-600"
-                      >
-                        <X size={24} />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Manzil - District */}
-                  <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Manzil</label>
-                    <div className="relative">
-                      <select 
-                        value={selectedDistrict}
-                        onChange={(e) => setSelectedDistrict(e.target.value)}
-                        className="w-full bg-white border border-gray-200 text-gray-700 px-4 py-2.5 rounded-full appearance-none focus:outline-none focus:border-gray-300 text-sm"
-                      >
-                        <option value="">Barcha tumanlar</option>
-                        {districts.map(district => (
-                          <option key={district.id} value={district.id}>
-                            {district.districtName || district.name}
-                          </option>
-                        ))}
-                      </select>
-                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                    </div>
-                  </div>
-
-                  {/* Ish vaqti - Working Schedule */}
-                  <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Ish vaqti</label>
-                    <div className="relative">
-                      <select 
-                        value={workingSchedule}
-                        onChange={(e) => setWorkingSchedule(e.target.value)}
-                        className="w-full bg-white border border-gray-200 text-gray-700 px-4 py-2.5 rounded-full appearance-none focus:outline-none focus:border-gray-300 text-sm"
-                      >
-                        <option value="">Tanlang</option>
-                        {workingScheduleOptions.map(opt => (
-                          <option key={opt.value} value={opt.value}>{opt.label}</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                    </div>
-                  </div>
-
-                  {/* Ish kunlari - Working Days */}
-                  <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Ish kunlari</label>
-                    <div className="flex flex-wrap gap-1.5">
-                      {Object.entries(workingDaysLabels).map(([key, label]) => (
-                        <button
-                          key={key}
-                          onClick={() => toggleWorkingDay(parseInt(key))}
-                          className={`px-2.5 py-1 text-xs rounded-full transition-all ${
-                            selectedWorkingDays.includes(parseInt(key))
-                              ? 'bg-[#8b5cf6] text-white border border-[#8b5cf6]'
-                              : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
-                          }`}
-                        >
-                          {label.slice(0, 3)}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Reyting - Rating */}
-                  <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Reyting</label>
-                    <div className="relative">
-                      <select 
-                        value={selectedRating}
-                        onChange={(e) => setSelectedRating(e.target.value)}
-                        className="w-full bg-white border border-gray-200 text-gray-700 px-4 py-2.5 rounded-full appearance-none focus:outline-none focus:border-gray-300 text-sm"
-                      >
-                        <option value="">Barcha reytinglar</option>
-                        {ratingOptions.map(opt => (
-                          <option key={opt.value} value={opt.value}>{opt.label}</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                    </div>
-                  </div>
-
-                  {/* Ovqatlanish - Meals */}
-                  <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Ovqatlanish</label>
-                    <div className="flex flex-wrap gap-2">
-                      {Object.entries(mealsLabels).map(([key, label]) => (
-                        <button
-                          key={key}
-                          onClick={() => setSelectedMeals(selectedMeals === key ? '' : key)}
-                          className={`px-3 py-1.5 text-xs rounded-full transition-all ${
-                            selectedMeals === key
-                              ? 'bg-[#f59e0b] text-white border border-[#f59e0b]'
-                              : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
-                          }`}
-                        >
-                          {label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Qo'shimcha imkoniyatlar - Features */}
-                  <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Qo'shimcha imkoniyatlar</label>
-                    <div className="flex flex-wrap gap-2">
-                      {Object.entries(featureLabels).map(([key, label]) => (
-                        <button
-                          key={key}
-                          onClick={() => toggleFeature(parseInt(key))}
-                          className={`px-3 py-1.5 text-xs rounded-full transition-all ${
-                            selectedFeatures.includes(parseInt(key))
-                              ? 'bg-[#d946ef] text-white border border-[#d946ef]'
-                              : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
-                          }`}
-                        >
-                          {label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Tillar - Languages */}
-                  <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Ta'lim tili</label>
-                    <div className="flex flex-wrap gap-2">
-                      {Object.entries(languageLabels).map(([key, label]) => (
-                        <button
-                          key={key}
-                          onClick={() => toggleLanguage(parseInt(key))}
-                          className={`px-3 py-1.5 text-xs rounded-full transition-all ${
-                            selectedLanguages.includes(parseInt(key))
-                              ? 'bg-[#06b6d4] text-white border border-[#06b6d4]'
-                              : 'border border-gray-200 text-gray-600 hover:bg-gray-50'
-                          }`}
-                        >
-                          {label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Narx - Price Range */}
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-800 mb-3">Narx</label>
-                    <div className="relative pt-2 px-1 h-6">
-                      {/* Range Inputs */}
-                      <input
-                        type="range"
-                        min="500000"
-                        max="250000000"
-                        step="500000"
-                        value={priceRange[0]}
-                        onChange={(e) => {
-                          const val = Math.min(Number(e.target.value), priceRange[1] - 1000000);
-                          setPriceRange([val, priceRange[1]]);
-                        }}
-                        className="range-slider-input top-2 left-0 z-20"
-                      />
-                      <input
-                        type="range"
-                        min="500000"
-                        max="250000000"
-                        step="500000"
-                        value={priceRange[1]}
-                        onChange={(e) => {
-                          const val = Math.max(Number(e.target.value), priceRange[0] + 1000000);
-                          setPriceRange([priceRange[0], val]);
-                        }}
-                        className="range-slider-input top-2 left-0 z-20"
-                      />
-
-                      {/* Visual Track */}
-                      <div className="absolute top-2 left-0 w-full h-1 bg-gray-200 rounded-full z-10 pointer-events-none">
-                        <div 
-                          className="absolute h-1 bg-[#d946ef] rounded-full"
-                          style={{ 
-                            left: `${((priceRange[0] - 500000) / (250000000 - 500000)) * 100}%`, 
-                            right: `${100 - ((priceRange[1] - 500000) / (250000000 - 500000)) * 100}%` 
-                          }}
-                        />
-                      </div>
-                      
-                      <div className="flex justify-between text-xs text-gray-400 mt-6 pointer-events-none">
-                        <span>{(priceRange[0] / 1000000).toFixed(1)}M</span>
-                        <span>{(priceRange[1] / 1000000).toFixed(0)}M</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Apply Filter Button */}
-                  <button 
-                    onClick={() => {
-                      handleApplyFilters()
-                      setIsMobileFilterOpen(false)
-                    }}
-                    className="w-full bg-gradient-to-r from-[#d946ef] to-[#ec4899] text-white font-medium py-3 rounded-full hover:opacity-90 transition-all shadow-lg shadow-pink-200"
+            <div className="space-y-6">
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Tuman</label>
+                <div className="relative">
+                  <select 
+                    value={selectedDistrict}
+                    onChange={(e) => setSelectedDistrict(e.target.value)}
+                    className="w-full bg-[#1a152e] border border-white/10 text-white pl-4 pr-10 py-3 rounded-xl appearance-none focus:outline-none focus:border-[#d946ef]/50 text-sm"
                   >
-                    Filterni qo'llash
-                  </button>
+                    <option value="" className="bg-[#1a152e] text-white">Barcha tumanlar</option>
+                    {districts.map(d => <option key={d.id} value={d.id} className="bg-[#1a152e] text-white">{d.districtName || d.name}</option>)}
+                  </select>
+                  <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
                 </div>
               </div>
 
-              {/* Results Grid */}
-              <div className="flex-1">
-                {loading ? (
-                  <div className="flex items-center justify-center h-96">
-                    <Loader2 className="w-8 h-8 text-[#d946ef] animate-spin" />
-                  </div>
-                ) : error ? (
-                  <div className="flex flex-col items-center justify-center h-96 text-gray-500">
-                    <p className="text-lg mb-2">Xatolik yuz berdi</p>
-                    <p className="text-sm">{error}</p>
-                  </div>
-                ) : kindergartens.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-96 text-gray-500">
-                    <p className="text-lg">Hech narsa topilmadi</p>
-                    <p className="text-sm mt-2">Boshqa filtrlarni sinab ko'ring</p>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {kindergartens.map((kg) => (
-                      <div 
-                        key={kg.id} 
-                        onClick={() => navigate(`/kindergarten/${kg.id}`)}
-                        className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-gray-100 cursor-pointer hover:scale-[1.02]"
-                      >
-                        {/* Card Header */}
-                        <div className="px-5 pt-5 pb-3">
-                          <h3 className="text-base font-bold text-gray-900">{kg.name}</h3>
-                        </div>
-
-                        {/* Card Image */}
-                        <div className="px-4">
-                          <div className="h-44 relative rounded-2xl overflow-hidden">
-                            {kg.profilePhoto ? (
-                              <img 
-                                src={kg.profilePhoto} 
-                                alt={kg.name}
-                                className="w-full h-full object-cover rounded-2xl"
-                                onError={(e) => {
-                                  e.target.style.display = 'none'
-                                  e.target.nextSibling.style.display = 'flex'
-                                }}
-                              />
-                            ) : null}
-                            <div className={`w-full h-full bg-[#1a1a4e] flex items-center justify-center rounded-2xl ${kg.profilePhoto ? 'hidden' : ''}`}>
-                              <SodiqLogo />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Card Content */}
-                        <div className="p-5 pt-4">
-                          <div className="flex items-start justify-between">
-                            <div>
-                              <p className="text-gray-900 font-semibold text-sm">{kg.location || 'Toshkent shaxri'}</p>
-                              <p className="text-gray-400 text-sm mt-0.5">{kg.district?.districtName || kg.districtName || 'Tuman'}</p>
-                              <div className="flex items-center gap-0.5 mt-2">
-                                {renderStars(kg.score || kg.rating || 5)}
-                              </div>
-                            </div>
-                            <button 
-                              onClick={(e) => e.stopPropagation()}
-                              className="w-10 h-10 rounded-full bg-transparent flex items-center justify-center hover:bg-gray-50 transition-colors"
-                            >
-                              <MapPin className="w-5 h-5 text-gray-400" strokeWidth={1.5} />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Pagination */}
-                {!loading && kindergartens.length > 0 && (
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 mt-6 bg-[#1a1a3e] rounded-2xl px-4 py-3">
-                    <p className="text-gray-400 text-sm text-center sm:text-left">
-                      Показано: {((pagination.currentPage - 1) * 9) + 1} - {Math.min(pagination.currentPage * 9, pagination.totalItems)} / {pagination.totalItems}
-                    </p>
-                    <div className="flex items-center gap-1">
-                      {renderPagination()}
-                    </div>
-                  </div>
-                )}
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <CalendarDays size={14} className="text-[#d946ef]" /> Ish grafigi
+                </label>
+                <div className="grid grid-cols-1 gap-2">
+                  {workingScheduleOptions.map(opt => (
+                    <button
+                      key={opt.value}
+                      onClick={() => setWorkingSchedule(opt.value.toString())}
+                      className={`px-4 py-2 text-sm rounded-xl border transition-all ${
+                        workingSchedule === opt.value.toString() ? 'bg-[#d946ef] border-[#d946ef] text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {Object.entries(workingDaysLabels).map(([key, label]) => (
+                    <button
+                      key={key}
+                      onClick={() => toggleWorkingDay(parseInt(key))}
+                      className={`w-9 h-9 flex items-center justify-center text-[10px] font-bold rounded-lg border transition-all ${
+                        selectedWorkingDays.includes(parseInt(key)) ? 'bg-cyan-500 border-cyan-500 text-white' : 'border-white/10 text-gray-500 hover:border-white/20'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
               </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Utensils size={14} className="text-[#d946ef]" /> Ovqatlanish
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(mealsLabels).map(([key, label]) => (
+                    <button
+                      key={key}
+                      onClick={() => setSelectedMeals(selectedMeals === key ? '' : key)}
+                      className={`px-3 py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                        selectedMeals === key ? 'bg-orange-500 border-orange-500 text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Languages size={14} className="text-[#d946ef]" /> Ta'lim tili
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(languageLabels).map(([key, label]) => (
+                    <button
+                      key={key}
+                      onClick={() => toggleLanguage(parseInt(key))}
+                      className={`px-3 py-1.5 text-xs font-bold rounded-lg border transition-all ${
+                        selectedLanguages.includes(parseInt(key)) ? 'bg-indigo-500 border-indigo-500 text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Narx (oylik)</label>
+                <div className="space-y-4 px-2">
+                  <div className="flex justify-between text-[10px] font-bold text-gray-400">
+                    <span>{(priceRange[0] / 1000000).toFixed(1)}M</span>
+                    <span>{(priceRange[1] / 1000000).toFixed(0)}M</span>
+                  </div>
+                  <div className="relative h-2">
+                    <input
+                      type="range" min="0" max="250000000" step="1000000"
+                      value={priceRange[0]}
+                      onChange={(e) => setPriceRange([Math.min(Number(e.target.value), priceRange[1] - 1000000), priceRange[1]])}
+                      className="range-slider-input"
+                    />
+                    <input
+                      type="range" min="0" max="250000000" step="1000000"
+                      value={priceRange[1]}
+                      onChange={(e) => setPriceRange([priceRange[0], Math.max(Number(e.target.value), priceRange[0] + 1000000)])}
+                      className="range-slider-input"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Imkoniyatlar</label>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(featureLabels).map(([key, label]) => (
+                    <button
+                      key={key}
+                      onClick={() => toggleFeature(parseInt(key))}
+                      className={`px-3 py-1.5 text-[11px] font-bold rounded-lg border transition-all uppercase tracking-tight ${
+                        selectedFeatures.includes(parseInt(key)) ? 'bg-[#d946ef] border-[#d946ef] text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <button 
+                onClick={() => { handleApplyFilters(); setIsMobileFilterOpen(false); }}
+                className="w-full bg-gradient-to-r from-[#d946ef] to-[#ec4899] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#d946ef]/20 transition-all hover:scale-[1.02] active:scale-95"
+              >
+                Natijalarni ko'rish
+              </button>
             </div>
+          </aside>
+
+          <div className="flex-1 min-w-0">
+            {loading ? (
+              <SearchSkeleton />
+            ) : error ? (
+              <div className="flex flex-col items-center justify-center min-h-[400px] text-center bg-white/5 rounded-[2.5rem] border border-white/5 p-8">
+                <X className="text-red-500 mb-4" size={48} />
+                <h3 className="text-xl font-bold text-white mb-2">Xatolik yuz berdi</h3>
+                <p className="text-gray-400 mb-6">{error}</p>
+                <button onClick={() => window.location.reload()} className="px-8 py-3 bg-white/10 text-white rounded-2xl font-bold border border-white/10">Qayta urinish</button>
+              </div>
+            ) : kindergartens.length === 0 ? (
+              <div className="flex flex-col items-center justify-center min-h-[400px] text-center bg-white/5 rounded-[2.5rem] border border-white/5 p-8">
+                <Search className="text-amber-500 mb-4" size={48} />
+                <h3 className="text-xl font-bold text-white mb-2">Hech narsa topilmadi</h3>
+                <p className="text-gray-400 mb-6">Mezonlarga mos bog'chalar mavjud emas.</p>
+                <button onClick={handleResetFilters} className="px-8 py-3 bg-[#d946ef] text-white rounded-2xl font-bold">Filtrlarni tozalash</button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                {kindergartens.map((kg) => (
+                  <KindergartenCard key={kg.id} kg={kg} onClick={() => router.push(`/kindergarten/${kg.id}`)} />
+                ))}
+              </div>
+            )}
+
+            {!loading && kindergartens.length > 0 && (
+              <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 bg-white/5 rounded-[2rem] p-6 border border-white/10">
+                <p className="text-gray-400 text-sm font-medium">
+                  Jami <span className="text-white">{pagination.totalItems}</span> ta natijadan <span className="text-white">{kindergartens.length}</span> tasi ko'rsatildi
+                </p>
+                <div className="flex items-center gap-2">
+                  {renderPagination()}
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   )

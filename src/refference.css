@@ -1,0 +1,14178 @@
+/* 1 */
+
+position: relative;
+width: 1440px;
+height: 4944px;
+left: 200px;
+top: 200px;
+
+background: #200D37;
+
+
+/* Group 9 */
+
+position: absolute;
+width: 1440px;
+height: 1560px;
+left: calc(50% - 1440px/2);
+top: 939px;
+
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 1440px;
+height: 1442px;
+left: calc(50% - 1440px/2);
+top: 939px;
+
+background: linear-gradient(180deg, #FF07DE 0%, rgba(32, 13, 55, 0) 23.97%);
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Rectangle 136 */
+
+position: absolute;
+width: 1440px;
+height: 931px;
+left: 0px;
+top: 1568px;
+
+background: rgba(32, 13, 55, 0.1);
+backdrop-filter: blur(15.7428px);
+/* Note: backdrop-filter has minimal browser support */
+transform: matrix(1, 0, 0, -1, 0, 0);
+
+
+/* Group 11 */
+
+position: absolute;
+width: 1440px;
+height: 1560px;
+left: calc(50% - 1440px/2);
+top: 517px;
+
+
+
+/* Ellipse 10 */
+
+position: absolute;
+width: 1440px;
+height: 1442px;
+left: calc(50% - 1440px/2);
+top: 635px;
+
+background: linear-gradient(180deg, #FF07DE 0%, rgba(32, 13, 55, 0) 23.97%);
+
+
+/* Rectangle 136 */
+
+position: absolute;
+width: 1440px;
+height: 931px;
+left: 0px;
+top: 517px;
+
+background: rgba(32, 13, 55, 0.1);
+backdrop-filter: blur(15.7428px);
+/* Note: backdrop-filter has minimal browser support */
+
+
+/* Rectangle 135 */
+
+position: absolute;
+width: 1221px;
+height: 1267px;
+left: 357px;
+top: -812px;
+
+background: radial-gradient(62.57% 62.67% at 50% 50%, #BD8D08 0%, rgba(32, 13, 55, 0) 80.1%)
+/* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+;
+opacity: 0.64;
+
+
+/* Ellipse 2 */
+
+position: absolute;
+width: 1233px;
+height: 1233px;
+left: 1026px;
+top: 106px;
+
+background: radial-gradient(50% 50% at 50% 50%, rgba(0, 255, 128, 0.5) 0%, rgba(32, 13, 55, 0) 100%);
+
+
+/* Ellipse 1 */
+
+position: absolute;
+width: 1844px;
+height: 1844px;
+left: -1124px;
+top: -336px;
+
+background: radial-gradient(50% 50% at 50% 50%, rgba(64, 118, 255, 0.5) 0%, rgba(32, 13, 55, 0) 100%);
+
+
+/* main */
+
+position: absolute;
+width: 602.51px;
+height: 602.51px;
+left: 722.74px;
+top: 76.75px;
+
+
+
+/* family-svgrepo-com */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 50px;
+height: 50px;
+left: 900px;
+top: 162px;
+
+background: linear-gradient(133.5deg, #8811BF 2.43%, #4D14BE 98%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 14px;
+
+
+/* Vector */
+
+width: 36px;
+height: 34px;
+
+background: #FFFFFF;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* family-svgrepo-com */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 50px;
+height: 50px;
+left: 1198px;
+top: 273px;
+
+background: linear-gradient(133.5deg, #8811BF 2.43%, #4D14BE 98%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 14px;
+
+
+/* location-med-2-svgrepo-com */
+
+width: 37.59px;
+height: 37.59px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 2.34934px solid #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 50px;
+height: 50px;
+left: 996px;
+top: 565px;
+
+background: linear-gradient(133.5deg, #8811BF 2.43%, #4D14BE 98%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 14px;
+
+
+/* school-flag-svgrepo-com */
+
+width: 37.59px;
+height: 37.59px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.33%;
+bottom: 8.33%;
+
+border: 1.77175px solid #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 30px;
+height: 30px;
+left: 1087px;
+top: 426px;
+
+background: linear-gradient(133.5deg, #8811BF 2.43%, #4D14BE 98%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* hugeicons:book-open-02 */
+
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10%;
+right: 6.67%;
+top: 10%;
+bottom: 6.67%;
+
+border: 1.5px solid #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 30px;
+height: 30px;
+left: 1011px;
+top: 258px;
+
+background: linear-gradient(133.5deg, #8811BF 2.43%, #4D14BE 98%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* streamline:film-slate */
+
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 6.07%;
+right: 8.48%;
+top: 4.51%;
+bottom: 4.58%;
+
+border: 1.5px solid #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 30px;
+height: 30px;
+left: 925px;
+top: 433px;
+
+background: linear-gradient(133.5deg, #8811BF 2.43%, #4D14BE 98%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 8px;
+
+
+/* search-4-svgrepo-com */
+
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.66%;
+right: 17.84%;
+top: 18.28%;
+bottom: 16.22%;
+
+border: 1.5px solid #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+position: absolute;
+width: 50px;
+height: 50px;
+left: 785px;
+top: 346px;
+
+background: linear-gradient(133.5deg, #8811BF 2.43%, #4D14BE 98%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 14px;
+
+
+/* childhood-children-svgrepo-com */
+
+width: 36px;
+height: 36px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0.57%;
+bottom: 0.57%;
+
+background: #FFFFFF;
+
+
+/* filter-search-svgrepo-com */
+
+position: absolute;
+width: 37.39px;
+height: 37.39px;
+left: 1075px;
+top: 323px;
+
+filter: blur(1px);
+border-radius: 0px;
+transform: rotate(-10.75deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 15.11%;
+right: 12.47%;
+top: 10.8%;
+bottom: 5.91%;
+
+border: 2.33663px solid rgba(255, 255, 255, 0.6);
+transform: rotate(-10.75deg);
+
+
+/* fluent:beach-16-regular */
+
+position: absolute;
+width: 49px;
+height: 49px;
+left: 775px;
+top: 224px;
+
+filter: blur(1px);
+border-radius: 0px;
+
+
+/* Vector */
+
+position: absolute;
+left: 9.38%;
+right: 11.77%;
+top: 6.26%;
+bottom: 10.63%;
+
+background: rgba(255, 255, 255, 0.6);
+
+
+/* play-stream-svgrepo-com */
+
+position: absolute;
+width: 41px;
+height: 41px;
+left: 1165px;
+top: 187px;
+
+filter: blur(1px);
+transform: rotate(17.06deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 13.91%;
+right: 2.76%;
+top: 22.05%;
+bottom: 18.71%;
+
+border: 2.5625px solid rgba(255, 255, 255, 0.6);
+transform: rotate(17.06deg);
+
+
+/* image 10 */
+
+position: absolute;
+width: 92px;
+height: 92px;
+left: 978px;
+top: 328px;
+
+background: url(image.png);
+border: 3px solid rgba(255, 255, 255, 0.2);
+box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.2);
+border-radius: 104.5px;
+
+
+/* Ellipse 3 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 436px;
+height: 436px;
+left: 806px;
+top: 160px;
+
+
+
+/* Ellipse 6 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 436px;
+height: 436px;
+left: 728.99px;
+top: 82.99px;
+
+transform: rotate(-61.89deg);
+
+
+/* Ellipse 4 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 436px;
+height: 436px;
+left: 781.77px;
+top: 135.77px;
+
+transform: rotate(6.78deg);
+
+
+/* Ellipse 7 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 214px;
+height: 214px;
+left: 917px;
+top: 267px;
+
+
+
+/* Ellipse 8 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 214px;
+height: 214px;
+left: 917px;
+top: 267px;
+
+
+
+/* Ellipse 9 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 214px;
+height: 214px;
+left: 917px;
+top: 267px;
+
+
+
+/* Ellipse 5 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 436px;
+height: 436px;
+left: 722.74px;
+top: 76.75px;
+
+transform: rotate(122.73deg);
+
+
+/* childhood-children-svgrepo-com (1) */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 806px;
+top: 548px;
+
+filter: blur(0.872779px);
+border-radius: 0px;
+
+
+/* Vector */
+
+position: absolute;
+left: 4.16%;
+right: 4.17%;
+top: 18.27%;
+bottom: 18.71%;
+
+background: rgba(255, 255, 255, 0.6);
+
+
+/* childhood-entertainment-svgrepo-com (1) */
+
+position: absolute;
+width: 50.5px;
+height: 50.5px;
+left: 1227px;
+top: 476px;
+
+filter: blur(1px);
+border-radius: 0px;
+
+
+/* Group */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 9.94%;
+bottom: 6.73%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 9.94%;
+bottom: 6.73%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 9.94%;
+bottom: 6.73%;
+
+background: rgba(255, 255, 255, 0.6);
+
+
+/* Frame 7 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+position: absolute;
+width: 135px;
+height: 36px;
+left: 745px;
+top: 481px;
+
+background: #FFFFFF;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-radius: 50px;
+
+
+/* Izlash onson */
+
+width: 103px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 8 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+position: absolute;
+width: 108px;
+height: 36px;
+left: 1181px;
+top: 356px;
+
+background: #FFFFFF;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-radius: 50px;
+
+
+/* Ishonchli */
+
+width: 76px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 11 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+position: absolute;
+width: 108px;
+height: 36px;
+left: 1027px;
+top: 158px;
+
+background: #FFFFFF;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-radius: 50px;
+
+
+/* Ishonchli */
+
+width: 76px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 10 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+position: absolute;
+width: 80px;
+height: 36px;
+left: 877px;
+top: 284px;
+
+background: #FFFFFF;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-radius: 50px;
+
+
+/* Qulay */
+
+width: 48px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 9 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+position: absolute;
+width: 108px;
+height: 36px;
+left: 1101px;
+top: 548px;
+
+background: #FFFFFF;
+border: 2px solid rgba(255, 255, 255, 0.5);
+border-radius: 50px;
+
+
+/* Ishonchli */
+
+width: 76px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Group 10 */
+
+position: absolute;
+width: 461.78px;
+height: 106.74px;
+left: 72px;
+top: 284px;
+
+
+
+/* “Bir bola” bilan */
+
+position: absolute;
+width: 461.78px;
+height: 46.98px;
+left: 72px;
+top: 284px;
+
+background: #FFFFFF;
+
+
+/* kelajakka ilk qadam */
+
+position: absolute;
+width: 411.43px;
+height: 38.84px;
+left: 104.3px;
+top: 351.9px;
+
+background: rgba(255, 255, 255, 0.7);
+
+
+/* navbar */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 19px;
+
+position: absolute;
+width: 609px;
+height: 40px;
+left: 781px;
+top: 44px;
+
+
+
+/* Frame 5 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 8px 16px;
+gap: 10px;
+
+width: 162px;
+height: 38px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Biz haqimizda */
+
+width: 130px;
+height: 22px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 4 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 8px 16px;
+gap: 10px;
+
+width: 130px;
+height: 38px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Bog’chalar */
+
+width: 98px;
+height: 22px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 1 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+isolation: isolate;
+
+width: 122px;
+height: 38px;
+
+background: linear-gradient(180deg, #FFA109 0%, #F08B17 100%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* 7 mahalla */
+
+width: 90px;
+height: 22px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+z-index: 0;
+
+
+/* Frame */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 100px;
+top: -13px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #FFFFFF;
+box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #40272E;
+
+
+/* Frame 3 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 8px 16px;
+gap: 10px;
+
+width: 138px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Kabinet */
+
+width: 72px;
+height: 22px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.17%;
+top: 14.58%;
+bottom: 43.75%;
+
+border: 1.5px solid #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 56.25%;
+bottom: 14.58%;
+
+border: 1.5px solid #FFFFFF;
+
+
+/* Group 7 */
+
+position: absolute;
+width: 132.88px;
+height: 30px;
+left: 50px;
+top: 40px;
+
+
+
+/* Group 6 */
+
+position: absolute;
+width: 30px;
+height: 30px;
+left: 50px;
+top: 40px;
+
+
+
+/* sport-faculty-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 50px;
+top: 40px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 5.76%;
+bottom: 1.81%;
+
+background: #FFFFFF;
+
+
+/* idea-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 55.26px;
+top: 40px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 2.88px;
+height: 2.97px;
+left: 0.42px;
+top: 0.37px;
+
+background: #FFFFFF;
+
+
+/* Group */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 10%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 22.07%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 22.07%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 40.73%;
+right: 40.87%;
+top: 79.41%;
+bottom: 16.03%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 40.73%;
+right: 40.87%;
+top: 79.41%;
+bottom: 16.03%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 44.21%;
+right: 44.31%;
+top: 85.44%;
+bottom: 10%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 44.21%;
+right: 44.31%;
+top: 85.44%;
+bottom: 10%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 75.07%;
+right: 11.25%;
+top: 46.47%;
+bottom: 48.97%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 75.07%;
+right: 11.25%;
+top: 46.47%;
+bottom: 48.97%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 11.24%;
+right: 75.08%;
+top: 46.47%;
+bottom: 48.97%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 11.24%;
+right: 75.08%;
+top: 46.47%;
+bottom: 48.97%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 47.71%;
+right: 47.73%;
+top: 10%;
+bottom: 76.32%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 47.71%;
+right: 47.73%;
+top: 10%;
+bottom: 76.32%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 67.05%;
+right: 21.95%;
+top: 65.81%;
+bottom: 23.18%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 67.05%;
+right: 21.95%;
+top: 65.81%;
+bottom: 23.18%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 20.68%;
+bottom: 68.3%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 20.68%;
+bottom: 68.3%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 65.81%;
+bottom: 23.18%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 65.81%;
+bottom: 23.18%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 67.07%;
+right: 21.92%;
+top: 20.68%;
+bottom: 68.31%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 67.07%;
+right: 21.92%;
+top: 20.68%;
+bottom: 68.31%;
+
+background: #000000;
+
+
+/* childhood-children-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 60.52px;
+top: 40px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0.58%;
+bottom: 0.56%;
+
+background: #FFFFFF;
+
+
+/* theatre-cinema-entertainment-show-masks-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 50px;
+top: 45.26px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3.67px;
+height: 3.67px;
+left: 0.02px;
+top: 0.02px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 34.36%;
+right: 3.14%;
+top: 34.39%;
+bottom: 3.11%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 53.13%;
+right: 21.87%;
+top: 71.89%;
+bottom: 15.61%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 46.86%;
+right: 40.51%;
+top: 56.26%;
+bottom: 37.43%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 71.89%;
+right: 15.49%;
+top: 56.26%;
+bottom: 37.43%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 3.13%;
+right: 34.37%;
+top: 3.16%;
+bottom: 34.34%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 21.89%;
+right: 65.48%;
+top: 37.52%;
+bottom: 49.85%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.63%;
+right: 71.75%;
+top: 21.89%;
+bottom: 71.8%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.63%;
+right: 46.75%;
+top: 21.89%;
+bottom: 71.8%;
+
+border: 0.189784px solid #000000;
+
+
+/* ping-pong-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 55.26px;
+top: 45.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 7.81%;
+right: 7.82%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* ferris-wheel-line-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 60.52px;
+top: 45.26px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3px;
+height: 3.31px;
+left: 0.36px;
+top: 0.2px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 25%;
+right: 25%;
+top: 25%;
+bottom: 25%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.65%;
+right: 41.68%;
+top: 8.34%;
+bottom: 74.99%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.83%;
+right: 12.5%;
+top: 25%;
+bottom: 58.34%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 70.83%;
+top: 25%;
+bottom: 58.34%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 70.83%;
+top: 58.34%;
+bottom: 25%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.83%;
+right: 12.5%;
+top: 58.34%;
+bottom: 25%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.34%;
+right: 33.33%;
+top: 49.99%;
+bottom: 8.34%;
+
+border: 0.21433px solid #000000;
+
+
+/* school-flag-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 65.77px;
+top: 40px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.34%;
+bottom: 8.32%;
+
+border: 0.174931px solid #FFFFFF;
+
+
+/* filter-search-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 71.03px;
+top: 40px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 13.79%;
+right: 13.8%;
+top: 8.37%;
+bottom: 8.34%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* chat-round-dots-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 76.29px;
+top: 40px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3.33px;
+height: 3.33px;
+left: 0.19px;
+top: 0.19px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.34%;
+right: 33.33%;
+top: 49.99%;
+bottom: 50.01%;
+
+border: 0.309278px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.34%;
+bottom: 8.33%;
+
+border: 0.231959px solid #000000;
+
+
+/* location-med-2-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 65.77px;
+top: 45.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* healthicons:running-outline */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 71.03px;
+top: 45.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 17.81%;
+right: 17.7%;
+top: 8.34%;
+bottom: 8.26%;
+
+background: #FFFFFF;
+
+
+/* amusement-park-entertainment-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 76.29px;
+top: 45.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 5.03%;
+right: 5.03%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* search-4-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 50px;
+top: 50.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 16.66%;
+right: 17.84%;
+top: 18.26%;
+bottom: 16.23%;
+
+border: 0.260459px solid #FFFFFF;
+
+
+/* like-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 55.26px;
+top: 50.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 16.66%;
+right: 14.34%;
+top: 13.5%;
+bottom: 16.67%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* ball-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 55.26px;
+top: 61.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 4.16%;
+right: 4.18%;
+top: 5.97%;
+bottom: 2.36%;
+
+background: #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 50px;
+top: 55.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* bumper-ride-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 55.26px;
+top: 55.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 6.39%;
+bottom: 6.4%;
+
+background: #FFFFFF;
+
+
+/* play-stream-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 50px;
+top: 61.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 20.5%;
+bottom: 20.25%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* lucide:plane */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 50px;
+top: 66.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 11.72%;
+top: 11.71%;
+bottom: 12.51%;
+
+border: 0.206186px solid #FFFFFF;
+
+
+/* childhood-entertainment-svgrepo-com (1) */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 55.26px;
+top: 66.29px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.95%;
+bottom: 6.72%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.95%;
+bottom: 6.72%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.95%;
+bottom: 6.72%;
+
+background: #FFFFFF;
+
+
+/* list-heart-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 60.52px;
+top: 61.03px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3.02px;
+height: 2.21px;
+left: 0.35px;
+top: 0.81px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 55.2%;
+right: 9.38%;
+top: 51.02%;
+bottom: 18.47%;
+
+background: #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 25%;
+bottom: 75%;
+
+border: 0.231959px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 41.65%;
+bottom: 58.35%;
+
+border: 0.231959px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 58.33%;
+top: 58.34%;
+bottom: 41.66%;
+
+border: 0.231959px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 58.33%;
+top: 74.99%;
+bottom: 25.01%;
+
+border: 0.231959px solid #000000;
+
+
+/* childhood-children-svgrepo-com (1) */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 65.77px;
+top: 61.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 4.16%;
+right: 4.18%;
+top: 18.26%;
+bottom: 18.72%;
+
+background: #FFFFFF;
+
+
+/* bi:camera-reels */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 71.03px;
+top: 61.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.34%;
+bottom: 8.33%;
+
+background: #FFFFFF;
+
+
+/* famicons:restaurant-outline */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 60.52px;
+top: 66.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 7.6%;
+right: 14.69%;
+top: 9.31%;
+bottom: 6.3%;
+
+border: 0.218314px solid #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 6.26%;
+right: 6.24%;
+top: 6.26%;
+bottom: 6.24%;
+
+border: 0.218314px solid #FFFFFF;
+
+
+/* ph:building-office */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 65.77px;
+top: 66.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 6.24%;
+right: 0.01%;
+top: 12.5%;
+bottom: 12.5%;
+
+background: #FFFFFF;
+
+
+/* hugeicons:book-open-02 */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 71.03px;
+top: 66.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.34%;
+bottom: 8.33%;
+
+border: 0.173969px solid #FFFFFF;
+
+
+/* mage:heart-health */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 71.03px;
+top: 50.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 11.47%;
+right: 11.45%;
+top: 15.31%;
+bottom: 15.32%;
+
+border: 0.21637px solid #FFFFFF;
+
+
+/* streamline:film-slate */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 76.29px;
+top: 50.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 6.08%;
+right: 8.47%;
+top: 4.53%;
+bottom: 4.57%;
+
+border: 0.185567px solid #FFFFFF;
+
+
+/* solar:camera-linear */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 76.29px;
+top: 61.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* cup-of-coffe-with-heart-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 71.03px;
+top: 55.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 5.34%;
+bottom: 5.36%;
+
+background: #FFFFFF;
+
+
+/* travel-holidays-vacation-case-suitcase-luggage-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 76.29px;
+top: 55.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 28.13%;
+right: 28.12%;
+top: 3.13%;
+bottom: 3.12%;
+
+border: 0.185567px solid #FFFFFF;
+
+
+/* fluent:beach-16-regular */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 76.29px;
+top: 66.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.37%;
+right: 11.78%;
+top: 6.26%;
+bottom: 10.62%;
+
+background: #FFFFFF;
+
+
+/* birbola */
+
+position: absolute;
+width: 92.78px;
+height: 21.65px;
+left: 90.09px;
+top: 44.18px;
+
+background: #FFFFFF;
+
+
+/* Frame 7 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 8px 20px;
+gap: 10px;
+
+position: absolute;
+width: 700px;
+height: 70px;
+left: calc(50% - 700px/2);
+top: 773px;
+
+background: rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(8px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 50px;
+
+
+/* search-4-svgrepo-com */
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.66%;
+right: 17.84%;
+top: 18.27%;
+bottom: 16.22%;
+
+border: 3px solid #FFFFFF;
+
+
+/* Bog’cha izlash */
+
+width: 610px;
+height: 24px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+
+color: rgba(255, 255, 255, 0.5);
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* Frame 57 */
+
+position: absolute;
+width: 1440px;
+height: 390px;
+left: 0px;
+top: 4554px;
+
+background: #0E021D;
+
+
+/* Frame 58 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 40px;
+
+position: absolute;
+width: 132.88px;
+height: 270px;
+left: 60px;
+top: 60px;
+
+
+
+/* Group 7 */
+
+width: 132.78px;
+height: 30px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Group 6 */
+
+position: absolute;
+width: 30px;
+height: 30px;
+left: 0px;
+top: 0px;
+
+
+
+/* sport-faculty-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 0px;
+top: 0px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 5.76%;
+bottom: 1.81%;
+
+background: #FFFFFF;
+
+
+/* idea-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 5.26px;
+top: 0px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 2.88px;
+height: 2.97px;
+left: 0.42px;
+top: 0.37px;
+
+background: #FFFFFF;
+
+
+/* Group */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 10%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 22.07%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 22.07%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 40.73%;
+right: 40.87%;
+top: 79.41%;
+bottom: 16.03%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 40.73%;
+right: 40.87%;
+top: 79.41%;
+bottom: 16.03%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 44.21%;
+right: 44.31%;
+top: 85.44%;
+bottom: 10%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 44.21%;
+right: 44.31%;
+top: 85.44%;
+bottom: 10%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 75.07%;
+right: 11.25%;
+top: 46.47%;
+bottom: 48.97%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 75.07%;
+right: 11.25%;
+top: 46.47%;
+bottom: 48.97%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 11.24%;
+right: 75.08%;
+top: 46.47%;
+bottom: 48.97%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 11.24%;
+right: 75.08%;
+top: 46.47%;
+bottom: 48.97%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 47.71%;
+right: 47.73%;
+top: 10%;
+bottom: 76.32%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 47.71%;
+right: 47.73%;
+top: 10%;
+bottom: 76.32%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 67.05%;
+right: 21.95%;
+top: 65.81%;
+bottom: 23.18%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 67.05%;
+right: 21.95%;
+top: 65.81%;
+bottom: 23.18%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 20.68%;
+bottom: 68.3%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 20.68%;
+bottom: 68.3%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 65.81%;
+bottom: 23.18%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 21.92%;
+right: 67.07%;
+top: 65.81%;
+bottom: 23.18%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 67.07%;
+right: 21.92%;
+top: 20.68%;
+bottom: 68.31%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 67.07%;
+right: 21.92%;
+top: 20.68%;
+bottom: 68.31%;
+
+background: #000000;
+
+
+/* childhood-children-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 10.52px;
+top: 0px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0.58%;
+bottom: 0.56%;
+
+background: #FFFFFF;
+
+
+/* theatre-cinema-entertainment-show-masks-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 0px;
+top: 5.26px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3.67px;
+height: 3.67px;
+left: 0.02px;
+top: 0.02px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 34.36%;
+right: 3.14%;
+top: 34.39%;
+bottom: 3.11%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 53.13%;
+right: 21.87%;
+top: 71.89%;
+bottom: 15.61%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 46.86%;
+right: 40.51%;
+top: 56.26%;
+bottom: 37.43%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 71.89%;
+right: 15.49%;
+top: 56.26%;
+bottom: 37.43%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 3.13%;
+right: 34.37%;
+top: 3.16%;
+bottom: 34.34%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 21.89%;
+right: 65.48%;
+top: 37.52%;
+bottom: 49.85%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.63%;
+right: 71.75%;
+top: 21.89%;
+bottom: 71.8%;
+
+border: 0.189784px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.63%;
+right: 46.75%;
+top: 21.89%;
+bottom: 71.8%;
+
+border: 0.189784px solid #000000;
+
+
+/* ping-pong-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 5.26px;
+top: 5.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 7.81%;
+right: 7.82%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* ferris-wheel-line-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 10.52px;
+top: 5.26px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3px;
+height: 3.31px;
+left: 0.36px;
+top: 0.2px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 25%;
+right: 25%;
+top: 25%;
+bottom: 25%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.65%;
+right: 41.68%;
+top: 8.34%;
+bottom: 74.99%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.83%;
+right: 12.5%;
+top: 25%;
+bottom: 58.34%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 70.83%;
+top: 25%;
+bottom: 58.34%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 70.83%;
+top: 58.34%;
+bottom: 25%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.83%;
+right: 12.5%;
+top: 58.34%;
+bottom: 25%;
+
+border: 0.21433px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.34%;
+right: 33.33%;
+top: 49.99%;
+bottom: 8.34%;
+
+border: 0.21433px solid #000000;
+
+
+/* school-flag-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 15.77px;
+top: 0px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.34%;
+bottom: 8.32%;
+
+border: 0.174931px solid #FFFFFF;
+
+
+/* filter-search-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 21.03px;
+top: 0px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 13.79%;
+right: 13.8%;
+top: 8.37%;
+bottom: 8.34%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* chat-round-dots-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 26.29px;
+top: 0px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3.33px;
+height: 3.33px;
+left: 0.19px;
+top: 0.19px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.34%;
+right: 33.33%;
+top: 49.99%;
+bottom: 50.01%;
+
+border: 0.309278px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.34%;
+bottom: 8.33%;
+
+border: 0.231959px solid #000000;
+
+
+/* location-med-2-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 15.77px;
+top: 5.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* healthicons:running-outline */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 21.03px;
+top: 5.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 17.81%;
+right: 17.7%;
+top: 8.34%;
+bottom: 8.26%;
+
+background: #FFFFFF;
+
+
+/* amusement-park-entertainment-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 26.29px;
+top: 5.26px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 5.03%;
+right: 5.03%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* search-4-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 0px;
+top: 10.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 16.66%;
+right: 17.84%;
+top: 18.26%;
+bottom: 16.23%;
+
+border: 0.260459px solid #FFFFFF;
+
+
+/* like-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 5.26px;
+top: 10.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 16.66%;
+right: 14.34%;
+top: 13.5%;
+bottom: 16.67%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* ball-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 5.26px;
+top: 21.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 4.16%;
+right: 4.18%;
+top: 5.97%;
+bottom: 2.36%;
+
+background: #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 0px;
+top: 15.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* bumper-ride-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 5.26px;
+top: 15.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 6.39%;
+bottom: 6.4%;
+
+background: #FFFFFF;
+
+
+/* play-stream-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 0px;
+top: 21.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 20.5%;
+bottom: 20.25%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* lucide:plane */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 0px;
+top: 26.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 11.72%;
+top: 11.71%;
+bottom: 12.51%;
+
+border: 0.206186px solid #FFFFFF;
+
+
+/* childhood-entertainment-svgrepo-com (1) */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 5.26px;
+top: 26.29px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.95%;
+bottom: 6.72%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.95%;
+bottom: 6.72%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.95%;
+bottom: 6.72%;
+
+background: #FFFFFF;
+
+
+/* list-heart-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 10.52px;
+top: 21.03px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 3.02px;
+height: 2.21px;
+left: 0.35px;
+top: 0.81px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 55.2%;
+right: 9.38%;
+top: 51.02%;
+bottom: 18.47%;
+
+background: #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 25%;
+bottom: 75%;
+
+border: 0.231959px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 41.65%;
+bottom: 58.35%;
+
+border: 0.231959px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 58.33%;
+top: 58.34%;
+bottom: 41.66%;
+
+border: 0.231959px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 58.33%;
+top: 74.99%;
+bottom: 25.01%;
+
+border: 0.231959px solid #000000;
+
+
+/* childhood-children-svgrepo-com (1) */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 15.77px;
+top: 21.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 4.16%;
+right: 4.18%;
+top: 18.26%;
+bottom: 18.72%;
+
+background: #FFFFFF;
+
+
+/* bi:camera-reels */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 21.03px;
+top: 21.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.34%;
+bottom: 8.33%;
+
+background: #FFFFFF;
+
+
+/* famicons:restaurant-outline */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 10.52px;
+top: 26.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 7.6%;
+right: 14.69%;
+top: 9.31%;
+bottom: 6.3%;
+
+border: 0.218314px solid #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 6.26%;
+right: 6.24%;
+top: 6.26%;
+bottom: 6.24%;
+
+border: 0.218314px solid #FFFFFF;
+
+
+/* ph:building-office */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 15.77px;
+top: 26.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 6.24%;
+right: 0.01%;
+top: 12.5%;
+bottom: 12.5%;
+
+background: #FFFFFF;
+
+
+/* hugeicons:book-open-02 */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 21.03px;
+top: 26.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.34%;
+bottom: 8.33%;
+
+border: 0.173969px solid #FFFFFF;
+
+
+/* mage:heart-health */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 21.03px;
+top: 10.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 11.47%;
+right: 11.45%;
+top: 15.31%;
+bottom: 15.32%;
+
+border: 0.21637px solid #FFFFFF;
+
+
+/* streamline:film-slate */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 26.29px;
+top: 10.52px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 6.08%;
+right: 8.47%;
+top: 4.53%;
+bottom: 4.57%;
+
+border: 0.185567px solid #FFFFFF;
+
+
+/* solar:camera-linear */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 26.29px;
+top: 21.03px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 0.231959px solid #FFFFFF;
+
+
+/* cup-of-coffe-with-heart-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 21.03px;
+top: 15.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 5.34%;
+bottom: 5.36%;
+
+background: #FFFFFF;
+
+
+/* travel-holidays-vacation-case-suitcase-luggage-svgrepo-com */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 26.29px;
+top: 15.77px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 28.13%;
+right: 28.12%;
+top: 3.13%;
+bottom: 3.12%;
+
+border: 0.185567px solid #FFFFFF;
+
+
+/* fluent:beach-16-regular */
+
+position: absolute;
+width: 3.71px;
+height: 3.71px;
+left: 26.29px;
+top: 26.29px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.37%;
+right: 11.78%;
+top: 6.26%;
+bottom: 10.62%;
+
+background: #FFFFFF;
+
+
+/* birbola */
+
+position: absolute;
+width: 92.78px;
+height: 21.65px;
+left: 40px;
+top: 4px;
+
+background: #FFFFFF;
+
+
+/* Biz haqimizda */
+
+width: 132.88px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Bog’chalar */
+
+width: 132.88px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* 7 mahalla */
+
+width: 132.88px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Kabinet */
+
+width: 132.88px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 59 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 40px;
+
+position: absolute;
+width: 196px;
+height: 269px;
+left: 780px;
+top: 60px;
+
+
+
+/* Biz bilan aloqa */
+
+width: 184px;
+height: 29px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Telegram */
+
+width: 196px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Instagram */
+
+width: 196px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Facebook */
+
+width: 196px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Pochta: birbola@mail.ru */
+
+width: 196px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* Frame 2087327046 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 100px;
+
+position: absolute;
+width: 1440px;
+height: 3430px;
+left: 0px;
+top: 1024px;
+
+
+
+/* Frame 12 */
+
+width: 1440px;
+height: 967px;
+
+background: linear-gradient(114.08deg, #6E0D8E -2.23%, #4E0359 103.82%);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Group 17 */
+
+position: absolute;
+width: 3096.19px;
+height: 3227.73px;
+left: -1886px;
+top: 0px;
+
+transform: rotate(-180deg);
+
+
+/* Ellipse 27 */
+
+position: absolute;
+width: 574.38px;
+left: calc(50% - 574.38px/2 - 465.97px);
+top: 76.74%;
+bottom: -32.77%;
+
+background: #200D37;
+filter: blur(256.35px);
+border-radius: 136.449px;
+transform: rotate(-180deg);
+
+
+/* Ellipse 28 */
+
+position: absolute;
+width: 571.87px;
+left: calc(50% - 571.87px/2 - 866.03px);
+top: 67.4%;
+bottom: -23.17%;
+
+background: #707BEE;
+filter: blur(256.35px);
+border-radius: 136.449px;
+transform: rotate(-180deg);
+
+
+/* Star 22 */
+
+position: absolute;
+width: 2256.63px;
+height: 2520.86px;
+left: -1886px;
+top: 0px;
+
+background: conic-gradient(from 180.43deg at 44.21% 0.68%, #FFFFFF 0deg, rgba(255, 255, 255, 0.25) 16.93deg, rgba(255, 255, 255, 0.2) 30.46deg, rgba(255, 255, 255, 0) 41.38deg, rgba(255, 255, 255, 0.2) 348.77deg, rgba(255, 255, 255, 0.8) 353.26deg, rgba(255, 255, 255, 0.5) 360deg);
+mix-blend-mode: plus-lighter;
+filter: blur(59.5px);
+transform: rotate(-155.61deg);
+
+
+/* Group 18 */
+
+position: absolute;
+width: 3096.19px;
+height: 3227.73px;
+left: -770px;
+top: -524px;
+
+transform: rotate(135deg);
+
+
+/* Ellipse 27 */
+
+position: absolute;
+width: 574.38px;
+left: calc(50% - 574.38px/2 + 632.09px);
+top: 48.99%;
+bottom: -5.02%;
+
+background: #200D37;
+filter: blur(256.35px);
+border-radius: 136.449px;
+transform: rotate(135deg);
+
+
+/* Ellipse 28 */
+
+position: absolute;
+width: 571.87px;
+left: calc(50% - 571.87px/2 + 284.98px);
+top: 71.74%;
+bottom: -27.5%;
+
+background: #707BEE;
+filter: blur(256.35px);
+border-radius: 136.449px;
+transform: rotate(135deg);
+
+
+/* Star 22 */
+
+position: absolute;
+width: 2256.63px;
+height: 2520.86px;
+left: -33.94px;
+top: 134.9px;
+
+background: conic-gradient(from 180.43deg at 44.21% 0.68%, #FFFFFF 0deg, rgba(255, 255, 255, 0.25) 16.93deg, rgba(255, 255, 255, 0.2) 30.46deg, rgba(255, 255, 255, 0) 41.38deg, rgba(255, 255, 255, 0.2) 348.77deg, rgba(255, 255, 255, 0.8) 353.26deg, rgba(255, 255, 255, 0.5) 360deg);
+mix-blend-mode: plus-lighter;
+filter: blur(59.5px);
+transform: rotate(159.39deg);
+
+
+/* Noise */
+
+position: absolute;
+width: 1440px;
+height: 967px;
+left: calc(50% - 1440px/2);
+top: 0px;
+
+background: url(.png);
+mix-blend-mode: soft-light;
+opacity: 0.58;
+
+
+/* Vector */
+
+position: absolute;
+width: 2946px;
+height: 1363px;
+left: calc(50% - 2946px/2 + 240px);
+top: -298px;
+
+mix-blend-mode: overlay;
+
+
+/* Frame 18 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 47px;
+
+position: absolute;
+width: 1470.37px;
+height: 700px;
+left: calc(50% - 1470.37px/2 + 0.19px);
+top: 218px;
+
+
+
+/* Frame 19 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 497.69px;
+height: 700px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 15 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 20px 24px;
+gap: 10px;
+
+width: 381px;
+height: 501px;
+
+background: #FFFFFF;
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+border-radius: 30px;
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Sodiq school */
+
+width: 333px;
+height: 22px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #011425;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* image 11 */
+
+width: 333px;
+height: 355px;
+
+background: url(image.png);
+border-radius: 20px;
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 16 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 20px;
+
+width: 333px;
+height: 38px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 15 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 283px;
+height: 38px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Toshkent shaxri */
+
+width: 283px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #011425;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Yunusobod tumani */
+
+width: 283px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #7F858B;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 30px;
+height: 30px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 51.71%;
+right: 27.45%;
+top: 36.41%;
+bottom: 42.76%;
+
+border: 1.875px solid #575E79;
+transform: rotate(15deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 26.59%;
+right: 15.07%;
+top: 13.44%;
+bottom: 19.89%;
+
+border: 1.875px solid #575E79;
+transform: rotate(15deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 26.31%;
+right: 23.69%;
+top: 86.97%;
+bottom: 4.7%;
+
+border: 1.875px solid #575E79;
+transform: rotate(15deg);
+
+
+/* Frame 17 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 88px;
+height: 16px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* star-svgrepo-com 1 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.2%;
+right: 6.46%;
+top: 10.21%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(15deg);
+
+
+/* star-svgrepo-com 2 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.2%;
+right: 6.46%;
+top: 10.21%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(15deg);
+
+
+/* star-svgrepo-com 3 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.2%;
+right: 6.46%;
+top: 10.21%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(15deg);
+
+
+/* star-svgrepo-com 4 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.2%;
+right: 6.46%;
+top: 10.21%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(15deg);
+
+
+/* star-svgrepo-com 5 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.2%;
+right: 6.46%;
+top: 10.21%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(15deg);
+
+
+/* Frame 14 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 20px 24px;
+gap: 10px;
+
+width: 381px;
+height: 501px;
+
+background: #FFFFFF;
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+border-radius: 30px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Sodiq school */
+
+width: 333px;
+height: 22px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #011425;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 333px;
+height: 355px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 16 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 20px;
+
+width: 333px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 15 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 283px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Toshkent shaxri */
+
+width: 283px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #011425;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Yunusobod tumani */
+
+width: 283px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #7F858B;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 30px;
+height: 30px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 39.58%;
+right: 39.58%;
+top: 27.08%;
+bottom: 52.08%;
+
+border: 1.875px solid #575E79;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 8.33%;
+bottom: 25%;
+
+border: 1.875px solid #575E79;
+
+
+/* Vector */
+
+position: absolute;
+left: 25%;
+right: 25%;
+top: 83.33%;
+bottom: 8.33%;
+
+border: 1.875px solid #575E79;
+
+
+/* Frame 17 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 88px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* star-svgrepo-com 1 */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFB619;
+
+
+/* star-svgrepo-com 2 */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFB619;
+
+
+/* star-svgrepo-com 3 */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFB619;
+
+
+/* star-svgrepo-com 4 */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFB619;
+
+
+/* star-svgrepo-com 5 */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFB619;
+
+
+/* Frame 20 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 497.69px;
+height: 700px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Frame 15 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 20px 24px;
+gap: 10px;
+
+width: 381px;
+height: 501px;
+
+background: #FFFFFF;
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+border-radius: 30px;
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Jahon school */
+
+width: 333px;
+height: 22px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+/* identical to box height */
+
+color: #011425;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* image 13 */
+
+width: 333px;
+height: 355px;
+
+background: url(image.png);
+border-radius: 20px;
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 16 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 20px;
+
+width: 333px;
+height: 38px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 15 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 283px;
+height: 38px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Toshkent shaxri */
+
+width: 283px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #011425;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Yunusobod tumani */
+
+width: 283px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #7F858B;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 30px;
+height: 30px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 45.24%;
+right: 33.92%;
+top: 36.4%;
+bottom: 42.76%;
+
+border: 1.875px solid #575E79;
+transform: rotate(-15deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 22.28%;
+right: 19.39%;
+top: 13.44%;
+bottom: 19.89%;
+
+border: 1.875px solid #575E79;
+transform: rotate(-15deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 45.72%;
+right: 4.28%;
+top: 86.96%;
+bottom: 4.7%;
+
+border: 1.875px solid #575E79;
+transform: rotate(-15deg);
+
+
+/* Frame 17 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 88px;
+height: 16px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* star-svgrepo-com 1 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.21%;
+right: 6.46%;
+top: 10.2%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(-15deg);
+
+
+/* star-svgrepo-com 2 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.21%;
+right: 6.46%;
+top: 10.2%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(-15deg);
+
+
+/* star-svgrepo-com 3 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.21%;
+right: 6.46%;
+top: 10.2%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(-15deg);
+
+
+/* star-svgrepo-com 4 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.21%;
+right: 6.46%;
+top: 10.2%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(-15deg);
+
+
+/* star-svgrepo-com 5 */
+
+width: 16px;
+height: 16px;
+
+transform: rotate(-15deg);
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 10.21%;
+right: 6.46%;
+top: 10.2%;
+bottom: 6.46%;
+
+background: #FFB619;
+transform: rotate(-15deg);
+
+
+/* Rectangle 138 */
+
+position: absolute;
+visibility: hidden;
+width: 530px;
+height: 967px;
+left: 0px;
+top: 0px;
+
+background: linear-gradient(270deg, rgba(124, 18, 155, 0) 0%, rgba(99, 4, 108, 0.6) 100%);
+
+
+/* Rectangle 139 */
+
+position: absolute;
+visibility: hidden;
+width: 530px;
+height: 967px;
+right: 0px;
+top: 0px;
+
+background: linear-gradient(270deg, rgba(114, 14, 140, 0) 0%, rgba(99, 4, 108, 0.6) 100%);
+transform: matrix(-1, 0, 0, 1, 0, 0);
+
+
+/* Frame 24 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 584px;
+
+position: absolute;
+width: 1360px;
+height: 63px;
+left: 40px;
+top: 40px;
+
+
+
+/* Frame 13 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 20px;
+
+width: 411px;
+height: 63px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 22 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 341px;
+height: 63px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Top */
+
+width: 76px;
+height: 51px;
+
+font-family: 'Mont';
+font-style: normal;
+font-weight: 900;
+font-size: 40px;
+line-height: 51px;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 21 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 6px 14px;
+gap: 10px;
+
+width: 255px;
+height: 63px;
+
+background: rgba(255, 255, 255, 0.03);
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* bog’chalar */
+
+width: 227px;
+height: 51px;
+
+font-family: 'Mont';
+font-style: normal;
+font-weight: 900;
+font-size: 40px;
+line-height: 51px;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* rocket-svgrepo-com 1 */
+
+width: 50px;
+height: 50px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 2.95%;
+right: 62.55%;
+top: 39.61%;
+bottom: 39.98%;
+
+background: #CA2C31;
+
+
+/* Vector */
+
+position: absolute;
+left: 4.06%;
+right: 67.1%;
+top: 44.09%;
+bottom: 35.75%;
+
+background: #A02422;
+
+
+/* Vector */
+
+position: absolute;
+left: 37.7%;
+right: 38.98%;
+top: 63.68%;
+bottom: 2.26%;
+
+background: #A02422;
+
+
+/* Vector */
+
+position: absolute;
+left: 38.99%;
+right: 43.54%;
+top: 73.6%;
+bottom: 2.52%;
+
+background: #CA2C31;
+
+
+/* Vector */
+
+position: absolute;
+left: 5.63%;
+right: 61.64%;
+top: 63.01%;
+bottom: 8.04%;
+
+background: #F7D74D;
+
+
+/* Vector */
+
+position: absolute;
+left: 11.66%;
+right: 64.88%;
+top: 66.63%;
+bottom: 12.59%;
+
+background: #FBF0B4;
+
+
+/* Vector */
+
+position: absolute;
+left: 24.27%;
+right: 57.19%;
+top: 58.16%;
+bottom: 23.59%;
+
+background: #858585;
+
+
+/* Vector */
+
+position: absolute;
+left: 39.14%;
+right: 11.95%;
+top: 19.18%;
+bottom: 27.45%;
+
+background: #437687;
+
+
+/* Vector */
+
+position: absolute;
+left: 53.12%;
+right: 36%;
+top: 59.38%;
+bottom: 34.03%;
+
+background: #3F545F;
+
+
+/* Vector */
+
+position: absolute;
+left: 28.24%;
+right: 16.07%;
+top: 12.61%;
+bottom: 28.72%;
+
+background: #8DAFBF;
+
+
+/* Vector */
+
+position: absolute;
+left: 65.91%;
+right: 4.2%;
+top: 3.49%;
+bottom: 67.31%;
+
+background: #D83F22;
+
+
+/* Vector */
+
+position: absolute;
+left: 35.81%;
+right: 42.92%;
+top: 35.58%;
+bottom: 37.19%;
+
+background: #6896A5;
+
+
+/* Vector */
+
+position: absolute;
+left: 81.2%;
+right: 3.19%;
+top: 4.72%;
+bottom: 65.25%;
+
+background: #A02422;
+
+
+/* Vector */
+
+position: absolute;
+left: 30.71%;
+right: 64.55%;
+top: 47.56%;
+bottom: 45.21%;
+
+background: #B3E1EE;
+
+
+/* Vector */
+
+position: absolute;
+left: 43.42%;
+right: 30.53%;
+top: 15.73%;
+bottom: 59.63%;
+
+background: #B3E1EE;
+
+
+/* Vector */
+
+position: absolute;
+left: 66.37%;
+right: 14.72%;
+top: 6.95%;
+bottom: 79.99%;
+
+background: #ED6A65;
+
+
+/* Vector */
+
+position: absolute;
+left: 54.47%;
+right: 27.19%;
+top: 28.11%;
+bottom: 53.56%;
+
+background: #E1E1E1;
+
+
+/* Vector */
+
+position: absolute;
+left: 57.03%;
+right: 29.81%;
+top: 30.7%;
+bottom: 56.01%;
+
+background: #3F545F;
+
+
+/* Vector */
+
+position: absolute;
+left: 18.09%;
+right: 55.3%;
+top: 55.65%;
+bottom: 15.98%;
+
+background: #A02524;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.58%;
+right: 55.57%;
+top: 55.28%;
+bottom: 17.66%;
+
+background: #CA2C31;
+
+
+/* Vector */
+
+position: absolute;
+left: 14.23%;
+right: 81.92%;
+top: 28.38%;
+bottom: 67.72%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 31.64%;
+right: 65.52%;
+top: 27.44%;
+bottom: 69.68%;
+
+background: #FFFFFF;
+opacity: 0.5;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.32%;
+right: 50.67%;
+top: 6.54%;
+bottom: 84.71%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 74.96%;
+right: 21.53%;
+top: 71.34%;
+bottom: 25.27%;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 86.25%;
+right: 10.6%;
+top: 50.62%;
+bottom: 46.26%;
+
+background: #FFFFFF;
+
+
+/* Frame 1 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 12px 8px 16px;
+gap: 10px;
+
+width: 130px;
+height: 40px;
+
+background: #CE0FB5;
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Barchasi */
+
+width: 72px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 98 */
+
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+width: 13px;
+height: 6px;
+left: calc(50% - 13px/2 + 3.5px);
+top: calc(50% - 6px/2 - 3.5px);
+
+border: 2px solid #FFFFFF;
+transform: rotate(90deg);
+
+
+/* tabler:chevron-up */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 15px 10px 16px;
+gap: 16.67px;
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: 1370px;
+top: calc(50% - 40px/2 - 0.5px);
+
+background: rgba(100, 1, 105, 0.3);
+border-radius: 50px;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+width: 13px;
+height: 6px;
+
+border: 2px solid #FFFFFF;
+transform: rotate(90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* tabler:chevron-up */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 15px 10px 16px;
+gap: 16.67px;
+
+position: absolute;
+width: 40px;
+height: 40px;
+left: 20px;
+top: calc(50% - 40px/2 - 0.5px);
+
+background: rgba(100, 1, 105, 0.3);
+border-radius: 50px;
+transform: rotate(-90deg);
+
+
+/* Vector */
+
+width: 13px;
+height: 6px;
+
+border: 2px solid #FFFFFF;
+transform: rotate(-90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327045 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 20px;
+
+width: 1440px;
+height: 391px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 59 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 1320px;
+height: 51px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 22 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 373px;
+height: 51px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Bizning hamkorlar */
+
+width: 373px;
+height: 51px;
+
+font-family: 'Mont';
+font-style: normal;
+font-weight: 900;
+font-size: 40px;
+line-height: 51px;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* runn */
+
+width: 1440px;
+height: 150px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 2087327038 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px 60px;
+gap: 20px;
+
+position: absolute;
+width: 2512px;
+height: 150px;
+left: -1071px;
+top: 0px;
+
+
+
+/* Frame 2087327036 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327037 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* image 11 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327044 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327039 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* image 13 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327038 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327043 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 5;
+flex-grow: 0;
+
+
+/* image 11 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327040 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 6;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327042 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 7;
+flex-grow: 0;
+
+
+/* image 13 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327041 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 8;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 368359 */
+
+position: absolute;
+width: 140px;
+height: 150px;
+left: 0px;
+top: calc(50% - 150px/2);
+
+background: linear-gradient(270deg, rgba(32, 13, 55, 0) 0%, #200D37 100%);
+
+
+/* Rectangle 368360 */
+
+position: absolute;
+width: 140px;
+height: 150px;
+right: 0px;
+top: calc(50% - 150px/2);
+
+background: linear-gradient(270deg, rgba(32, 13, 55, 0) 0%, #200D37 100%);
+transform: rotate(180deg);
+
+
+/* runn */
+
+width: 1440px;
+height: 150px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 2087327038 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px 60px;
+gap: 20px;
+
+position: absolute;
+width: 2512px;
+height: 150px;
+left: -20px;
+top: 0px;
+
+
+
+/* Frame 2087327036 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327037 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* image 11 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327044 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327039 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* image 13 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327038 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327043 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 5;
+flex-grow: 0;
+
+
+/* image 11 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327040 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 6;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327042 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 7;
+flex-grow: 0;
+
+
+/* image 13 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327041 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+width: 248px;
+height: 150px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 8;
+flex-grow: 0;
+
+
+/* image 12 */
+
+width: 105px;
+height: 111px;
+
+background: url(image.png);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 368359 */
+
+position: absolute;
+width: 140px;
+height: 150px;
+left: 0px;
+top: calc(50% - 150px/2);
+
+background: linear-gradient(270deg, rgba(32, 13, 55, 0) 0%, #200D37 100%);
+
+
+/* Rectangle 368360 */
+
+position: absolute;
+width: 140px;
+height: 150px;
+right: 0px;
+top: calc(50% - 150px/2);
+
+background: linear-gradient(270deg, rgba(32, 13, 55, 0) 0%, #200D37 100%);
+transform: rotate(180deg);
+
+
+/* Frame 54 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 1320px;
+height: 1083px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Frame 22 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 530px;
+height: 63px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 7 mahalla */
+
+width: 202px;
+height: 51px;
+
+font-family: 'Mont';
+font-style: normal;
+font-weight: 900;
+font-size: 40px;
+line-height: 51px;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 21 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 6px 14px;
+gap: 10px;
+
+width: 268px;
+height: 63px;
+
+background: rgba(255, 255, 255, 0.03);
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+border-radius: 16px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Community */
+
+width: 240px;
+height: 51px;
+
+font-family: 'Mont';
+font-style: normal;
+font-weight: 900;
+font-size: 40px;
+line-height: 51px;
+
+color: #FFA109;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 40px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #FFFFFF;
+box-shadow: 0px 1.66667px 5px rgba(0, 0, 0, 0.15);
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 3.33333px solid #40272E;
+
+
+/* Frame 25 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 16px;
+gap: 10px;
+
+width: 1320px;
+height: 1000px;
+
+background: rgba(255, 255, 255, 0.1);
+border-radius: 30px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 12px;
+gap: 10px;
+
+width: 1288px;
+height: 76px;
+
+background: #FFFFFF;
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 2087327037 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 1119px;
+height: 52px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 2087327036 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 8px;
+gap: 4px;
+
+width: 290px;
+height: 52px;
+
+background: #36254B;
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 1 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+width: 135px;
+height: 36px;
+
+background: #FFA109;
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Dolzarb */
+
+width: 56px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px;
+gap: 10px;
+
+width: 135px;
+height: 36px;
+
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* So’nggi */
+
+width: 55px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 69 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px 16px 8px 12px;
+gap: 4px;
+
+width: 135px;
+height: 40px;
+
+background: linear-gradient(180deg, #FFA109 0%, #F08B17 100%);
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* add-plus-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Edit / Add_Plus */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 20.83%;
+bottom: 20.83%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 20.83%;
+bottom: 20.83%;
+
+border: 2px solid #FFFFFF;
+
+
+/* Yangi e’lon */
+
+width: 79px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: right;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 37 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 1288px;
+height: 882px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 26 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 304px;
+height: 784px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 28 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 12px;
+gap: 10px;
+
+width: 304px;
+height: 64px;
+
+background: #FFFFFF;
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 2087327035 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 280px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 39 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px 12px;
+gap: 4px;
+
+width: 280px;
+height: 40px;
+
+border: 1px solid #D1D8DD;
+border-radius: 30px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* search-4-svgrepo-com */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 16.66%;
+right: 17.84%;
+top: 18.27%;
+bottom: 16.22%;
+
+border: 1.8px solid #5D666D;
+
+
+/* Izlash */
+
+width: 41px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #A1ABB2;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 12px;
+gap: 10px;
+
+width: 304px;
+height: 170px;
+
+background: #FFFFFF;
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 265px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* image 14 */
+
+width: 40px;
+height: 40px;
+
+background: url(image.png);
+border-radius: 67px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Diyora Keldiyorova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 280px;
+height: 62px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Savol */
+
+width: 280px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Barchaga salom. Men farzandimni bog’chaga bermoxchi edim. Qaysi bog’chani tafsiya qila olasizlar? */
+
+width: 280px;
+height: 45px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 34 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 280px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 36 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 51px;
+height: 24px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #31A5F8;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #FFFFFF;
+
+
+/* 2 ta */
+
+width: 23px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 35 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 58px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+background: #FF9D00;
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+background: #FF9D00;
+border: 1.5px solid #FF9D00;
+
+
+/* 35 ta */
+
+width: 30px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 12px;
+gap: 10px;
+
+width: 304px;
+height: 170px;
+
+background: #FFF8E4;
+border: 2px solid #FF9D00;
+box-shadow: 0px 0px 6px rgba(255, 157, 0, 0.6);
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 265px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* image 14 */
+
+width: 40px;
+height: 40px;
+
+background: url(image.png);
+border-radius: 67px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Diyora Keldiyorova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 280px;
+height: 62px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Savol */
+
+width: 280px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Barchaga salom. Men farzandimni bog’chaga bermoxchi edim. Qaysi bog’chani tafsiya qila olasizlar? */
+
+width: 280px;
+height: 45px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 35 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 280px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 36 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 59px;
+height: 24px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #31A5F8;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #FFFFFF;
+
+
+/* 20 ta */
+
+width: 31px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 35 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 58px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+background: #FF9D00;
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+background: #FF9D00;
+border: 1.5px solid #FF9D00;
+
+
+/* 35 ta */
+
+width: 30px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 12px;
+gap: 10px;
+
+width: 304px;
+height: 200px;
+
+background: #FFFFFF;
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 265px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* image 14 */
+
+width: 40px;
+height: 40px;
+
+background: url(image.png);
+border-radius: 67px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Diyora Keldiyorova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 280px;
+height: 92px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Savol */
+
+width: 280px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Barchaga salom. Men farzandimni bog’chaga bermoxchi edim. Qaysi bog’chani tafsiya qila olasizlar? Barchaga salom. Men farzandimni bog’chaga bermoxchi edim. Qaysi bog’chani tafsiya qila olasizlar? */
+
+width: 280px;
+height: 75px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 35 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 280px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 36 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 51px;
+height: 24px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #31A5F8;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #FFFFFF;
+
+
+/* 2 ta */
+
+width: 23px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 35 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 58px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* 35 ta */
+
+width: 30px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 12px;
+gap: 10px;
+
+width: 304px;
+height: 140px;
+
+background: #FFFFFF;
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 265px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* image 14 */
+
+width: 40px;
+height: 40px;
+
+background: url(image.png);
+border-radius: 67px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Diyora Keldiyorova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 2px;
+
+width: 280px;
+height: 32px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Savol */
+
+width: 280px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Barchaga salom. */
+
+width: 280px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 35 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 280px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 36 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 51px;
+height: 24px;
+
+border-radius: 0px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #31A5F8;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #FFFFFF;
+
+
+/* 2 ta */
+
+width: 23px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 35 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 58px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* 35 ta */
+
+width: 30px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 28 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 12px;
+gap: 20px;
+isolation: isolate;
+
+width: 974px;
+height: 882px;
+
+background: #FFFFFF;
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* Frame 53 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 950px;
+height: 778px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+z-index: 0;
+
+
+/* Frame 29 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 950px;
+height: 60px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 40 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 916px;
+height: 60px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 1;
+
+
+/* image 14 */
+
+width: 60px;
+height: 60px;
+
+background: url(image.png);
+border-radius: 67px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 135px;
+height: 60px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Diyora Keldiyorova */
+
+width: 135px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* menu-dots-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+transform: rotate(90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 12.5%;
+bottom: 70.83%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 41.67%;
+bottom: 41.67%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 70.83%;
+bottom: 12.5%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+gap: 4px;
+
+width: 950px;
+height: 48px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Barchaga salom. Men farzandimni bog’chaga bermoxchi edim. Qaysi bog’chani tafsiya qila olasizlar? */
+
+width: 950px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 42 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 950px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 62px;
+height: 15px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 16.06.2025 */
+
+width: 62px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 41 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+margin: 0 auto;
+width: 131px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 56px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 14 ta */
+
+width: 28px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #31A5F8;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #FFFFFF;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* 20 ta */
+
+width: 31px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+background: #FF9D00;
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+background: #FF9D00;
+border: 1.5px solid #FF9D00;
+
+
+/* Frame 49 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 0px 0px 30px;
+gap: 10px;
+
+width: 950px;
+height: 650px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 47 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+width: 920px;
+height: 138px;
+
+background: #F3F5F8;
+border-radius: 14px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 44 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 118px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 48 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 33 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 866px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 43 */
+
+width: 40px;
+height: 40px;
+
+background: rgba(77, 20, 190, 0.15);
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* profile-svgrepo-com 1 */
+
+position: absolute;
+width: 28px;
+height: 28px;
+left: calc(50% - 28px/2);
+top: calc(50% - 28px/2);
+
+border-radius: 58.3333px;
+
+
+/* Vector */
+
+position: absolute;
+left: 30.21%;
+right: 30.21%;
+top: 8.33%;
+bottom: 52.13%;
+
+background: #4D14BE;
+opacity: 0.4;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.67%;
+right: 20.66%;
+top: 53.15%;
+bottom: 8.33%;
+
+background: #4D14BE;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shoista Gulyamova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* menu-dots-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+transform: rotate(90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 12.5%;
+bottom: 70.83%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 41.67%;
+bottom: 41.67%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 70.83%;
+bottom: 12.5%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Frame 45 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 68px;
+
+border-radius: 12px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 34 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+gap: 4px;
+
+width: 900px;
+height: 68px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Salom Diyora, men farzandimni Nutrisa bogchasiga berganman. Bogcha juda yaxshi va narxi ham hamyon bop. Bogcha erimniki bo’lgani uchun reklama qilmayapman. Chin dildan tafsiya etaman. */
+
+width: 900px;
+height: 40px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 42 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 62px;
+height: 15px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 16.06.2025 */
+
+width: 62px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 52 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+margin: 0 auto;
+width: 99px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 42 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 20 ta */
+
+width: 31px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Frame 41 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* reply-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.5%;
+right: 15.28%;
+top: 17.32%;
+bottom: 15.63%;
+
+background: #747F87;
+border: 1.5px solid #747F87;
+
+
+/* Frame 48 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+width: 920px;
+height: 118px;
+
+background: #F3F5F8;
+border-radius: 14px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 44 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 98px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 48 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 33 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 866px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 43 */
+
+width: 40px;
+height: 40px;
+
+background: rgba(77, 20, 190, 0.15);
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* profile-svgrepo-com 1 */
+
+position: absolute;
+width: 28px;
+height: 28px;
+left: calc(50% - 28px/2);
+top: calc(50% - 28px/2);
+
+border-radius: 58.3333px;
+
+
+/* Vector */
+
+position: absolute;
+left: 30.21%;
+right: 30.21%;
+top: 8.33%;
+bottom: 52.13%;
+
+background: #4D14BE;
+opacity: 0.4;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.67%;
+right: 20.66%;
+top: 53.15%;
+bottom: 8.33%;
+
+background: #4D14BE;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shoista Gulyamova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* menu-dots-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+transform: rotate(90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 12.5%;
+bottom: 70.83%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 41.67%;
+bottom: 41.67%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 70.83%;
+bottom: 12.5%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Frame 45 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 48px;
+
+border-radius: 12px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 34 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+gap: 4px;
+
+width: 900px;
+height: 48px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Salom Diyora, */
+
+width: 900px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 43 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 62px;
+height: 15px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 16.06.2025 */
+
+width: 62px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 52 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+margin: 0 auto;
+width: 99px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 42 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 20 ta */
+
+width: 31px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Frame 41 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* reply-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.5%;
+right: 15.28%;
+top: 17.32%;
+bottom: 15.63%;
+
+background: #747F87;
+border: 1.5px solid #747F87;
+
+
+/* Frame 49 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+width: 920px;
+height: 118px;
+
+background: #F3F5F8;
+border-radius: 14px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 44 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 98px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 48 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 33 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 866px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 43 */
+
+width: 40px;
+height: 40px;
+
+background: rgba(77, 20, 190, 0.15);
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* profile-svgrepo-com 1 */
+
+position: absolute;
+width: 28px;
+height: 28px;
+left: calc(50% - 28px/2);
+top: calc(50% - 28px/2);
+
+border-radius: 58.3333px;
+
+
+/* Vector */
+
+position: absolute;
+left: 30.21%;
+right: 30.21%;
+top: 8.33%;
+bottom: 52.13%;
+
+background: #4D14BE;
+opacity: 0.4;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.67%;
+right: 20.66%;
+top: 53.15%;
+bottom: 8.33%;
+
+background: #4D14BE;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shoista Gulyamova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* menu-dots-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+transform: rotate(90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 12.5%;
+bottom: 70.83%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 41.67%;
+bottom: 41.67%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 70.83%;
+bottom: 12.5%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Frame 45 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 48px;
+
+border-radius: 12px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 34 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+gap: 4px;
+
+width: 900px;
+height: 48px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Salom Diyora, */
+
+width: 900px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 43 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 62px;
+height: 15px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 16.06.2025 */
+
+width: 62px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 52 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+margin: 0 auto;
+width: 163px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 48px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 1 ta */
+
+width: 20px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #31A5F8;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #FFFFFF;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* 20 ta */
+
+width: 31px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Frame 41 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* reply-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.5%;
+right: 15.28%;
+top: 17.32%;
+bottom: 15.63%;
+
+background: #747F87;
+border: 1.5px solid #747F87;
+
+
+/* Frame 51 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 0px 0px 30px;
+gap: 10px;
+
+width: 920px;
+height: 118px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 50 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+width: 890px;
+height: 118px;
+
+background: #F3F5F8;
+border-radius: 14px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 44 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 870px;
+height: 98px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 48 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 870px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 33 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 836px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 43 */
+
+width: 40px;
+height: 40px;
+
+background: rgba(77, 20, 190, 0.15);
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* profile-svgrepo-com 1 */
+
+position: absolute;
+width: 28px;
+height: 28px;
+left: calc(50% - 28px/2);
+top: calc(50% - 28px/2);
+
+border-radius: 58.3333px;
+
+
+/* Vector */
+
+position: absolute;
+left: 30.21%;
+right: 30.21%;
+top: 8.33%;
+bottom: 52.13%;
+
+background: #4D14BE;
+opacity: 0.4;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.67%;
+right: 20.66%;
+top: 53.15%;
+bottom: 8.33%;
+
+background: #4D14BE;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shoista Gulyamova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* menu-dots-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+transform: rotate(90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 12.5%;
+bottom: 70.83%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 41.67%;
+bottom: 41.67%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 70.83%;
+bottom: 12.5%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Frame 45 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 870px;
+height: 48px;
+
+border-radius: 12px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 34 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+gap: 4px;
+
+width: 870px;
+height: 48px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Salom Diyora, */
+
+width: 870px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 43 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 870px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 62px;
+height: 15px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 16.06.2025 */
+
+width: 62px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 52 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+margin: 0 auto;
+width: 99px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 42 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 20 ta */
+
+width: 31px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Frame 41 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* reply-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.5%;
+right: 15.28%;
+top: 17.32%;
+bottom: 15.63%;
+
+background: #747F87;
+border: 1.5px solid #747F87;
+
+
+/* Frame 52 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px;
+gap: 10px;
+
+width: 920px;
+height: 118px;
+
+background: #F3F5F8;
+border-radius: 14px;
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 44 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 98px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 48 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 33 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 866px;
+height: 40px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Frame 43 */
+
+width: 40px;
+height: 40px;
+
+background: rgba(77, 20, 190, 0.15);
+border-radius: 50px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* profile-svgrepo-com 1 */
+
+position: absolute;
+width: 28px;
+height: 28px;
+left: calc(50% - 28px/2);
+top: calc(50% - 28px/2);
+
+border-radius: 58.3333px;
+
+
+/* Vector */
+
+position: absolute;
+left: 30.21%;
+right: 30.21%;
+top: 8.33%;
+bottom: 52.13%;
+
+background: #4D14BE;
+opacity: 0.4;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.67%;
+right: 20.66%;
+top: 53.15%;
+bottom: 8.33%;
+
+background: #4D14BE;
+
+
+/* Frame 30 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 0px;
+gap: 4px;
+
+width: 215px;
+height: 38px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Shoista Gulyamova */
+
+width: 215px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 50px;
+height: 17px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Ona */
+
+width: 30px;
+height: 17px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 16px;
+height: 16px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.33%;
+bottom: 75%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 29.16%;
+top: 35.42%;
+bottom: 8.33%;
+
+background: #CE0FB5;
+border: 1px solid #CE0FB5;
+
+
+/* menu-dots-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+transform: rotate(90deg);
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 12.5%;
+bottom: 70.83%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 41.67%;
+bottom: 41.67%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.67%;
+top: 70.83%;
+bottom: 12.5%;
+
+background: #200D37;
+transform: rotate(90deg);
+
+
+/* Frame 45 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 48px;
+
+border-radius: 12px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 34 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+padding: 0px;
+gap: 4px;
+
+width: 900px;
+height: 48px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Salom Diyora, */
+
+width: 900px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #200D37;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 43 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px;
+gap: 10px;
+
+width: 900px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+margin: 0 auto;
+width: 62px;
+height: 15px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 16.06.2025 */
+
+width: 62px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 52 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 16px;
+
+margin: 0 auto;
+width: 163px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Frame 42 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 123px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame 32 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 48px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 1 ta */
+
+width: 20px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 10.42%;
+bottom: 10.42%;
+
+background: #31A5F8;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 2px solid #FFFFFF;
+
+
+/* Frame 31 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 4px;
+
+width: 59px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* 20 ta */
+
+width: 31px;
+height: 15px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #747F87;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Frame */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 70.83%;
+top: 41.67%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 29.17%;
+right: 8.33%;
+top: 12.5%;
+bottom: 16.67%;
+
+border: 1.5px solid #FF9D00;
+
+
+/* Frame 41 */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+gap: 16px;
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* reply-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.5%;
+right: 15.28%;
+top: 17.32%;
+bottom: 15.63%;
+
+background: #747F87;
+border: 1.5px solid #747F87;
+
+
+/* Vector */
+
+position: absolute;
+width: 10px;
+height: 32px;
+left: 26px;
+top: 140px;
+
+border: 1px solid #A1ABB2;
+border-radius: 8px;
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+z-index: 1;
+
+
+/* Group 19 */
+
+position: absolute;
+width: 10px;
+height: 563px;
+left: 26px;
+top: 140px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+z-index: 2;
+
+
+/* Vector */
+
+position: absolute;
+width: 10px;
+height: 182px;
+left: 26px;
+top: 140px;
+
+border: 1px solid #A1ABB2;
+border-radius: 8px;
+
+
+/* Vector */
+
+position: absolute;
+width: 10px;
+height: 310px;
+left: 26px;
+top: 140px;
+
+border: 1px solid #A1ABB2;
+border-radius: 8px;
+
+
+/* Vector */
+
+position: absolute;
+width: 10px;
+height: 563px;
+left: 26px;
+top: 140px;
+
+border: 1px solid #A1ABB2;
+border-radius: 8px;
+
+
+/* Group 20 */
+
+position: absolute;
+width: 10px;
+height: 32px;
+left: 56px;
+top: 544px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+z-index: 3;
+
+
+/* Vector */
+
+position: absolute;
+width: 10px;
+height: 32px;
+left: 56px;
+top: 544px;
+
+border: 1px solid #A1ABB2;
+border-radius: 8px;
+
+
+/* Frame 23 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 10px;
+gap: 4px;
+
+width: 950px;
+height: 60px;
+
+border: 1px solid #D1D8DD;
+filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.05));
+border-radius: 30px;
+
+/* Inside auto layout */
+flex: none;
+order: 4;
+align-self: stretch;
+flex-grow: 0;
+z-index: 4;
+
+
+/* Frame 2 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px;
+gap: 10px;
+
+width: 40px;
+height: 40px;
+
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* material-symbols:add-rounded */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 20.83%;
+right: 20.83%;
+top: 20.83%;
+bottom: 20.83%;
+
+background: #747F87;
+
+
+/* Xabar qoldirish */
+
+width: 842px;
+height: 20px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+/* identical to box height */
+
+color: rgba(161, 171, 178, 0.5);
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 1;
+
+
+/* Frame 1 */
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px;
+gap: 10px;
+
+width: 40px;
+height: 40px;
+
+background: #FFA109;
+backdrop-filter: blur(2px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 20px;
+
+/* Inside auto layout */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* send-2-svgrepo-com 1 */
+
+width: 24px;
+height: 24px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.99%;
+right: 13%;
+top: 12.99%;
+bottom: 12.99%;
+
+border: 1.5px solid #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 42.13%;
+right: 42.96%;
+top: 41.91%;
+bottom: 43.13%;
+
+border: 1.5px solid #FFFFFF;
+
+
+/* Frame 56 */
+
+/* Auto layout */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+gap: 20px;
+
+width: 1360px;
+height: 689px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* Nega ota-onalar “birbola” ni tanlaydi? */
+
+width: 1360px;
+height: 51px;
+
+font-family: 'Mont';
+font-style: normal;
+font-weight: 900;
+font-size: 40px;
+line-height: 51px;
+
+color: #FFFFFF;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Frame 55 */
+
+width: 1360px;
+height: 618px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Group 12 */
+
+position: absolute;
+width: 212.13px;
+height: 212.13px;
+left: 574px;
+top: 203px;
+
+
+
+/* Rectangle 141 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 150px;
+height: 150px;
+left: 574px;
+top: 203px;
+
+background: rgba(41, 8, 82, 0.1);
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+backdrop-filter: blur(25px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 50px;
+transform: rotate(-45deg);
+
+
+/* Group 6 */
+
+position: absolute;
+width: 80px;
+height: 80px;
+left: calc(50% - 80px/2 - 0px);
+top: calc(50% - 80px/2 + 0px);
+
+
+
+/* sport-faculty-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 640px;
+top: 269px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 5.77%;
+bottom: 1.8%;
+
+background: #FFFFFF;
+
+
+/* idea-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 654.02px;
+top: 269px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 7.67px;
+height: 7.92px;
+left: 1.11px;
+top: 0.99px;
+
+background: #FFFFFF;
+
+
+/* Group */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 10%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 22.07%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 29.47%;
+right: 29.48%;
+top: 28.23%;
+bottom: 22.07%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 40.73%;
+right: 40.87%;
+top: 79.4%;
+bottom: 16.04%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 40.73%;
+right: 40.87%;
+top: 79.4%;
+bottom: 16.04%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 44.2%;
+right: 44.32%;
+top: 85.43%;
+bottom: 10%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 44.2%;
+right: 44.32%;
+top: 85.43%;
+bottom: 10%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 75.07%;
+right: 11.25%;
+top: 46.48%;
+bottom: 48.96%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 75.07%;
+right: 11.25%;
+top: 46.48%;
+bottom: 48.96%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 11.24%;
+right: 75.08%;
+top: 46.48%;
+bottom: 48.96%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 11.24%;
+right: 75.08%;
+top: 46.48%;
+bottom: 48.96%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 47.71%;
+right: 47.73%;
+top: 10%;
+bottom: 76.32%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 47.71%;
+right: 47.73%;
+top: 10%;
+bottom: 76.32%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 67.06%;
+right: 21.93%;
+top: 65.82%;
+bottom: 23.17%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 67.06%;
+right: 21.93%;
+top: 65.82%;
+bottom: 23.17%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 21.93%;
+right: 67.06%;
+top: 20.68%;
+bottom: 68.3%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 21.93%;
+right: 67.06%;
+top: 20.68%;
+bottom: 68.3%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 21.93%;
+right: 67.06%;
+top: 65.82%;
+bottom: 23.17%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 21.93%;
+right: 67.06%;
+top: 65.82%;
+bottom: 23.17%;
+
+background: #000000;
+
+
+/* Group */
+
+position: absolute;
+left: 67.07%;
+right: 21.93%;
+top: 20.68%;
+bottom: 68.31%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 67.07%;
+right: 21.93%;
+top: 20.68%;
+bottom: 68.31%;
+
+background: #000000;
+
+
+/* childhood-children-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 668.04px;
+top: 269px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0.57%;
+bottom: 0.57%;
+
+background: #FFFFFF;
+
+
+/* theatre-cinema-entertainment-show-masks-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 640px;
+top: 283.02px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 9.78px;
+height: 9.78px;
+left: 0.06px;
+top: 0.06px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 34.37%;
+right: 3.13%;
+top: 34.39%;
+bottom: 3.11%;
+
+border: 0.506093px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 53.13%;
+right: 21.87%;
+top: 71.88%;
+bottom: 15.62%;
+
+border: 0.506093px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 46.87%;
+right: 40.51%;
+top: 56.25%;
+bottom: 37.43%;
+
+border: 0.506093px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 71.88%;
+right: 15.49%;
+top: 56.25%;
+bottom: 37.43%;
+
+border: 0.506093px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 3.14%;
+right: 34.36%;
+top: 3.16%;
+bottom: 34.34%;
+
+border: 0.506093px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 21.9%;
+right: 65.48%;
+top: 37.51%;
+bottom: 49.87%;
+
+border: 0.506093px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 15.64%;
+right: 71.74%;
+top: 21.88%;
+bottom: 71.81%;
+
+border: 0.506093px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.62%;
+right: 46.75%;
+top: 21.88%;
+bottom: 71.81%;
+
+border: 0.506093px solid #000000;
+
+
+/* ping-pong-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 654.02px;
+top: 283.02px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 7.81%;
+right: 7.82%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* ferris-wheel-line-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 668.04px;
+top: 283.02px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 8px;
+height: 8.82px;
+left: 0.95px;
+top: 0.54px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 25%;
+right: 25%;
+top: 25%;
+bottom: 25%;
+
+border: 0.571548px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 41.67%;
+right: 41.66%;
+top: 8.34%;
+bottom: 75%;
+
+border: 0.571548px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.84%;
+right: 12.5%;
+top: 25%;
+bottom: 58.33%;
+
+border: 0.571548px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 70.83%;
+top: 25%;
+bottom: 58.33%;
+
+border: 0.571548px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 70.83%;
+top: 58.33%;
+bottom: 25.01%;
+
+border: 0.571548px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 70.84%;
+right: 12.5%;
+top: 58.33%;
+bottom: 25.01%;
+
+border: 0.571548px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50.01%;
+bottom: 8.33%;
+
+border: 0.571548px solid #000000;
+
+
+/* school-flag-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 682.06px;
+top: 269px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.49%;
+right: 12.51%;
+top: 8.33%;
+bottom: 8.34%;
+
+border: 0.466484px solid #FFFFFF;
+
+
+/* filter-search-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 696.08px;
+top: 269px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 13.79%;
+right: 13.79%;
+top: 8.39%;
+bottom: 8.32%;
+
+border: 0.618558px solid #FFFFFF;
+
+
+/* chat-round-dots-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 710.1px;
+top: 269px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 8.87px;
+height: 8.87px;
+left: 0.52px;
+top: 0.51px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 33.33%;
+right: 33.33%;
+top: 50%;
+bottom: 50%;
+
+border: 0.824744px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.33%;
+bottom: 8.34%;
+
+border: 0.618558px solid #000000;
+
+
+/* location-med-2-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 682.06px;
+top: 283.02px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.49%;
+right: 12.51%;
+top: 12.49%;
+bottom: 12.51%;
+
+border: 0.618558px solid #FFFFFF;
+
+
+/* healthicons:running-outline */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 696.08px;
+top: 283.02px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 17.81%;
+right: 17.7%;
+top: 8.33%;
+bottom: 8.27%;
+
+background: #FFFFFF;
+
+
+/* amusement-park-entertainment-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 710.1px;
+top: 283.02px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 5.02%;
+right: 5.03%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* search-4-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 640px;
+top: 297.04px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 16.67%;
+right: 17.83%;
+top: 18.27%;
+bottom: 16.22%;
+
+border: 0.694558px solid #FFFFFF;
+
+
+/* like-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 654.02px;
+top: 297.04px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 16.67%;
+right: 14.33%;
+top: 13.5%;
+bottom: 16.67%;
+
+border: 0.618558px solid #FFFFFF;
+
+
+/* ball-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 654.02px;
+top: 325.08px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 4.16%;
+right: 4.17%;
+top: 5.97%;
+bottom: 2.36%;
+
+background: #FFFFFF;
+
+
+/* family-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 640px;
+top: 311.06px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0.01%;
+right: -0.01%;
+top: 0%;
+bottom: 0%;
+
+background: #FFFFFF;
+
+
+/* bumper-ride-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 654.02px;
+top: 311.06px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 6.39%;
+bottom: 6.4%;
+
+background: #FFFFFF;
+
+
+/* play-stream-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 640px;
+top: 325.08px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.34%;
+top: 20.5%;
+bottom: 20.25%;
+
+border: 0.618558px solid #FFFFFF;
+
+
+/* lucide:plane */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 640px;
+top: 339.1px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 11.72%;
+top: 11.73%;
+bottom: 12.49%;
+
+border: 0.549829px solid #FFFFFF;
+
+
+/* childhood-entertainment-svgrepo-com (1) */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 654.02px;
+top: 339.1px;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.94%;
+bottom: 6.73%;
+
+
+
+/* Group */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.94%;
+bottom: 6.73%;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 9.94%;
+bottom: 6.73%;
+
+background: #FFFFFF;
+
+
+/* list-heart-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 668.04px;
+top: 325.08px;
+
+
+
+/* Union */
+
+position: absolute;
+width: 8.04px;
+height: 5.91px;
+left: 0.93px;
+top: 2.17px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 55.21%;
+right: 9.38%;
+top: 51.05%;
+bottom: 18.44%;
+
+background: #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 25.01%;
+bottom: 74.99%;
+
+border: 0.618558px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 41.67%;
+bottom: 58.33%;
+
+border: 0.618558px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 58.33%;
+top: 58.34%;
+bottom: 41.66%;
+
+border: 0.618558px solid #000000;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.5%;
+right: 58.33%;
+top: 75.01%;
+bottom: 24.99%;
+
+border: 0.618558px solid #000000;
+
+
+/* childhood-children-svgrepo-com (1) */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 682.06px;
+top: 325.08px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 4.16%;
+right: 4.17%;
+top: 18.25%;
+bottom: 18.72%;
+
+background: #FFFFFF;
+
+
+/* bi:camera-reels */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 696.08px;
+top: 325.08px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.33%;
+bottom: 8.34%;
+
+background: #FFFFFF;
+
+
+/* famicons:restaurant-outline */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 668.04px;
+top: 339.1px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 7.61%;
+right: 14.69%;
+top: 9.33%;
+bottom: 6.28%;
+
+border: 0.582172px solid #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 6.26%;
+right: 6.25%;
+top: 6.26%;
+bottom: 6.25%;
+
+border: 0.582172px solid #FFFFFF;
+
+
+/* ph:building-office */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 682.06px;
+top: 339.1px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 6.25%;
+right: 0%;
+top: 12.5%;
+bottom: 12.5%;
+
+background: #FFFFFF;
+
+
+/* hugeicons:book-open-02 */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 696.08px;
+top: 339.1px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 8.35%;
+bottom: 8.32%;
+
+border: 0.463919px solid #FFFFFF;
+
+
+/* mage:heart-health */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 696.08px;
+top: 297.04px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 11.47%;
+right: 11.46%;
+top: 15.31%;
+bottom: 15.32%;
+
+border: 0.576987px solid #FFFFFF;
+
+
+/* streamline:film-slate */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 710.1px;
+top: 297.04px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 6.08%;
+right: 8.47%;
+top: 4.51%;
+bottom: 4.58%;
+
+border: 0.494846px solid #FFFFFF;
+
+
+/* solar:camera-linear */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 710.1px;
+top: 325.08px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.34%;
+right: 8.33%;
+top: 12.5%;
+bottom: 12.5%;
+
+border: 0.618558px solid #FFFFFF;
+
+
+/* cup-of-coffe-with-heart-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 696.08px;
+top: 311.06px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 5.36%;
+bottom: 5.34%;
+
+background: #FFFFFF;
+
+
+/* travel-holidays-vacation-case-suitcase-luggage-svgrepo-com */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 710.1px;
+top: 311.06px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 28.12%;
+right: 28.13%;
+top: 3.13%;
+bottom: 3.12%;
+
+border: 0.494846px solid #FFFFFF;
+
+
+/* fluent:beach-16-regular */
+
+position: absolute;
+width: 9.9px;
+height: 9.9px;
+left: 710.1px;
+top: 339.1px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 9.37%;
+right: 11.77%;
+top: 6.26%;
+bottom: 10.63%;
+
+background: #FFFFFF;
+
+
+/* Group 14 */
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 20px;
+top: 0px;
+
+
+
+/* Rectangle 137 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 20px;
+top: 0px;
+
+background: rgba(41, 8, 82, 0.1);
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+backdrop-filter: blur(25px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 30px 30px 142px 30px;
+
+
+/* Batafsil sharhlar */
+
+position: absolute;
+width: 157px;
+height: 78px;
+left: 50px;
+top: 86px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 39px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* Group 14 */
+
+position: absolute;
+width: 312px;
+height: 270.54px;
+left: 282px;
+top: 12px;
+
+
+
+/* features list */
+
+position: absolute;
+width: 188.62px;
+height: 188.62px;
+left: 282px;
+top: 59px;
+
+background: url(.png);
+transform: rotate(-11.93deg);
+
+
+/* communication */
+
+position: absolute;
+width: 178px;
+height: 178px;
+left: 416px;
+top: 12px;
+
+background: url(.png);
+
+
+/* Group 13 */
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 705px;
+top: 0px;
+
+
+
+/* Rectangle 138 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 705px;
+top: 0px;
+
+background: rgba(41, 8, 82, 0.1);
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+backdrop-filter: blur(25px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 30px 30px 30px 142px;
+
+
+/* Keng qamrovli ma’lumotlar */
+
+position: absolute;
+width: 368px;
+height: 78px;
+left: 765px;
+top: 86px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 39px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* Statistical analysis and data visualization */
+
+position: absolute;
+width: 256px;
+height: 257px;
+left: 1054px;
+top: 12px;
+
+background: url(.png);
+
+
+/* Group 16 */
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 20px;
+top: 334px;
+
+
+
+/* Rectangle 139 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 20px;
+top: 334px;
+
+background: rgba(41, 8, 82, 0.1);
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+backdrop-filter: blur(25px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 30px 142px 30px 30px;
+
+
+/* Ota-onalar jamoasi */
+
+position: absolute;
+width: 215px;
+height: 78px;
+left: 50px;
+top: 420px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 39px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* man and woman */
+
+position: absolute;
+width: 251px;
+height: 251px;
+left: 350px;
+top: 350px;
+
+background: url(.png);
+
+
+/* Group 15 */
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 705px;
+top: 334px;
+
+
+
+/* Rectangle 140 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 635px;
+height: 284px;
+left: 705px;
+top: 334px;
+
+background: rgba(41, 8, 82, 0.1);
+box-shadow: 0px 0px 30px rgba(32, 13, 55, 0.02),
+inset 0px 2px 20px rgba(32, 13, 55, 0.02);
+backdrop-filter: blur(25px);
+/* Note: backdrop-filter has minimal browser support */
+border-radius: 142px 30px 30px 30px;
+
+
+/* Ishonchli hamkorlar */
+
+position: absolute;
+width: 194px;
+height: 78px;
+left: 765px;
+top: 420px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 39px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+
+
+
+/* plastic handshake */
+
+position: absolute;
+width: 292px;
+height: 217px;
+left: 1010px;
+top: 389px;
+
+background: url(.png);

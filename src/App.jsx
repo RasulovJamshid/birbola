@@ -7,16 +7,22 @@ import Community from './components/Community'
 import Footer from './components/Footer'
 import SearchResults from './components/SearchResults'
 import KindergartenDetail from './components/KindergartenDetail'
+import SignIn from './components/SignIn'
+import SignUp from './components/SignUp'
+import Cabinet from './components/Cabinet'
+
+import Partners from './components/Partners'
 
 // Home page component
 function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#1a1a2e]">
+    <div className="min-h-screen bg-[#200D37]">
       <Header />
       <Hero />
       <TopBogchalar />
-      <WhyChooseUs />
+      <Partners />
       <Community />
+      <WhyChooseUs />
       <Footer />
     </div>
   )
@@ -28,6 +34,9 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/search" element={<SearchResults />} />
       <Route path="/kindergarten/:id" element={<KindergartenDetail />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/cabinet" element={<Cabinet />} />
     </Routes>
   )
 }

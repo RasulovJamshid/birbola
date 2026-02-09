@@ -1,31 +1,57 @@
-# Build stage
-FROM node:18-alpine AS build
-
+# Dependencies stage
+FROM node:20-alpine AS deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install ALL dependencies (including devDependencies needed for build)
+# Install dependencies
 RUN npm ci
+
+# Build stage
+FROM node:20-alpine AS builder
+WORKDIR /app
+
+# Copy dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
 
 # Copy source code
 COPY . .
 
-# Build the application
+# Set environment variable for Next.js to enable standalone output
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Build the Next.js application
 RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM node:20-alpine AS runner
+WORKDIR /app
 
-# Copy custom nginx config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
 
-# Copy built files from build stage
-COPY --from=build /app/dist /usr/share/nginx/html
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-# Expose port 80
-EXPOSE 80
+# Copy necessary files from builder
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Set correct permissions
+RUN chown -R nextjs:nodejs /app
+
+# Switch to non-root user
+USER nextjs
+
+# Expose port 3000 (Next.js default)
+EXPOSE 3000
+
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+# Start Next.js server
+CMD ["node", "server.js"]

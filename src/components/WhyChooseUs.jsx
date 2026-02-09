@@ -1,8 +1,9 @@
-import chatIcon from '../assets/chooseus/chat.svg'
-import infosIcon from '../assets/chooseus/infos.svg'
-import parentsIcon from '../assets/chooseus/parents.svg'
-import handsIcon from '../assets/chooseus/hands.svg'
-import logoIcon from '../assets/chooseus/logo.svg'
+// Assets now served from public folder
+const chatIcon = '/assets/chooseus/chat.svg'
+const infosIcon = '/assets/chooseus/infos.svg'
+const parentsIcon = '/assets/chooseus/parents.svg'
+const handsIcon = '/assets/chooseus/hands.svg'
+const logoIcon = '/assets/chooseus/logo.svg'
 
 const features = [
   {
@@ -49,10 +50,13 @@ const CenterBadge = () => {
 
 const WhyChooseUs = () => {
   return (
-    <section className="why-choose-us">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="why-choose-us relative overflow-hidden py-20">
+      {/* Background Effects */}
+      <div className="section-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 glow-gold opacity-15 w-[900px] h-[900px] blur-[120px]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2>Nega ota-onalar "birbola" ni tanlaydi?</h2>
-        
+
         <div className="why-grid">
           {features.map((feature) => (
             <WhyCard
@@ -61,7 +65,7 @@ const WhyChooseUs = () => {
               icon={feature.icon}
             />
           ))}
-          
+
           {/* Center Badge */}
           <CenterBadge />
         </div>
