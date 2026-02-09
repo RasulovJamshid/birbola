@@ -1,20 +1,20 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { 
-  MessageCircle, Heart, Send, Trash2, MoreVertical, 
-  Search, Plus, X, AlertCircle, CheckCircle2, 
-  ChevronRight, ArrowLeft, Loader2 
+import {
+  MessageCircle, Heart, Send, Trash2, MoreVertical,
+  Search, Plus, X, AlertCircle, CheckCircle2,
+  ChevronRight, ArrowLeft, Loader2
 } from 'lucide-react'
-import { 
-  getCommunityFeed, 
-  getPostComments, 
-  createPost, 
-  createComment, 
-  likePost, 
+import {
+  getCommunityFeed,
+  getPostComments,
+  createPost,
+  createComment,
+  likePost,
   likeComment,
   deletePost,
-  deleteComment 
+  deleteComment
 } from '../services/api'
 import Header from './Header'
 import Footer from './Footer'
@@ -33,11 +33,10 @@ const Toast = ({ message, type, onClose }) => {
   }, [onClose])
 
   return (
-    <div className={`fixed bottom-8 right-8 z-[9999] flex items-center gap-3 px-6 py-4 rounded-2xl border backdrop-blur-xl animate-fadeIn ${
-      type === 'error' 
-        ? 'bg-red-500/10 border-red-500/20 text-red-400' 
-        : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
-    }`}>
+    <div className={`pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-xl border backdrop-blur-xl animate-fadeIn ${type === 'error'
+      ? 'bg-red-500/10 border-red-500/20 text-red-400'
+      : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+      }`}>
       {type === 'error' ? <AlertCircle size={20} /> : <CheckCircle2 size={20} />}
       <span className="font-medium">{message}</span>
       <button onClick={onClose} className="ml-2 hover:opacity-70 transition-opacity">
@@ -73,7 +72,7 @@ const CommunityFeed = () => {
   const [error, setError] = useState(null)
   const [accessToken, setAccessToken] = useState(null)
   const [user, setUser] = useState(null)
-  
+
   // Toasts
   const [toasts, setToasts] = useState([])
 
@@ -81,14 +80,14 @@ const CommunityFeed = () => {
   const [activeTab, setActiveTab] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState(0)
-  
+
   // Form states
   const [showCreatePost, setShowCreatePost] = useState(false)
   const [newPostContent, setNewPostContent] = useState('')
   const [newPostType, setNewPostType] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [newCommentContent, setNewCommentContent] = useState('')
-  
+
   // Login prompt
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   const [loginPromptMessage, setLoginPromptMessage] = useState('')
@@ -120,6 +119,13 @@ const CommunityFeed = () => {
   }
 
   const fetchPosts = async () => {
+    if (!accessToken) {
+      setLoading(false)
+      setError(null)
+      setPosts([])
+      return
+    }
+
     setLoading(true)
     setError(null)
     try {
@@ -131,8 +137,20 @@ const CommunityFeed = () => {
       }
       setPosts(data)
     } catch (err) {
-      setError('Ma\'lumotlarni yuklashda xatolik yuz berdi')
-      addToast('Postlarni yuklab bo\'lmadi', 'error')
+      console.error('Community feed error:', err)
+      // Check if it's an auth error
+      if (err.message?.includes('401') || err.message?.includes('Unauthorized')) {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        localStorage.removeItem('user')
+        setAccessToken(null)
+        setUser(null)
+        setLoginPromptMessage('Sessiya tugadi. Iltimos, qayta tizimga kiring')
+        setShowLoginPrompt(true)
+      } else {
+        setError('Ma\'lumotlarni yuklashda xatolik yuz berdi')
+        addToast('Postlarni yuklab bo\'lmadi', 'error')
+      }
     } finally {
       setLoading(false)
     }
@@ -170,10 +188,11 @@ const CommunityFeed = () => {
     setIsSubmitting(true)
     try {
       await createPost({ content: newPostContent, type: newPostType }, accessToken)
-      setNewPostContent('')
-      setShowCreatePost(false)
       addToast('Post muvaffaqiyatli yaratildi!')
-      fetchPosts()
+      setNewPostContent('')
+      setNewPostType(1)
+      setShowCreatePost(false)
+      await fetchPosts()
     } catch (err) {
       addToast('Post yaratishda xatolik yuz berdi', 'error')
     } finally {
@@ -233,8 +252,8 @@ const CommunityFeed = () => {
     const now = new Date()
     const diff = Math.floor((now - date) / 1000)
     if (diff < 60) return 'Hozirgincha'
-    if (diff < 3600) return `${Math.floor(diff/60)} daqiqa oldin`
-    if (diff < 86400) return `${Math.floor(diff/3600)} soat oldin`
+    if (diff < 3600) return `${Math.floor(diff / 60)} daqiqa oldin`
+    if (diff < 86400) return `${Math.floor(diff / 3600)} soat oldin`
     return date.toLocaleDateString('uz-UZ', { day: '2-digit', month: '2-digit' })
   }
 
@@ -251,7 +270,7 @@ const CommunityFeed = () => {
             <p className="text-white/60 text-lg leading-relaxed">
               Ota-onalar jamiyatiga qo'shiling va fikr almashing. Ma'lumotlarni ko'rish uchun tizimga kiring.
             </p>
-            <button 
+            <button
               onClick={() => router.push('/signin')}
               className="w-full py-4 bg-gradient-to-r from-[#d946ef] to-[#c026d3] text-white font-bold rounded-2xl shadow-xl shadow-[#d946ef]/20 hover:scale-[1.02] active:scale-95 transition-all"
             >
@@ -267,7 +286,7 @@ const CommunityFeed = () => {
   return (
     <div className="min-h-screen bg-[#090318] text-white flex flex-col selection:bg-[#d946ef]/30">
       <Header />
-      
+
       {/* Background Glows */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#d946ef]/10 blur-[120px] rounded-full" />
@@ -282,7 +301,7 @@ const CommunityFeed = () => {
             </h1>
             <p className="text-white/50 text-lg font-medium">Ota-onalar o'rtasida tajriba almashish maskani</p>
           </div>
-          
+
           <button
             onClick={() => setShowCreatePost(true)}
             className="flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-white/90 active:scale-95 transition-all shadow-xl shadow-white/5"
@@ -292,10 +311,10 @@ const CommunityFeed = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-[calc(100vh-280px)] min-h-[600px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
           {/* Sidebar - Feed List */}
           <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl flex flex-col overflow-hidden h-full shadow-2xl">
+            <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl flex flex-col overflow-hidden h-[calc(100vh-320px)] min-h-[600px] shadow-2xl">
               {/* Tabs */}
               <div className="flex p-2 gap-1 border-b border-white/5">
                 {[
@@ -306,11 +325,10 @@ const CommunityFeed = () => {
                   <button
                     key={tab.label}
                     onClick={() => setActiveTab(tab.value)}
-                    className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl transition-all ${
-                      activeTab === tab.value 
-                        ? 'bg-white/10 text-white' 
-                        : 'text-white/40 hover:text-white/70 hover:bg-white/5'
-                    }`}
+                    className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-wider rounded-xl transition-all ${activeTab === tab.value
+                      ? 'bg-white/10 text-white'
+                      : 'text-white/40 hover:text-white/70 hover:bg-white/5'
+                      }`}
                   >
                     {tab.label}
                   </button>
@@ -347,9 +365,8 @@ const CommunityFeed = () => {
                       <div
                         key={post.id}
                         onClick={() => handleSelectPost(post)}
-                        className={`p-5 border-b border-white/5 cursor-pointer transition-all group hover:bg-white/[0.04] ${
-                          selectedPost?.id === post.id ? 'bg-white/[0.07] border-l-4 border-l-[#d946ef]' : ''
-                        }`}
+                        className={`p-5 border-b border-white/5 cursor-pointer transition-all group hover:bg-white/[0.04] ${selectedPost?.id === post.id ? 'bg-white/[0.07] border-l-4 border-l-[#d946ef]' : ''
+                          }`}
                       >
                         <div className="flex items-start gap-4">
                           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#d946ef]/20 to-[#c026d3]/20 flex items-center justify-center flex-shrink-0 border border-white/10 shadow-lg">
@@ -390,12 +407,12 @@ const CommunityFeed = () => {
           </div>
 
           {/* Main Content - Post Details */}
-          <div className="lg:col-span-8 flex flex-col h-full">
+          <div className="lg:col-span-8 flex flex-col">
             {selectedPost ? (
-              <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl flex flex-col h-full overflow-hidden shadow-2xl animate-fadeIn">
+              <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl flex flex-col h-[calc(100vh-320px)] min-h-[600px] overflow-hidden shadow-2xl animate-fadeIn">
                 {/* Header */}
                 <div className="p-6 md:p-8 border-b border-white/5 bg-white/[0.02]">
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#d946ef]/20 to-[#c026d3]/20 flex items-center justify-center border border-white/10 shadow-xl">
                         {selectedPost.authorPhoto ? (
@@ -414,10 +431,10 @@ const CommunityFeed = () => {
                         <p className="text-white/40 text-sm font-medium">{formatDate(selectedPost.createdAt)}</p>
                       </div>
                     </div>
-                    
+
                     {selectedPost.authorId === user?.userId && (
                       <button
-                        onClick={() => { if(confirm('O\'chirilsinmi?')) deletePost(selectedPost.id, accessToken).then(fetchPosts) }}
+                        onClick={() => { if (confirm('O\'chirilsinmi?')) deletePost(selectedPost.id, accessToken).then(fetchPosts) }}
                         className="p-3 bg-white/5 hover:bg-red-500/10 hover:text-red-400 rounded-2xl transition-all"
                       >
                         <Trash2 size={20} />
@@ -425,16 +442,15 @@ const CommunityFeed = () => {
                     )}
                   </div>
 
-                  <p className="text-white text-xl md:text-2xl font-medium leading-relaxed mb-8">{selectedPost.content}</p>
+                  <p className="text-white text-lg md:text-xl font-medium leading-relaxed mb-5">{selectedPost.content}</p>
 
-                  <div className="flex items-center gap-8">
+                  <div className="flex items-center gap-6">
                     <button
                       onClick={() => handleLikePost(selectedPost.id)}
-                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-2xl transition-all font-bold ${
-                        selectedPost.isLikedByMe 
-                          ? 'bg-red-500/10 text-red-500' 
-                          : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                      }`}
+                      className={`flex items-center gap-2.5 px-4 py-2.5 rounded-2xl transition-all font-bold ${selectedPost.isLikedByMe
+                        ? 'bg-red-500/10 text-red-500'
+                        : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                        }`}
                     >
                       <Heart size={22} className={selectedPost.isLikedByMe ? 'fill-red-500' : ''} />
                       <span>{selectedPost.likesCount || 0}</span>
@@ -447,7 +463,14 @@ const CommunityFeed = () => {
                 </div>
 
                 {/* Comments Section */}
-                <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 custom-scrollbar">
+                <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6 custom-scrollbar relative">
+                  {/* Toasts inside feed */}
+                  <div className="absolute top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none">
+                    {toasts.map(toast => (
+                      <Toast key={toast.id} {...toast} onClose={() => removeToast(toast.id)} />
+                    ))}
+                  </div>
+
                   {commentsLoading ? (
                     <div className="flex justify-center py-12">
                       <Loader2 className="animate-spin text-[#d946ef]" size={32} />
@@ -459,32 +482,31 @@ const CommunityFeed = () => {
                   ) : (
                     comments.map(comment => (
                       <div key={comment.id} className="group animate-fadeIn">
-                        <div className="flex gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/5">
+                        <div className="flex gap-5">
+                          <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/5">
                             {comment.authorPhoto ? (
                               <img src={comment.authorPhoto} alt="" className="w-full h-full rounded-xl object-cover" />
                             ) : (
                               <span className="text-white/40 font-bold">{comment.authorName?.[0] || 'U'}</span>
                             )}
                           </div>
-                          <div className="flex-1 bg-white/[0.04] p-5 rounded-2xl border border-white/5 group-hover:bg-white/[0.06] transition-all">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-white font-black text-sm">{comment.authorName || 'Anonim'}</span>
-                              <span className="text-white/30 text-[10px] font-bold uppercase">{formatDate(comment.createdAt)}</span>
+                          <div className="flex-1 bg-white/[0.04] p-6 rounded-2xl border border-white/5 group-hover:bg-white/[0.06] transition-all">
+                            <div className="flex items-center justify-between mb-3">
+                              <span className="text-white font-black text-base">{comment.authorName || 'Anonim'}</span>
+                              <span className="text-white/30 text-xs font-bold uppercase">{formatDate(comment.createdAt)}</span>
                             </div>
-                            <p className="text-white/80 text-sm leading-relaxed mb-3">{comment.content}</p>
+                            <p className="text-white/90 text-base leading-loose mb-4">{comment.content}</p>
                             <div className="flex items-center justify-between">
                               <button
                                 onClick={() => likeComment(comment.id, accessToken).then(() => fetchComments(selectedPost.id))}
-                                className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${
-                                  comment.isLikedByMe ? 'text-red-400' : 'text-white/20 hover:text-white/60'
-                                }`}
+                                className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${comment.isLikedByMe ? 'text-red-400' : 'text-white/20 hover:text-white/60'
+                                  }`}
                               >
                                 <Heart size={14} className={comment.isLikedByMe ? 'fill-red-500' : ''} />
                                 {comment.likesCount || 0}
                               </button>
                               {comment.authorId === user?.userId && (
-                                <button 
+                                <button
                                   onClick={() => deleteComment(comment.id, accessToken).then(() => fetchComments(selectedPost.id))}
                                   className="text-white/10 hover:text-red-400 transition-colors"
                                 >
@@ -501,7 +523,7 @@ const CommunityFeed = () => {
                 </div>
 
                 {/* Input Area */}
-                <div className="p-6 border-t border-white/5 bg-white/[0.01]">
+                <div className="p-6 md:p-8 border-t border-white/5 bg-white/[0.01]">
                   <form onSubmit={handleCreateComment} className="relative">
                     <input
                       type="text"
@@ -521,7 +543,7 @@ const CommunityFeed = () => {
                 </div>
               </div>
             ) : (
-              <div className="h-full bg-white/[0.02] backdrop-blur-xl border border-white/5 border-dashed rounded-[40px] flex flex-col items-center justify-center p-12 text-center opacity-60">
+              <div className="h-[calc(100vh-320px)] min-h-[600px] bg-white/[0.02] backdrop-blur-xl border border-white/5 border-dashed rounded-[40px] flex flex-col items-center justify-center p-12 text-center opacity-60">
                 <div className="w-24 h-24 bg-white/5 rounded-full flex items-center justify-center mb-6">
                   <ArrowLeft size={40} className="text-white/20" />
                 </div>
@@ -547,7 +569,7 @@ const CommunityFeed = () => {
                   <X size={24} />
                 </button>
               </div>
-              
+
               <form onSubmit={handleCreatePost} className="space-y-6">
                 <div className="grid grid-cols-3 gap-3">
                   {[
@@ -559,11 +581,10 @@ const CommunityFeed = () => {
                       key={t.val}
                       type="button"
                       onClick={() => setNewPostType(t.val)}
-                      className={`py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all border ${
-                        newPostType === t.val 
-                          ? 'bg-[#d946ef] border-[#d946ef] text-white shadow-lg shadow-[#d946ef]/20' 
-                          : 'bg-white/5 border-white/5 text-white/40 hover:bg-white/10'
-                      }`}
+                      className={`py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all border ${newPostType === t.val
+                        ? 'bg-[#d946ef] border-[#d946ef] text-white shadow-lg shadow-[#d946ef]/20'
+                        : 'bg-white/5 border-white/5 text-white/40 hover:bg-white/10'
+                        }`}
                     >
                       {t.label}
                     </button>
@@ -621,12 +642,7 @@ const CommunityFeed = () => {
         </div>
       )}
 
-      {/* Toasts */}
-      <div className="fixed bottom-0 right-0 p-8 flex flex-col gap-3 pointer-events-none">
-        {toasts.map(toast => (
-          <Toast key={toast.id} {...toast} onClose={() => removeToast(toast.id)} />
-        ))}
-      </div>
+
 
       <Footer />
     </div>

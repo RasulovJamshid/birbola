@@ -74,7 +74,6 @@ const SearchResults = () => {
   const [selectedRating, setSelectedRating] = useState('')
   const [workingSchedule, setWorkingSchedule] = useState('')
   const [priceRange, setPriceRange] = useState([0, 250000000])
-  const [appliedPriceRange, setAppliedPriceRange] = useState([0, 250000000])
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
   
   const { 
@@ -95,41 +94,31 @@ const SearchResults = () => {
     return () => clearTimeout(timer)
   }, [searchQuery])
 
+  // Debounced auto-apply filters
   useEffect(() => {
-    updateFilters({
-      search: debouncedSearchQuery,
-      districtId: selectedDistrict ? [parseInt(selectedDistrict)] : [],
-      features: selectedFeatures,
-      languageGroups: selectedLanguages,
-      workingDaysInWeek: selectedWorkingDays,
-      meals: selectedMeals ? parseInt(selectedMeals) : undefined,
-      score: selectedRating ? parseFloat(selectedRating) : undefined,
-      priceRangeStart: appliedPriceRange[0] > 0 ? appliedPriceRange[0] : null,
-      priceRangeEnd: appliedPriceRange[1] < 250000000 ? appliedPriceRange[1] : null,
-      pageNumber: 1
-    })
-  }, [debouncedSearchQuery])
+    const timer = setTimeout(() => {
+      let workingDays = selectedWorkingDays
+      if (workingSchedule === '5') workingDays = [0, 1, 2, 3, 4]
+      else if (workingSchedule === '6') workingDays = [0, 1, 2, 3, 4, 5]
+      else if (workingSchedule === '7') workingDays = [0, 1, 2, 3, 4, 5, 6]
 
-  const handleApplyFilters = () => {
-    let workingDays = selectedWorkingDays
-    if (workingSchedule === '5') workingDays = [0, 1, 2, 3, 4]
-    else if (workingSchedule === '6') workingDays = [0, 1, 2, 3, 4, 5]
-    else if (workingSchedule === '7') workingDays = [0, 1, 2, 3, 4, 5, 6]
+      updateFilters({
+        search: debouncedSearchQuery,
+        districtId: selectedDistrict ? [parseInt(selectedDistrict)] : [],
+        features: selectedFeatures,
+        languageGroups: selectedLanguages,
+        workingDaysInWeek: workingDays,
+        meals: selectedMeals ? parseInt(selectedMeals) : undefined,
+        score: selectedRating ? parseFloat(selectedRating) : undefined,
+        priceRangeStart: priceRange[0] > 0 ? priceRange[0] : null,
+        priceRangeEnd: priceRange[1] < 250000000 ? priceRange[1] : null,
+        pageNumber: 1
+      })
+    }, 300)
+    
+    return () => clearTimeout(timer)
+  }, [debouncedSearchQuery, selectedDistrict, selectedFeatures, selectedLanguages, selectedWorkingDays, selectedMeals, selectedRating, workingSchedule, priceRange])
 
-    setAppliedPriceRange(priceRange)
-    updateFilters({
-      search: debouncedSearchQuery,
-      districtId: selectedDistrict ? [parseInt(selectedDistrict)] : [],
-      features: selectedFeatures,
-      languageGroups: selectedLanguages,
-      workingDaysInWeek: workingDays,
-      meals: selectedMeals ? parseInt(selectedMeals) : undefined,
-      score: selectedRating ? parseFloat(selectedRating) : undefined,
-      priceRangeStart: priceRange[0] > 0 ? priceRange[0] : null,
-      priceRangeEnd: priceRange[1] < 250000000 ? priceRange[1] : null,
-      pageNumber: 1
-    })
-  }
 
   const handleResetFilters = () => {
     setSearchQuery('')
@@ -141,7 +130,6 @@ const SearchResults = () => {
     setSelectedRating('')
     setWorkingSchedule('')
     setPriceRange([0, 250000000])
-    setAppliedPriceRange([0, 250000000])
     
     updateFilters({
       search: '',
@@ -419,12 +407,6 @@ const SearchResults = () => {
                 </div>
               </div>
 
-              <button 
-                onClick={() => { handleApplyFilters(); setIsMobileFilterOpen(false); }}
-                className="w-full bg-gradient-to-r from-[#d946ef] to-[#ec4899] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#d946ef]/20 transition-all hover:scale-[1.02] active:scale-95"
-              >
-                Natijalarni ko'rish
-              </button>
             </div>
           </aside>
 

@@ -34,61 +34,56 @@ function ChangeView({ center, zoom }) {
 }
 
 const KindergartenMap = ({ lat, lng, name, address }) => {
-    const [active, setActive] = useState(false)
-
     // Default to Tashkent if no coords
     const position = [lat || 41.2995, lng || 69.2401]
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${position[0]},${position[1]}`
 
     return (
-        <div className="w-full h-full relative z-0">
+        <a
+            href={mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="block w-full h-full relative z-0 group cursor-pointer"
+        >
             <MapContainer
                 center={position}
-                zoom={13}
+                zoom={15}
                 scrollWheelZoom={false}
-                style={{ height: '100%', width: '100%', borderRadius: '1.5rem' }}
-                className="z-0"
+                zoomControl={false}
+                dragging={false}
+                touchZoom={false}
+                doubleClickZoom={false}
+                boxZoom={false}
+                keyboard={false}
+                style={{ height: '100%', width: '100%' }}
+                className="z-0 pointer-events-none" // Disable pointer events on map to let click pass to anchor
                 whenCreated={(map) => {
                     map.invalidateSize();
                 }}
             >
-                <ChangeView center={position} zoom={15} />
-
                 {/* Dark Mode Tiles (CartoDB Dark Matter) */}
                 <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
                     url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
                 />
 
-                <Marker position={position} icon={customIcon}>
-                    <Popup className="custom-popup">
-                        <div className="font-sans text-sm p-1">
-                            <h3 className="font-bold text-[#d946ef] mb-1">{name}</h3>
-                            <p className="text-gray-600 m-0">{address}</p>
-                            <a
-                                href={`https://www.google.com/maps/search/?api=1&query=${position[0]},${position[1]}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="block mt-2 text-xs text-blue-500 font-bold hover:underline"
-                            >
-                                Google Maps da ochish
-                            </a>
-                        </div>
-                    </Popup>
-                </Marker>
+                <Marker position={position} icon={customIcon} />
             </MapContainer>
 
-            {/* Overlay controls if needed */}
-            <div className="absolute top-4 right-4 z-[1000]">
-                <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${position[0]},${position[1]}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bg-white text-black px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg hover:bg-gray-100 transition-colors flex items-center gap-1"
-                >
-                    Google Maps
-                </a>
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 z-10 flex items-center justify-center">
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-2xl opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-bold shadow-2xl flex items-center gap-2">
+                    <span>Google Maps da ochish</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                </div>
             </div>
-        </div>
+
+            {/* Corner Badge */}
+            <div className="absolute top-4 right-4 z-10">
+                <div className="bg-white text-black px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg flex items-center gap-1 group-hover:scale-105 transition-transform">
+                    Google Maps
+                </div>
+            </div>
+        </a>
     )
 }
 

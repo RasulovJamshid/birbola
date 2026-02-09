@@ -44,13 +44,19 @@ export const Meals = {
 async function fetchAPI(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`
 
-  const defaultOptions = {
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
+  }
+
+  const mergedOptions = {
+    ...options,
     headers: {
-      'Content-Type': 'application/json',
+      ...defaultHeaders,
+      ...options.headers,
     },
   }
 
-  const response = await fetch(url, { ...defaultOptions, ...options })
+  const response = await fetch(url, mergedOptions)
 
   if (!response.ok) {
     throw new Error(`API Error: ${response.status} ${response.statusText}`)
@@ -65,13 +71,19 @@ async function fetchAPI(endpoint, options = {}) {
 async function fetchAuthAPI(endpoint, options = {}) {
   const url = `${AUTH_BASE_URL}${endpoint}`
 
-  const defaultOptions = {
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
+  }
+
+  const mergedOptions = {
+    ...options,
     headers: {
-      'Content-Type': 'application/json',
+      ...defaultHeaders,
+      ...options.headers,
     },
   }
 
-  const response = await fetch(url, { ...defaultOptions, ...options })
+  const response = await fetch(url, mergedOptions)
 
   if (!response.ok) {
     const errorText = await response.text()

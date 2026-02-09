@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 import {
   ChevronLeft, Star, MapPin, Clock, Phone, Globe, Users, BookOpen,
   Heart, Send, Loader2, Calendar, Utensils, Share2, CheckCircle2,
-  ImageIcon, Navigation, X
+  ImageIcon, Navigation, X, Waves, Moon, MessageSquare, Sparkles,
+  Gamepad2, Stethoscope
 } from 'lucide-react'
 import Header from './Header'
 import Footer from './Footer'
@@ -39,12 +40,12 @@ import {
 
 // Feature labels & Icons mapping
 const featureConfig = {
-  [Features.POOL]: { label: 'Basseyn', icon: '🏊' },
-  [Features.MOSQUE]: { label: 'Masjid', icon: '🕌' },
-  [Features.LOGOPED]: { label: 'Logoped', icon: '🗣️' },
-  [Features.MASSAGE]: { label: 'Massaj', icon: '💆' },
-  [Features.PLAYGROUND]: { label: "O'yin maydoni", icon: '🎠' },
-  [Features.MEDICAL]: { label: 'Tibbiy xizmat', icon: '🏥' }
+  [Features.POOL]: { label: 'Basseyn', icon: Waves },
+  [Features.MOSQUE]: { label: 'Masjid', icon: Moon },
+  [Features.LOGOPED]: { label: 'Logoped', icon: MessageSquare },
+  [Features.MASSAGE]: { label: 'Massaj', icon: Sparkles },
+  [Features.PLAYGROUND]: { label: "O'yin maydoni", icon: Gamepad2 },
+  [Features.MEDICAL]: { label: 'Tibbiy xizmat', icon: Stethoscope }
 }
 
 const languageLabels = {
@@ -373,11 +374,18 @@ const KindergartenDetail = ({ id }) => {
                       <h3 className="text-xl font-bold text-white mb-4">Qulayliklar</h3>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {kindergarten.features.map(feature => {
-                          const conf = featureConfig[feature] || { label: 'Feature', icon: '✨' }
+                          const conf = featureConfig[feature] || { label: 'Feature', icon: Star }
+                          const Icon = conf.icon
                           return (
                             <div key={feature} className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-[#d946ef]/30 transition-colors group">
-                              <span className="text-2xl group-hover:scale-110 transition-transform">{conf.icon}</span>
-                              <span className="text-gray-300 font-medium text-sm group-hover:text-white">{conf.label}</span>
+                              <div className="w-10 h-10 rounded-xl bg-[#d946ef]/10 flex items-center justify-center group-hover:bg-[#d946ef] transition-all duration-300 group-hover:scale-110">
+                                {Icon && (typeof Icon === 'function' || typeof Icon === 'object') ? (
+                                  <Icon size={20} className="text-[#d946ef] group-hover:text-white transition-colors" />
+                                ) : (
+                                  <span className="text-xl">{Icon}</span>
+                                )}
+                              </div>
+                              <span className="text-gray-300 font-medium text-sm group-hover:text-white transition-colors">{conf.label}</span>
                             </div>
                           )
                         })}

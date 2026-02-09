@@ -10,31 +10,6 @@ import {
   likeComment
 } from '../services/api'
 
-// Toast notification component
-const Toast = ({ message, type, onClose }) => {
-  useEffect(() => {
-    const timer = setTimeout(onClose, 4000)
-    return () => clearTimeout(timer)
-  }, [onClose])
-
-  return (
-    <div className={`fixed bottom-6 right-6 z-[10000] px-6 py-4 rounded-2xl text-white font-semibold text-sm shadow-2xl flex items-center gap-3 animate-slideInRight max-w-md ${
-      type === 'error' 
-        ? 'bg-gradient-to-br from-red-500 to-red-600' 
-        : 'bg-gradient-to-br from-emerald-500 to-emerald-600'
-    }`}>
-      <span className="text-xl">{type === 'error' ? '⚠️' : '✅'}</span>
-      <span>{message}</span>
-      <button 
-        onClick={onClose}
-        className="bg-white/20 border-none rounded-lg px-2 py-1 text-white cursor-pointer text-lg leading-none hover:bg-white/30 transition-colors"
-      >
-        ×
-      </button>
-    </div>
-  )
-}
-
 // Assets now served from public folder
 const AccountIcon = '/assets/community/account.svg'
 const FemaleIcon = '/assets/community/female.svg'
@@ -64,16 +39,6 @@ const Community = () => {
   const [newCommentContent, setNewCommentContent] = useState('')
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   const [loginPromptMessage, setLoginPromptMessage] = useState('')
-  const [toasts, setToasts] = useState([])
-
-  const addToast = (message, type = 'success') => {
-    const id = Date.now()
-    setToasts(prev => [...prev, { id, message, type }])
-  }
-
-  const removeToast = (id) => {
-    setToasts(prev => prev.filter(t => t.id !== id))
-  }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -219,7 +184,7 @@ const Community = () => {
         setLoginPromptMessage('Sessiyangiz tugagan. Qaytadan tizimga kirishingiz kerak')
         setShowLoginPrompt(true)
       } else {
-        addToast('Izoh qo\'shishda xatolik yuz berdi', 'error')
+        alert('Izoh qo\'shishda xatolik yuz berdi')
       }
     }
   }
@@ -234,7 +199,6 @@ const Community = () => {
     try {
       await likePost(postId, accessToken)
       fetchPosts()
-      addToast('Reaksiya qo\'shildi')
     } catch (err) {
       console.error('Error liking post:', err)
       if (err.message.includes('401')) {
@@ -244,8 +208,6 @@ const Community = () => {
         setAccessToken(null)
         setLoginPromptMessage('Sessiyangiz tugagan. Qaytadan tizimga kirishingiz kerak')
         setShowLoginPrompt(true)
-      } else {
-        addToast('Xatolik yuz berdi', 'error')
       }
     }
   }
@@ -260,7 +222,6 @@ const Community = () => {
     try {
       await likeComment(commentId, accessToken)
       fetchComments(selectedThread)
-      addToast('Reaksiya qo\'shildi')
     } catch (err) {
       console.error('Error liking comment:', err)
       if (err.message.includes('401')) {
@@ -270,8 +231,6 @@ const Community = () => {
         setAccessToken(null)
         setLoginPromptMessage('Sessiyangiz tugagan. Qaytadan tizimga kirishingiz kerak')
         setShowLoginPrompt(true)
-      } else {
-        addToast('Xatolik yuz berdi', 'error')
       }
     }
   }
@@ -286,18 +245,42 @@ const Community = () => {
 
       <div className="community-inner relative z-10">
         {/* Header */}
-        <header className="community-header flex justify-between items-center mb-6">
-          <h1 className="m-0">
+        <header className="community-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+          <h1 style={{ margin: 0 }}>
             <span>7 mahalla</span>
             <span className="community-pill">Comunity</span>
             <span className="community-icon">💬</span>
           </h1>
           <button
             onClick={() => router.push('/community')}
-            className="community-view-all px-6 py-2.5 bg-transparent text-[#ff9300] border-2 border-[#ff9300] rounded-full font-semibold cursor-pointer transition-all duration-300 text-sm flex items-center gap-1.5 hover:bg-[#ff9300] hover:text-white hover:-translate-y-0.5"
+            className="community-view-all"
+            style={{
+              padding: '10px 24px',
+              background: 'transparent',
+              color: '#ff9300',
+              border: '2px solid #ff9300',
+              borderRadius: '999px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              fontSize: '14px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = '#ff9300'
+              e.target.style.color = 'white'
+              e.target.style.transform = 'translateY(-2px)'
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'transparent'
+              e.target.style.color = '#ff9300'
+              e.target.style.transform = 'translateY(0)'
+            }}
           >
             Barchasini ko'rish
-            <span className="text-base">→</span>
+            <span style={{ fontSize: '16px' }}>→</span>
           </button>
         </header>
 
@@ -327,29 +310,18 @@ const Community = () => {
             {/* Thread List */}
             <ul className="community-list">
               {loading ? (
-                <li className="community-list-item text-center p-8 text-gray-600 text-sm font-medium">
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="w-8 h-8 border-3 border-[#ff9300] border-t-transparent rounded-full animate-spin" />
-                    <span>Yuklanmoqda...</span>
-                  </div>
+                <li className="community-list-item" style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '14px' }}>
+                  Yuklanmoqda...
                 </li>
               ) : threads.length === 0 ? (
-                <li className="community-list-item text-center py-12 px-8 text-gray-600 text-sm">
-                  <div className="flex flex-col items-center gap-3 opacity-60">
-                    <span className="text-5xl">💬</span>
-                    <span className="font-semibold">Hozircha postlar yo'q</span>
-                    <span className="text-xs text-gray-500">Birinchi bo'lib post yarating!</span>
-                  </div>
+                <li className="community-list-item" style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '14px' }}>
+                  Hozircha postlar yo'q
                 </li>
               ) : (
                 threads.map(thread => (
                   <li
                     key={thread.id}
-                    className={`community-list-item transition-all duration-300 ${
-                      thread.id === selectedThread 
-                        ? 'is-active shadow-[0_4px_20px_rgba(255,147,0,0.15)] shadow-[inset_0_0_0_2px_rgba(255,147,0,0.1)]' 
-                        : 'shadow-[0_2px_8px_rgba(0,0,0,0.05)]'
-                    }`}
+                    className={`community-list-item ${thread.id === selectedThread ? 'is-active' : ''}`}
                     onClick={() => handleSelectThread(thread.id)}
                   >
                     <div className="community-list-avatar">
@@ -410,9 +382,10 @@ const Community = () => {
                     <span className="meta-comments">{currentThread.comments} ta</span>
                     <button 
                       onClick={() => handleLikePost(currentThread.id)}
-                      className="meta-likes bg-transparent border-none cursor-pointer flex items-center gap-1"
+                      className="meta-likes"
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                     >
-                      <img src={LikeIcon} alt="Likes" className={currentThread.isLikedByMe ? 'opacity-100' : 'opacity-60'} /> {currentThread.likes} ta
+                      <img src={LikeIcon} alt="Likes" style={{ opacity: currentThread.isLikedByMe ? 1 : 0.6 }} /> {currentThread.likes} ta
                     </button>
                   </div>
                 </div>
@@ -420,14 +393,8 @@ const Community = () => {
                 {/* Messages */}
                 <div className="thread-messages">
                   {messages.length === 0 ? (
-                    <div className="text-center py-16 px-8 text-gray-400 text-sm">
-                      <div className="flex flex-col items-center gap-3 opacity-70">
-                        <span className="text-5xl">💭</span>
-                        <span className="font-semibold text-base">
-                          {accessToken ? 'Hali izohlar yo\'q' : 'Izohlarni ko\'rish uchun tizimga kiring'}
-                        </span>
-                        {accessToken && <span className="text-xs text-gray-400">Birinchi bo\'lib izoh qoldiring!</span>}
-                      </div>
+                    <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#999', fontSize: '14px' }}>
+                      {accessToken ? 'Hali izohlar yo\'q. Birinchi bo\'lib izoh qoldiring!' : 'Izohlarni ko\'rish uchun tizimga kiring'}
                     </div>
                   ) : (
                     messages.map(msg => (
@@ -454,9 +421,10 @@ const Community = () => {
                             )}
                             <button
                               onClick={() => handleLikeComment(msg.id)}
-                              className="meta-likes bg-transparent border-none cursor-pointer flex items-center gap-1"
+                              className="meta-likes"
+                              style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
                             >
-                              {msg.likes} ta <img src={LikeIcon} alt="Likes" className={msg.isLikedByMe ? 'opacity-100' : 'opacity-60'} />
+                              {msg.likes} ta <img src={LikeIcon} alt="Likes" style={{ opacity: msg.isLikedByMe ? 1 : 0.6 }} />
                             </button>
                             <button className="action-reply">
                               <img src={ReplyIcon} alt="Reply" />
@@ -495,31 +463,93 @@ const Community = () => {
       {/* Beautiful Login Prompt Modal */}
       {showLoginPrompt && (
         <div 
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] backdrop-blur-sm"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            backdropFilter: 'blur(4px)'
+          }}
           onClick={() => setShowLoginPrompt(false)}
         >
           <div 
-            className="bg-gradient-to-br from-white to-purple-50 rounded-3xl p-10 max-w-md w-[90%] shadow-2xl relative animate-slideUp"
+            style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #f9f9ff 100%)',
+              borderRadius: '24px',
+              padding: '40px',
+              maxWidth: '420px',
+              width: '90%',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+              position: 'relative',
+              animation: 'slideUp 0.3s ease-out'
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Icon */}
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#ff9300] to-[#ffb84d] flex items-center justify-center mx-auto mb-5 text-3xl">
+            <div style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #ff9300 0%, #ffb84d 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 20px',
+              fontSize: '32px'
+            }}>
               🔐
             </div>
 
             {/* Message */}
-            <h3 className="text-2xl font-bold text-[#1a1a2e] text-center mb-3">
+            <h3 style={{
+              fontSize: '22px',
+              fontWeight: '700',
+              color: '#1a1a2e',
+              textAlign: 'center',
+              marginBottom: '12px'
+            }}>
               Tizimga kirish kerak
             </h3>
-            <p className="text-base text-gray-600 text-center mb-7 leading-relaxed">
+            <p style={{
+              fontSize: '15px',
+              color: '#666',
+              textAlign: 'center',
+              marginBottom: '28px',
+              lineHeight: '1.6'
+            }}>
               {loginPromptMessage}
             </p>
 
             {/* Buttons */}
-            <div className="flex gap-3">
+            <div style={{ display: 'flex', gap: '12px' }}>
               <button
                 onClick={() => setShowLoginPrompt(false)}
-                className="flex-1 px-6 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-600 text-sm font-semibold cursor-pointer transition-all duration-200 hover:border-[#ff9300] hover:text-[#ff9300]"
+                style={{
+                  flex: 1,
+                  padding: '14px 24px',
+                  borderRadius: '12px',
+                  border: '2px solid #e0e0e0',
+                  background: 'white',
+                  color: '#666',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.borderColor = '#ff9300'
+                  e.target.style.color = '#ff9300'
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.borderColor = '#e0e0e0'
+                  e.target.style.color = '#666'
+                }}
               >
                 Bekor qilish
               </button>
@@ -528,7 +558,27 @@ const Community = () => {
                   setShowLoginPrompt(false)
                   router.push('/signin')
                 }}
-                className="flex-1 px-6 py-3.5 rounded-xl border-none bg-gradient-to-br from-[#ff9300] to-[#ffb84d] text-white text-sm font-semibold cursor-pointer shadow-lg shadow-[#ff9300]/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#ff9300]/40"
+                style={{
+                  flex: 1,
+                  padding: '14px 24px',
+                  borderRadius: '12px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #ff9300 0%, #ffb84d 100%)',
+                  color: 'white',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(255, 147, 0, 0.3)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px)'
+                  e.target.style.boxShadow = '0 6px 16px rgba(255, 147, 0, 0.4)'
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)'
+                  e.target.style.boxShadow = '0 4px 12px rgba(255, 147, 0, 0.3)'
+                }}
               >
                 Kirish →
               </button>
@@ -536,63 +586,6 @@ const Community = () => {
           </div>
         </div>
       )}
-
-      {/* Toast Notifications */}
-      {toasts.map(toast => (
-        <Toast 
-          key={toast.id} 
-          message={toast.message} 
-          type={toast.type} 
-          onClose={() => removeToast(toast.id)} 
-        />
-      ))}
-
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        @keyframes slideInRight {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes slideUp {
-          from {
-            transform: translateY(20px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-
-        .animate-slideInRight {
-          animation: slideInRight 0.3s ease-out;
-        }
-
-        .animate-slideUp {
-          animation: slideUp 0.3s ease-out;
-        }
-
-        .community-list-item:hover {
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
-          transform: translateY(-2px);
-        }
-
-        .community-list-item.is-active:hover {
-          box-shadow: 0 6px 24px rgba(255, 147, 0, 0.2), inset 0 0 0 2px rgba(255, 147, 0, 0.15) !important;
-        }
-      `}</style>
     </section>
   )
 }

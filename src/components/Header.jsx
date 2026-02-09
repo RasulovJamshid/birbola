@@ -10,9 +10,26 @@ const Logo = '/assets/birbola.svg'
 const ChatIcon = '/assets/banner/over-button-chat.svg'
 const UserIcon = '/assets/banner/account-user.svg'
 
-const Header = ({ className = '' }) => {
+const Header = ({ className = '', enableSticky = false }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [user, setUser] = useState(null)
+  const [isSticky, setIsSticky] = useState(false)
+
+  useEffect(() => {
+    if (!enableSticky) return
+    
+    const handleScroll = () => {
+      const shouldBeSticky = window.scrollY > 20
+      setIsSticky(shouldBeSticky)
+      console.log('Scroll position:', window.scrollY, 'Sticky:', shouldBeSticky)
+    }
+    
+    // Check initial scroll position
+    handleScroll()
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [enableSticky])
 
   useEffect(() => {
     const checkAuth = () => {
@@ -47,7 +64,7 @@ const Header = ({ className = '' }) => {
   }
 
   return (
-    <header className={`header ${className}`}>
+    <header className={`header ${className} ${isSticky ? 'is-sticky' : ''}`}>
       <div className="header-inner">
         {/* Logo */}
         <div className="header-left">
@@ -62,9 +79,11 @@ const Header = ({ className = '' }) => {
         <div className="header-right">
           {/* Desktop Navigation */}
           <nav className="header-nav">
-            <a href="/#about" className="nav-link">Biz haqimizda</a>
+            <Link href="/about" className="nav-link flex items-center gap-2">
+              Biz haqimizda
+            </Link>
             <Link href="/search" className="nav-link flex items-center gap-2">
-                  Bog'chalar
+              Bog'chalar
             </Link>
             <Link href="/community" className="nav-pill">
               7 mahalla

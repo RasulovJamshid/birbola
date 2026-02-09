@@ -11,7 +11,7 @@ import Footer from '@/src/components/Footer'
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#200D37]">
-      <Header />
+      <Header enableSticky={true} />
       <Hero />
       <TopBogchalar />
       <Partners />
