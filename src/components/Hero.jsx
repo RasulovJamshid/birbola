@@ -129,7 +129,8 @@ const Hero = () => {
 
   // Parallax transform values
   const glowTransform = `translateX(calc(-50% + ${mousePos.x * 30}px)) translateY(calc(40% + ${mousePos.y * 20}px))`
-  const orbitalTransform = `translate(${mousePos.x * -15}px, ${mousePos.y * -15}px)`
+  // Keep orbital illustration statically centered (no mouse-based offset)
+  const orbitalTransform = 'translate(0px, 0px)'
 
   return (
     <section className="hero" ref={heroRef}>
@@ -291,11 +292,11 @@ const Hero = () => {
             </div>
 
             <div className="orbital-item orbital-item-ishonchli-top">
-              <div className="orbital-pill">Ishonchli</div>
+              <div className="orbital-pill">Xavfsiz</div>
             </div>
 
             <div className="orbital-item orbital-item-ishonchli-right">
-              <div className="orbital-pill">Ishonchli</div>
+              <div className="orbital-pill">Sifatli</div>
             </div>
 
             <div className="orbital-item orbital-item-ishonchli-bottom">

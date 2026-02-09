@@ -179,12 +179,12 @@ body {
 /* Orbit Rings */
 .orbital-ring {
   position: absolute;
-  top: calc(50% + var(--mouse-y, 0) * 10px);
-  left: calc(50% + var(--mouse-x, 0) * 10px);
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  transform-origin: center center;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: top 0.2s ease-out, left 0.2s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   animation: spin 60s linear infinite, border-shimmer 4s ease-in-out infinite alternate;
 }
 
@@ -192,8 +192,6 @@ body {
   width: 180px;
   height: 180px;
   animation-duration: 40s, 4s;
-  top: calc(50% + var(--mouse-y, 0) * 15px);
-  left: calc(50% + var(--mouse-x, 0) * 15px);
 }
 
 .orbital-ring-2 {
@@ -202,16 +200,12 @@ body {
   animation-direction: reverse, alternate;
   animation-duration: 50s, 5s;
   border-style: dashed;
-  top: calc(50% + var(--mouse-y, 0) * 10px);
-  left: calc(50% + var(--mouse-x, 0) * 10px);
 }
 
 .orbital-ring-3 {
   width: 380px;
   height: 380px;
   animation-duration: 60s, 6s;
-  top: calc(50% + var(--mouse-y, 0) * 5px);
-  left: calc(50% + var(--mouse-x, 0) * 5px);
 }
 
 /* Central Circle */
@@ -300,11 +294,11 @@ body {
 
 @keyframes spin {
   from {
-    transform: translate(-50%, -50%) rotate(0deg);
+    rotate: 0deg;
   }
 
   to {
-    transform: translate(-50%, -50%) rotate(360deg);
+    rotate: 360deg;
   }
 }
 
@@ -420,36 +414,19 @@ body {
   top: 50%;
   left: 50%;
   z-index: 5;
-  animation: fade-blur-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  opacity: 0;
+  animation: fade-blur-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-.orbital-item-family {
-  transform: translate(-50%, -50%) translate(-140px, -40px);
-  animation-delay: 0s;
-}
-
-.orbital-item-building {
-  transform: translate(-50%, -50%) translate(100px, -100px);
-  animation-delay: 0.5s;
-}
-
-.orbital-item-horse {
-  transform: translate(-50%, -50%) translate(-100px, 80px);
-  animation-delay: 1s;
-}
-
-.orbital-item-map {
-  transform: translate(-50%, -50%) translate(140px, 100px);
-  animation-delay: 1.5s;
-}
-
+/* Orbital Item Positions - Precisely aligned to Ring Radii (90px, 140px, 190px) */
+/* Ring 1 (Inner, r=90px) */
 .orbital-item-video {
-  transform: translate(-50%, -50%) translate(60px, -20px);
+  transform: translate(-50%, -50%) translate(65px, -60px);
   animation-delay: 0.3s;
 }
 
 .orbital-item-search {
-  transform: translate(-50%, -50%) translate(-40px, 40px);
+  transform: translate(-50%, -50%) translate(-60px, 65px);
   animation-delay: 0.7s;
 }
 
@@ -458,29 +435,51 @@ body {
   animation-delay: 1.2s;
 }
 
+/* Ring 2 (Middle, r=140px) */
+.orbital-item-family {
+  transform: translate(-50%, -50%) translate(-130px, -50px);
+  animation-delay: 0s;
+}
+
+.orbital-item-horse {
+  transform: translate(-50%, -50%) translate(-100px, 100px);
+  animation-delay: 1s;
+}
+
+.orbital-item-izlash {
+  transform: translate(-50%, -50%) translate(140px, 0px);
+  animation-delay: 0.8s;
+}
+
+/* Ring 3 (Outer, r=190px) */
+.orbital-item-building {
+  transform: translate(-50%, -50%) translate(100px, -160px);
+  animation-delay: 0.5s;
+}
+
+.orbital-item-map {
+  transform: translate(-50%, -50%) translate(-130px, 140px);
+  animation-delay: 1.5s;
+}
+
 .orbital-item-qulay {
-  transform: translate(-50%, -50%) translate(-80px, -100px);
+  transform: translate(-50%, -50%) translate(-180px, -60px);
   animation-delay: 0.2s;
 }
 
 .orbital-item-ishonchli-top {
-  transform: translate(-50%, -50%) translate(160px, -60px);
+  transform: translate(-50%, -50%) translate(50px, -185px);
   animation-delay: 0.6s;
 }
 
 .orbital-item-ishonchli-right {
-  transform: translate(-50%, -50%) translate(180px, 20px);
+  transform: translate(-50%, -50%) translate(190px, 0px);
   animation-delay: 1.1s;
 }
 
 .orbital-item-ishonchli-bottom {
-  transform: translate(-50%, -50%) translate(160px, 140px);
+  transform: translate(-50%, -50%) translate(-50px, 185px);
   animation-delay: 1.4s;
-}
-
-.orbital-item-izlash {
-  transform: translate(-50%, -50%) translate(-140px, 40px);
-  animation-delay: 0.8s;
 }
 
 /* Search Bar */
@@ -610,53 +609,47 @@ body {
     font-size: 12px;
   }
 
-  /* Adjust orbital positions for mobile */
-  .orbital-item-family {
-    transform: translate(-50%, -50%) translate(-100px, -30px);
-  }
-
-  .orbital-item-building {
-    transform: translate(-50%, -50%) translate(75px, -75px);
-  }
-
-  .orbital-item-horse {
-    transform: translate(-50%, -50%) translate(-75px, 60px);
-  }
-
-  .orbital-item-map {
-    transform: translate(-50%, -50%) translate(100px, 75px);
-  }
-
+  /* Adjust orbital positions for mobile - Aligned to scaled radii (70, 110, 150) */
+  /* Ring 1 (r=70) */
   .orbital-item-video {
-    transform: translate(-50%, -50%) translate(45px, -15px);
+    transform: translate(-50%, -50%) translate(50px, -45px);
   }
-
   .orbital-item-search {
-    transform: translate(-50%, -50%) translate(-30px, 30px);
+    transform: translate(-50%, -50%) translate(-45px, 50px);
   }
-
   .orbital-item-book {
     transform: translate(-50%, -50%) translate(60px, 30px);
   }
 
-  .orbital-item-qulay {
-    transform: translate(-50%, -50%) translate(-60px, -75px);
+  /* Ring 2 (r=110) */
+  .orbital-item-family {
+    transform: translate(-50%, -50%) translate(-100px, -40px);
   }
-
-  .orbital-item-ishonchli-top {
-    transform: translate(-50%, -50%) translate(120px, -45px);
+  .orbital-item-horse {
+    transform: translate(-50%, -50%) translate(-75px, 80px);
   }
-
-  .orbital-item-ishonchli-right {
-    transform: translate(-50%, -50%) translate(135px, 15px);
-  }
-
-  .orbital-item-ishonchli-bottom {
-    transform: translate(-50%, -50%) translate(120px, 105px);
-  }
-
   .orbital-item-izlash {
-    transform: translate(-50%, -50%) translate(-105px, 30px);
+    transform: translate(-50%, -50%) translate(110px, 0px);
+  }
+
+  /* Ring 3 (r=150) */
+  .orbital-item-building {
+    transform: translate(-50%, -50%) translate(80px, -125px);
+  }
+  .orbital-item-map {
+    transform: translate(-50%, -50%) translate(-105px, 105px);
+  }
+  .orbital-item-qulay {
+    transform: translate(-50%, -50%) translate(-140px, -50px);
+  }
+  .orbital-item-ishonchli-top {
+    transform: translate(-50%, -50%) translate(40px, -145px);
+  }
+  .orbital-item-ishonchli-right {
+    transform: translate(-50%, -50%) translate(150px, 0px);
+  }
+  .orbital-item-ishonchli-bottom {
+    transform: translate(-50%, -50%) translate(-40px, 145px);
   }
 
   .hero-search-wrapper {

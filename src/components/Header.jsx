@@ -63,7 +63,9 @@ const Header = ({ className = '' }) => {
           {/* Desktop Navigation */}
           <nav className="header-nav">
             <a href="/#about" className="nav-link">Biz haqimizda</a>
-            <a href="/#kindergartens" className="nav-link">Bog'chalar</a>
+            <Link href="/search" className="nav-link flex items-center gap-2">
+                  Bog'chalar
+            </Link>
             <Link href="/community" className="nav-pill">
               7 mahalla
               <div className="nav-pill-icon">
