@@ -24,10 +24,10 @@ const Cabinet = () => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#200D37]">
-      <Header />
-      <main className="container mx-auto px-4 py-8 text-white">
-        <h1 className="text-2xl font-bold mb-4">Kabinet</h1>
+    <div className="min-h-screen bg-[#090318]">
+      <Header enableSticky={false} hideOnScroll={false} isTransparentInitially={true} />
+      <main className="site-container py-12 text-white" style={{paddingTop: '64px'}}>
+        <h1 className="text-4xl font-black mb-10 tracking-tight">Shaxsiy kabinet</h1>
         {user ? (
           <div className="space-y-6">
             {/* User Info Card */}

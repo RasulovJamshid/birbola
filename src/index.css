@@ -132,9 +132,10 @@ body {
 }
 
 .hero-inner {
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 140px 24px 100px;
+  padding: 60px 24px 100px;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: 60px;
@@ -168,12 +169,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  perspective: 1200px;
 }
 
 .orbital {
   position: relative;
   width: 420px;
   height: 420px;
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Orbit Rings */
@@ -208,8 +212,13 @@ body {
 }
 
 @keyframes dash-move {
-  from { stroke-dashoffset: 0; }
-  to { stroke-dashoffset: 100; }
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 100;
+  }
 }
 
 @keyframes orbit-pulse {
@@ -217,6 +226,7 @@ body {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.1;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(1.02);
     opacity: 0.3;
@@ -228,7 +238,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(40px);
   width: 120px;
   height: 120px;
   border-radius: 999px;
@@ -237,6 +247,12 @@ body {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
   z-index: 10;
   animation: pulse-glow 3s infinite alternate;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.orbital-center:hover {
+  transform: translate(-50%, -50%) translateZ(80px) scale(1.05);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.6);
 }
 
 .orbital-center img {
@@ -436,96 +452,96 @@ body {
 /* Orbital Item Positions - Precisely aligned to Ring Radii (90px, 140px, 190px) */
 /* Ring 1 (Inner, r=90px) */
 .orbital-item-video {
-  transform: translate(-50%, -50%) translate(65px, -60px);
+  transform: translate(-50%, -50%) translate(65px, -60px) translateZ(60px);
   animation-delay: 0.3s;
 }
 
 .orbital-item-search {
-  transform: translate(-50%, -50%) translate(-60px, 65px);
+  transform: translate(-50%, -50%) translate(-60px, 65px) translateZ(60px);
   animation-delay: 0.7s;
 }
 
 .orbital-item-book {
-  transform: translate(-50%, -50%) translate(80px, 40px);
+  transform: translate(-50%, -50%) translate(80px, 40px) translateZ(60px);
   animation-delay: 1.2s;
 }
 
 /* Ring 2 (Middle, r=140px) */
 .orbital-item-family {
-  transform: translate(-50%, -50%) translate(-130px, -50px);
+  transform: translate(-50%, -50%) translate(-130px, -50px) translateZ(90px);
   animation-delay: 0s;
 }
 
 .orbital-item-horse {
-  transform: translate(-50%, -50%) translate(-100px, 100px);
+  transform: translate(-50%, -50%) translate(-100px, 100px) translateZ(90px);
   animation-delay: 1s;
 }
 
 .orbital-item-izlash {
-  transform: translate(-50%, -50%) translate(140px, 0px);
+  transform: translate(-50%, -50%) translate(140px, 0px) translateZ(90px);
   animation-delay: 0.8s;
 }
 
 /* Ring 3 (Outer, r=190px) */
 .orbital-item-building {
-  transform: translate(-50%, -50%) translate(100px, -160px);
+  transform: translate(-50%, -50%) translate(100px, -160px) translateZ(130px);
   animation-delay: 0.5s;
 }
 
 .orbital-item-map {
-  transform: translate(-50%, -50%) translate(-130px, 140px);
+  transform: translate(-50%, -50%) translate(-130px, 140px) translateZ(130px);
   animation-delay: 1.5s;
 }
 
 .orbital-item-qulay {
-  transform: translate(-50%, -50%) translate(-180px, -60px);
+  transform: translate(-50%, -50%) translate(-180px, -60px) translateZ(130px);
   animation-delay: 0.2s;
 }
 
 .orbital-item-ishonchli-top {
-  transform: translate(-50%, -50%) translate(50px, -185px);
+  transform: translate(-50%, -50%) translate(50px, -185px) translateZ(130px);
   animation-delay: 0.6s;
 }
 
 .orbital-item-ishonchli-right {
-  transform: translate(-50%, -50%) translate(190px, 0px);
+  transform: translate(-50%, -50%) translate(190px, 0px) translateZ(130px);
   animation-delay: 1.1s;
 }
 
 .orbital-item-ishonchli-bottom {
-  transform: translate(-50%, -50%) translate(-50px, 185px);
+  transform: translate(-50%, -50%) translate(-50px, 185px) translateZ(130px);
   animation-delay: 1.4s;
 }
 
 /* Search Bar */
 .hero-search-wrapper {
-  position: absolute;
-  bottom: 48px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   width: 100%;
-  max-width: 700px;
-  padding: 0 24px;
-  z-index: 10;
+  max-width: 560px;
+  margin: 28px 0 32px;
+  z-index: 20;
 }
 
 .hero-search {
   display: flex;
   align-items: center;
   gap: 14px;
-  border-radius: 20px;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  /* highly visible frosted glass */
   backdrop-filter: blur(24px);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* highly visible border */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-search:focus-within {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(139, 92, 246, 0.2);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(217, 70, 239, 0.4);
 }
 
 .hero-search-icon {
@@ -570,7 +586,7 @@ body {
 
   .hero-inner {
     grid-template-columns: 1fr;
-    padding: 100px 24px 200px;
+    padding: 80px 24px 200px;
     text-align: center;
   }
 
@@ -627,53 +643,53 @@ body {
   /* Adjust orbital positions for mobile - Aligned to scaled radii (70, 110, 150) */
   /* Ring 1 (r=70) */
   .orbital-item-video {
-    transform: translate(-50%, -50%) translate(50px, -45px);
+    transform: translate(-50%, -50%) translate(50px, -45px) translateZ(60px);
   }
 
   .orbital-item-search {
-    transform: translate(-50%, -50%) translate(-45px, 50px);
+    transform: translate(-50%, -50%) translate(-45px, 50px) translateZ(60px);
   }
 
   .orbital-item-book {
-    transform: translate(-50%, -50%) translate(60px, 30px);
+    transform: translate(-50%, -50%) translate(60px, 30px) translateZ(60px);
   }
 
   /* Ring 2 (r=110) */
   .orbital-item-family {
-    transform: translate(-50%, -50%) translate(-100px, -40px);
+    transform: translate(-50%, -50%) translate(-100px, -40px) translateZ(90px);
   }
 
   .orbital-item-horse {
-    transform: translate(-50%, -50%) translate(-75px, 80px);
+    transform: translate(-50%, -50%) translate(-75px, 80px) translateZ(90px);
   }
 
   .orbital-item-izlash {
-    transform: translate(-50%, -50%) translate(110px, 0px);
+    transform: translate(-50%, -50%) translate(110px, 0px) translateZ(90px);
   }
 
   /* Ring 3 (r=150) */
   .orbital-item-building {
-    transform: translate(-50%, -50%) translate(80px, -125px);
+    transform: translate(-50%, -50%) translate(80px, -125px) translateZ(130px);
   }
 
   .orbital-item-map {
-    transform: translate(-50%, -50%) translate(-105px, 105px);
+    transform: translate(-50%, -50%) translate(-105px, 105px) translateZ(130px);
   }
 
   .orbital-item-qulay {
-    transform: translate(-50%, -50%) translate(-140px, -50px);
+    transform: translate(-50%, -50%) translate(-140px, -50px) translateZ(130px);
   }
 
   .orbital-item-ishonchli-top {
-    transform: translate(-50%, -50%) translate(40px, -145px);
+    transform: translate(-50%, -50%) translate(40px, -145px) translateZ(130px);
   }
 
   .orbital-item-ishonchli-right {
-    transform: translate(-50%, -50%) translate(150px, 0px);
+    transform: translate(-50%, -50%) translate(150px, 0px) translateZ(130px);
   }
 
   .orbital-item-ishonchli-bottom {
-    transform: translate(-50%, -50%) translate(-40px, 145px);
+    transform: translate(-50%, -50%) translate(-40px, 145px) translateZ(130px);
   }
 
   .hero-search-wrapper {
@@ -726,6 +742,12 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px 0;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.header.is-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .header-inner {
@@ -1473,8 +1495,6 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
-  max-height: 520px;
-  overflow-y: auto;
 }
 
 .community-list-item {
@@ -2101,6 +2121,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -2113,6 +2134,7 @@ body {
     clip-path: inset(100% 0 0 0);
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     clip-path: inset(0 0 0 0);
@@ -2121,9 +2143,19 @@ body {
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  33% { transform: translateY(-20px) translateX(10px); }
-  66% { transform: translateY(10px) translateX(-15px); }
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+
+  66% {
+    transform: translateY(10px) translateX(-15px);
+  }
 }
 
 .animate-float-slow {

@@ -76,7 +76,7 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen bg-[#090318] text-white selection:bg-[#d946ef]/30">
-      <Header enableSticky={true} />
+      <Header enableSticky={true} isTransparentInitially={false} />
 
       {/* Hero Section */}
       <section className="relative pt-40 pb-24 px-6 overflow-hidden min-h-[90vh] flex items-center">
@@ -87,7 +87,7 @@ const AboutUs = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-grid opacity-20" />
         </div>
 
-        <div className="max-w-6xl mx-auto relative z-10 w-full">
+        <div className="site-container relative z-10 w-full">
           <div className="text-center mb-20">
             <Reveal delay={100}>
               <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-full mb-8 shadow-2xl">

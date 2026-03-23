@@ -16,7 +16,7 @@ const Footer = () => {
       <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <div className="relative z-10 site-container py-16 lg:py-20">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Brand Column - Takes more space */}
@@ -144,12 +144,10 @@ const Footer = () => {
           
           <button 
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-all group"
+            className="btn-secondary btn-sm flex items-center gap-2 group"
           >
-            <span className="font-medium">Yuqoriga qaytish</span>
-            <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/5 group-hover:-translate-y-1 transition-all">
-              <FiArrowUp size={16} />
-            </div>
+            <span className="font-bold">Yuqoriga qaytish</span>
+            <FiArrowUp className="group-hover:-translate-y-1 transition-transform" />
           </button>
         </div>
       </div>

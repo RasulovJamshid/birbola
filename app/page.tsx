@@ -10,13 +10,15 @@ import Footer from '@/src/components/Footer'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#200D37]">
-      <Header enableSticky={true} />
+    <div className="flex flex-col bg-[#090318]">
+      <Header enableSticky={true} isTransparentInitially={true} />
       <Hero />
-      <TopBogchalar />
-      <Partners />
-      <Community />
-      <WhyChooseUs />
+      <div className="relative z-10">
+        <TopBogchalar />
+        <Partners />
+        <Community />
+        <WhyChooseUs />
+      </div>
       <Footer />
     </div>
   )

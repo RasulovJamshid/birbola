@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { ChevronLeft, ChevronRight, Star, MapPin, Loader2 } from 'lucide-react'
 import { getKindergartens } from '../services/api'
@@ -171,6 +171,21 @@ const TopBogchalar = () => {
     ))
   }
 
+  const titleRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    if (titleRef.current) observer.observe(titleRef.current)
+    return () => { if (titleRef.current) observer.unobserve(titleRef.current) }
+  }, [])
+
   return (
     <section className="py-20 relative overflow-hidden" style={{
       background: 'linear-gradient(180deg, #7B1FA2 0%, #4A148C 50%, #1A0B2E 100%)',
@@ -188,9 +203,9 @@ const TopBogchalar = () => {
       <div className="section-glow bottom-0 left-1/4 glow-blue opacity-40" />
       <div className="section-glow bottom-0 right-1/4 glow-pink opacity-30" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="site-container relative z-10">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-16 relative z-10">
+        <div ref={titleRef} className="flex items-center justify-between mb-16 relative z-10 reveal-on-scroll">
           <div className="top-bogchalar-title">
             <h2 className="text-white">Top</h2>
             <div className="top-bogchalar-badge-container">
@@ -202,7 +217,7 @@ const TopBogchalar = () => {
           {/* Barchasi Button */}
           <button
             onClick={() => router.push('/search')}
-            className="flex items-center gap-2 px-6 py-2.5 bg-[#d946ef] text-white font-medium rounded-full hover:bg-[#c026d3] transition-all shadow-lg"
+            className="btn-primary !px-8 !py-3 !text-sm"
           >
             Barchasi
             <ChevronRight size={18} />

@@ -75,7 +75,27 @@ const SearchResults = () => {
   const [workingSchedule, setWorkingSchedule] = useState('')
   const [priceRange, setPriceRange] = useState([0, 250000000])
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
-  
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      setIsScrolled(currentScrollY > 40)
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsHeaderVisible(false)
+      } else {
+        setIsHeaderVisible(true)
+      }
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
+
   const { 
     kindergartens, 
     loading, 
@@ -162,6 +182,59 @@ const SearchResults = () => {
     if (e.key === 'Enter') setDebouncedSearchQuery(searchQuery)
   }
 
+  const getActiveFiltersCount = () => {
+    let count = 0
+    if (selectedDistrict) count++
+    count += selectedFeatures.length
+    count += selectedLanguages.length
+    count += selectedWorkingDays.length
+    if (selectedMeals) count++
+    if (selectedRating) count++
+    if (workingSchedule) count++
+    if (priceRange[0] > 0 || priceRange[1] < 250000000) count++
+    return count
+  }
+
+  const renderActiveChips = () => {
+    const chips = []
+    
+    if (selectedDistrict) {
+      const district = districts.find(d => d.id.toString() === selectedDistrict)
+      if (district) chips.push({ label: district.districtName || district.name, type: 'district' })
+    }
+    
+    selectedFeatures.forEach(f => chips.push({ label: featureLabels[f], type: 'feature', value: f }))
+    selectedLanguages.forEach(l => chips.push({ label: languageLabels[l], type: 'language', value: l }))
+    
+    if (chips.length === 0) return null
+
+    return (
+      <div className="flex flex-wrap gap-2 mb-6 animate-fadeIn">
+        {chips.map((chip, idx) => (
+          <div key={idx} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-white/70 hover:border-[#d946ef]/40 transition-colors">
+            {chip.label}
+            <button 
+              onClick={() => {
+                if (chip.type === 'district') setSelectedDistrict('')
+                if (chip.type === 'feature') toggleFeature(chip.value)
+                if (chip.type === 'language') toggleLanguage(chip.value)
+              }}
+              className="hover:text-[#d946ef] transition-colors"
+            >
+              <X size={12} />
+            </button>
+          </div>
+        ))}
+        <button 
+          onClick={handleResetFilters}
+          className="text-xs font-bold text-[#d946ef] hover:text-[#c026d3] ml-2 transition-colors"
+        >
+          Tozalash
+        </button>
+      </div>
+    )
+  }
+
   const renderPagination = () => {
     const { currentPage, totalPages } = pagination
     if (totalPages <= 1) return null
@@ -206,21 +279,26 @@ const SearchResults = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0a1f] selection:bg-[#d946ef]/30 font-sans">
-      <Header className="relative" />
+    <div className="min-h-screen bg-[#090318] selection:bg-[#d946ef]/30 font-sans pt-[64px]">
+      <Header className="fixed top-0 left-0 right-0 z-50" hideOnScroll={true} enableSticky={false} isTransparentInitially={false} />
 
-      <div className="sticky top-0 z-40 bg-[#0f0a1f]/80 backdrop-blur-xl border-b border-white/5 py-4 px-4 sm:px-6 lg:px-8">
+      <div className={`sticky top-[60px] z-100 sticky-search-bar ${!isHeaderVisible ? 'at-top' : ''} ${isScrolled ? 'is-scrolled' : ''} border-b border-white/5 py-4 px-4 sm:px-6 lg:px-8`}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-4">
-          <div className="flex items-center gap-4">
+          <div className={`flex items-center gap-4 transition-all duration-500 ${!isHeaderVisible ? 'md:mr-4' : ''}`}>
             <button 
               onClick={() => router.push('/')}
               className="group w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#d946ef]/50 transition-all"
             >
               <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
             </button>
-            <h1 className="text-xl font-bold text-white tracking-tight">
-              Bog'chalar <span className="hidden sm:inline text-[#d946ef] text-sm font-normal ml-2 opacity-80">{pagination.totalItems} ta topildi</span>
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="text-xl font-bold text-white tracking-tight leading-tight">
+                Bog'chalar
+              </h1>
+              <span className={`text-[#d946ef] text-[10px] font-bold uppercase tracking-widest transition-all duration-500 ${!isHeaderVisible ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'}`}>
+                {pagination.totalItems} ta natija
+              </span>
+            </div>
           </div>
 
           <div className="flex-1 relative group h-12">
@@ -241,11 +319,21 @@ const SearchResults = () => {
           </div>
 
           <div className="flex items-center gap-2 h-12">
+            <div className="flex bg-[#1a152e] p-1 rounded-2xl border border-white/10 mr-2">
+              <button className="p-2 rounded-xl bg-[#d946ef] text-white shadow-lg"><SlidersHorizontal size={18} /></button>
+              <button className="p-2 rounded-xl text-gray-500 hover:text-white transition-colors" onClick={() => {/* Toggle Map logic would go here if implemented */}}><MapPin size={18} /></button>
+            </div>
+            
             <button 
               onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden flex items-center justify-center gap-2 h-full px-5 bg-[#d946ef] text-white rounded-2xl font-bold shadow-lg shadow-[#d946ef]/20 transition-all active:scale-95"
+              className="lg:hidden btn-primary h-full px-5 relative"
             >
               <Filter size={18} />
+              {getActiveFiltersCount() > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#d946ef] rounded-full text-[10px] font-black flex items-center justify-center shadow-lg border border-[#d946ef]/20">
+                  {getActiveFiltersCount()}
+                </span>
+              )}
             </button>
             <div className="hidden md:flex items-center gap-2 h-full px-4 bg-[#1a152e] rounded-2xl border border-white/10 transition-colors hover:bg-white/10 group relative">
               <SlidersHorizontal size={16} className="text-gray-400 group-hover:text-[#d946ef] transition-colors" />
@@ -268,7 +356,8 @@ const SearchResults = () => {
 
           <aside className={`
             fixed inset-y-4 left-4 right-4 z-[70] bg-[#1a152e] rounded-[2.5rem] p-8 overflow-y-auto custom-scrollbar transition-all duration-500
-            lg:static lg:block lg:w-72 lg:flex-shrink-0 lg:sticky lg:top-32 lg:bg-white/5 lg:border lg:border-white/10 lg:p-8 lg:z-30 lg:rounded-[2.5rem]
+            lg:static lg:block lg:w-72 lg:flex-shrink-0 lg:sticky sticky-sidebar lg:bg-white/5 lg:border lg:border-white/10 lg:p-8 lg:z-30 lg:rounded-[2.5rem]
+            ${!isHeaderVisible ? 'at-top' : 'lg:top-[140px]'}
             ${isMobileFilterOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-full opacity-0 scale-95 lg:translate-y-0 lg:opacity-100 lg:scale-100 hidden'}
           `}>
             <div className="flex items-center justify-between mb-8">
@@ -411,6 +500,8 @@ const SearchResults = () => {
           </aside>
 
           <div className="flex-1 min-w-0">
+            {renderActiveChips()}
+            
             {loading ? (
               <SearchSkeleton />
             ) : error ? (
@@ -418,14 +509,20 @@ const SearchResults = () => {
                 <X className="text-red-500 mb-4" size={48} />
                 <h3 className="text-xl font-bold text-white mb-2">Xatolik yuz berdi</h3>
                 <p className="text-gray-400 mb-6">{error}</p>
-                <button onClick={() => window.location.reload()} className="px-8 py-3 bg-white/10 text-white rounded-2xl font-bold border border-white/10">Qayta urinish</button>
+                <button onClick={() => window.location.reload()} className="btn-secondary">Qayta urinish</button>
               </div>
             ) : kindergartens.length === 0 ? (
-              <div className="flex flex-col items-center justify-center min-h-[400px] text-center bg-white/5 rounded-[2.5rem] border border-white/5 p-8">
-                <Search className="text-amber-500 mb-4" size={48} />
-                <h3 className="text-xl font-bold text-white mb-2">Hech narsa topilmadi</h3>
-                <p className="text-gray-400 mb-6">Mezonlarga mos bog'chalar mavjud emas.</p>
-                <button onClick={handleResetFilters} className="px-8 py-3 bg-[#d946ef] text-white rounded-2xl font-bold">Filtrlarni tozalash</button>
+              <div className="flex flex-col items-center justify-center min-h-[500px] text-center bg-white/[0.02] rounded-[3rem] border border-white/5 p-12 backdrop-blur-md">
+                <div className="w-24 h-24 bg-amber-500/10 rounded-full flex items-center justify-center mb-6">
+                  <Search className="text-amber-500" size={40} />
+                </div>
+                <h3 className="text-2xl font-black text-white mb-3 tracking-tight">Hech narsa topilmadi</h3>
+                <p className="text-white/40 mb-8 max-w-xs mx-auto leading-relaxed">
+                  Qidiruvingizga mos bog'chalar mavjud emas. Filtrlarni o'zgartirib ko'ring.
+                </p>
+                <button onClick={handleResetFilters} className="btn-primary">
+                  Filtrlarni tozalash
+                </button>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">

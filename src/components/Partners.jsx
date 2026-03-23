@@ -76,6 +76,7 @@ const ScrollablePartnerRow = ({ items, direction = 'left', speed = 0.5 }) => {
 const Partners = () => {
   const [scrollY, setScrollY] = useState(0)
   const sectionRef = useRef(null)
+  const titleRef = useRef(null)
   const [particles, setParticles] = useState([])
 
   useEffect(() => {
@@ -89,6 +90,19 @@ const Partners = () => {
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    if (titleRef.current) observer.observe(titleRef.current)
+    return () => { if (titleRef.current) observer.unobserve(titleRef.current) }
   }, [])
 
   useEffect(() => {
@@ -113,7 +127,7 @@ const Partners = () => {
   ]
 
   return (
-    <section ref={sectionRef} className="pt-48 pb-32 relative overflow-hidden bg-[#200D37]">
+    <section ref={sectionRef} className="pt-48 pb-32 relative overflow-hidden bg-transparent">
       {/* 
         ==================================================
         WOW EFFECT ARC SYSTEM
@@ -170,11 +184,13 @@ const Partners = () => {
       */}
       
       <div className="relative z-10">
-        <div className="container mx-auto px-8 mb-20">
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter drop-shadow-2xl">
-            Bizning hamkorlar
-          </h2>
-          <div className="w-24 h-1 bg-pink-500 mt-4 rounded-full opacity-60" />
+        <div className="site-container mb-20">
+          <div ref={titleRef} className="reveal-on-scroll">
+            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter drop-shadow-2xl">
+              Bizning hamkorlar
+            </h2>
+            <div className="w-24 h-1.5 bg-[#d946ef] mt-6 rounded-full opacity-60" />
+          </div>
         </div>
 
         <div className="flex flex-col gap-8 w-full">

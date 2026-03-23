@@ -117,7 +117,7 @@ const KindergartenCard = ({ kg, onClick }) => {
               {kg.price ? `${kg.price.toLocaleString()} UZS` : 'Kelishilgan'}
             </p>
           </div>
-          <button className="bg-[#1a1a4e] text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-[#2a2a6e] transition-all">
+          <button className="btn-primary btn-sm !rounded-xl">
             Batafsil
           </button>
         </div>

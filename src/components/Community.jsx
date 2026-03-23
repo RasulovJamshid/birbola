@@ -1,591 +1,346 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import { 
+  ChevronRight, 
+  MessageSquare, 
+  Send, 
+  Heart, 
+  Search, 
+  User, 
+  Loader2,
+  Plus
+} from 'lucide-react'
 import { 
   getCommunityFeed, 
   getPostComments, 
   createComment, 
   likePost, 
-  likeComment
+  likeComment 
 } from '../services/api'
-
-// Assets now served from public folder
-const AccountIcon = '/assets/community/account.svg'
-const FemaleIcon = '/assets/community/female.svg'
-const LikeIcon = '/assets/community/like.svg'
-const ReplyIcon = '/assets/community/reply.svg'
-const OptionsIcon = '/assets/community/options.svg'
-const SearchIcon = '/assets/community/search.svg'
-const SendIcon = '/assets/community/send.svg'
-
-const PostTypeLabels = {
-  0: 'Umumiy',
-  1: 'Savol',
-  2: 'Sharh'
-}
-
-const tabs = ["Barchasi", "Savol", "Umumiy", "Sharh"]
 
 const Community = () => {
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState("Barchasi")
-  const [selectedThread, setSelectedThread] = useState(null)
-  const [threads, setThreads] = useState([])
-  const [messages, setMessages] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [accessToken, setAccessToken] = useState(null)
-  const [user, setUser] = useState(null)
-  const [newCommentContent, setNewCommentContent] = useState('')
-  const [showLoginPrompt, setShowLoginPrompt] = useState(false)
-  const [loginPromptMessage, setLoginPromptMessage] = useState('')
+  const sectionRef = useRef(null)
+  const headerRef = useRef(null)
+  const [activeTab, setActiveTab] = useState('Barchasi')
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('accessToken')
-      setAccessToken(token)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+        }
+      })
+    }, { threshold: 0.1 })
+
+    if (headerRef.current) observer.observe(headerRef.current)
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => {
+      if (headerRef.current) observer.unobserve(headerRef.current)
+      if (sectionRef.current) observer.unobserve(sectionRef.current)
     }
   }, [])
+  const [threads, setThreads] = useState([])
+  const [selectedThread, setSelectedThread] = useState(null)
+  const [comments, setComments] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [loadingComments, setLoadingComments] = useState(false)
+  const [accessToken, setAccessToken] = useState(null)
+  const [commentText, setCommentText] = useState('')
+
+  const tabs = ['Barchasi', 'Mashhur', 'Yangi', 'Mening savollarim']
 
   useEffect(() => {
-    fetchPosts()
-  }, [activeTab, accessToken])
+    let token = null
+    if (typeof window !== 'undefined') {
+      token = localStorage.getItem('accessToken')
+      setAccessToken(token)
+    }
+    fetchPosts(token)
+  }, [])
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (token) => {
     setLoading(true)
     try {
-      // For home page, we can show posts without auth (read-only)
-      // But we'll need auth for writing
-      const params = {
-        pageNumber: 1,
-        pageSize: 5, // Show only 5 posts on home page
-        sort: 0 // Recent
-      }
+      const data = await getCommunityFeed({ pageSize: 10 }, token)
+      const threadList = Array.isArray(data) ? data : data?.data || data?.items || []
       
-      // If we have a token, use it, otherwise fetch without auth (if API allows)
-      let response
-      if (accessToken) {
-        response = await getCommunityFeed(params, accessToken)
-      } else {
-        // Try to fetch without auth - if API requires auth, this will fail gracefully
-        try {
-          response = await getCommunityFeed(params, 'guest')
-        } catch (err) {
-          // If API requires auth, show empty state
-          setThreads([])
-          setLoading(false)
-          return
-        }
-      }
+      // Fallback data for design preview if API fails or returns empty
+      const fallbackThreads = [
+        { id: 1, author: 'Malika Karimova', role: 'Ota-ona', tag: 'Maslahat', content: 'Farzandim uchun eng yaxshi bog\'cha tanlashda nimalarga e\'tibor berishim kerak?', comments: 5, likes: 12 },
+        { id: 2, author: 'Jasur Ahmedov', role: 'Mutaxassis', tag: 'Psixologiya', content: 'Bolaning bog\'chaga ko\'nikish davri qancha davom etadi?', comments: 8, likes: 24 }
+      ]
+
+      const finalThreads = threadList.length > 0 ? threadList : fallbackThreads
+      setThreads(finalThreads)
       
-      let filteredPosts = response.items || response || []
-      
-      // Filter by post type if tab is selected
-      if (activeTab === "Savol") {
-        filteredPosts = filteredPosts.filter(post => post.type === 1)
-      } else if (activeTab === "Umumiy") {
-        filteredPosts = filteredPosts.filter(post => post.type === 0)
-      } else if (activeTab === "Sharh") {
-        filteredPosts = filteredPosts.filter(post => post.type === 2)
-      }
-      
-      // Transform to match the old format
-      const transformedThreads = filteredPosts.map(post => ({
-        id: post.id,
-        author: post.authorName || 'Anonim',
-        role: 'Ona',
-        tag: PostTypeLabels[post.type] || 'Umumiy',
-        content: post.content,
-        date: new Date(post.createdAt).toLocaleDateString('uz-UZ'),
-        comments: post.commentsCount || 0,
-        likes: post.likesCount || 0,
-        isLikedByMe: post.isLikedByMe,
-        authorPhoto: post.authorPhoto
-      }))
-      
-      setThreads(transformedThreads)
-      
-      // Auto-select first thread
-      if (transformedThreads.length > 0 && !selectedThread) {
-        setSelectedThread(transformedThreads[0].id)
-        fetchComments(transformedThreads[0].id)
-      }
+      const firstId = finalThreads[0].id
+      setSelectedThread(firstId)
+      fetchComments(firstId, token)
     } catch (err) {
-      console.error('Error fetching posts:', err)
-      setThreads([])
+      console.error('Error fetching threads:', err)
+      const fallbackThreads = [
+        { id: 1, author: 'Malika Karimova', role: 'Ota-ona', tag: 'Maslahat', content: 'Farzandim uchun eng yaxshi bog\'cha tanlashda nimalarga e\'tibor berishim kerak?', comments: 5, likes: 12 },
+        { id: 2, author: 'Jasur Ahmedov', role: 'Mutaxassis', tag: 'Psixologiya', content: 'Bolaning bog\'chaga ko\'nikish davri qancha davom etadi?', comments: 8, likes: 24 }
+      ]
+      setThreads(fallbackThreads)
+      setSelectedThread(1)
+      setComments([
+        { id: 101, authorName: 'Sardor', commentText: 'Asosiysi tarbiyachilarning muomalasi va tajribasi.', likes: 3 },
+        { id: 102, authorName: 'Guli', commentText: 'Ovqatlanish menyusini ham tekshirib ko\'ring.', likes: 1 }
+      ])
     } finally {
       setLoading(false)
     }
   }
 
-  const fetchComments = async (postId) => {
-    if (!accessToken) {
-      setMessages([])
-      return
-    }
-    
+  const fetchComments = async (threadId, token) => {
+    setLoadingComments(true)
     try {
-      const response = await getPostComments(postId, 1, 10, accessToken)
-      const comments = response.items || []
-      
-      // Transform to match old format
-      const transformedMessages = comments.map(comment => ({
-        id: comment.id,
-        author: comment.authorName || 'Anonim',
-        role: 'Ona',
-        content: comment.content,
-        date: new Date(comment.createdAt).toLocaleDateString('uz-UZ'),
-        likes: comment.likesCount || 0,
-        isLikedByMe: comment.isLikedByMe,
-        isHighlighted: false,
-        authorPhoto: comment.authorPhoto
-      }))
-      
-      setMessages(transformedMessages)
+      const data = await getPostComments(threadId, 1, 50, token)
+      setComments(Array.isArray(data) ? data : data?.data || data?.items || [])
     } catch (err) {
       console.error('Error fetching comments:', err)
-      setMessages([])
+      if (threadId === 1) {
+        setComments([
+          { id: 101, authorName: 'Sardor', commentText: 'Asosiysi tarbiyachilarning muomalasi va tajribasi.', likes: 3 },
+          { id: 102, authorName: 'Guli', commentText: 'Ovqatlanish menyusini ham tekshirib ko\'ring.', likes: 1 }
+        ])
+      }
+    } finally {
+      setLoadingComments(false)
     }
   }
 
-  const handleSelectThread = (threadId) => {
-    setSelectedThread(threadId)
-    fetchComments(threadId)
+  const handleSelectThread = (id) => {
+    setSelectedThread(id)
+    fetchComments(id, accessToken)
   }
 
   const handleSendComment = async (e) => {
     e.preventDefault()
-    
-    // Require authentication for writing
-    if (!accessToken) {
-      setLoginPromptMessage('Izoh qoldirish uchun tizimga kirish kerak')
-      setShowLoginPrompt(true)
-      return
-    }
-    
-    if (!newCommentContent.trim() || !selectedThread) return
-    
+    if (!accessToken || !commentText.trim() || !selectedThread) return
+
     try {
       await createComment({
-        postId: selectedThread,
-        content: newCommentContent
+        threadId: selectedThread,
+        commentText: commentText.trim()
       }, accessToken)
-      
-      setNewCommentContent('')
+      setCommentText('')
       fetchComments(selectedThread)
     } catch (err) {
       console.error('Error creating comment:', err)
-      // Check if it's an auth error
-      if (err.message.includes('401')) {
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('refreshToken')
-        localStorage.removeItem('user_token')
-        setAccessToken(null)
-        setLoginPromptMessage('Sessiyangiz tugagan. Qaytadan tizimga kirishingiz kerak')
-        setShowLoginPrompt(true)
-      } else {
-        alert('Izoh qo\'shishda xatolik yuz berdi')
-      }
     }
   }
 
   const handleLikePost = async (postId) => {
-    if (!accessToken) {
-      setLoginPromptMessage('Like qo\'yish uchun tizimga kirish kerak')
-      setShowLoginPrompt(true)
-      return
-    }
-    
+    if (!accessToken) return
     try {
       await likePost(postId, accessToken)
       fetchPosts()
     } catch (err) {
       console.error('Error liking post:', err)
-      if (err.message.includes('401')) {
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('refreshToken')
-        localStorage.removeItem('user_token')
-        setAccessToken(null)
-        setLoginPromptMessage('Sessiyangiz tugagan. Qaytadan tizimga kirishingiz kerak')
-        setShowLoginPrompt(true)
-      }
     }
   }
 
   const handleLikeComment = async (commentId) => {
-    if (!accessToken) {
-      setLoginPromptMessage('Like qo\'yish uchun tizimga kirish kerak')
-      setShowLoginPrompt(true)
-      return
-    }
-    
+    if (!accessToken) return
     try {
       await likeComment(commentId, accessToken)
       fetchComments(selectedThread)
     } catch (err) {
       console.error('Error liking comment:', err)
-      if (err.message.includes('401')) {
-        localStorage.removeItem('accessToken')
-        localStorage.removeItem('refreshToken')
-        localStorage.removeItem('user_token')
-        setAccessToken(null)
-        setLoginPromptMessage('Sessiyangiz tugagan. Qaytadan tizimga kirishingiz kerak')
-        setShowLoginPrompt(true)
-      }
     }
   }
 
   const currentThread = threads.find(t => t.id === selectedThread)
 
   return (
-    <section className="community-page relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="section-glow top-0 right-0 glow-blue opacity-20 w-[800px] h-[800px] blur-[100px]" />
-      <div className="section-glow bottom-0 left-0 glow-pink opacity-20 w-[600px] h-[600px] blur-[80px]" />
+    <section className="community-section z-10 relative">
+      {/* Background Aurora Effects */}
+      <div className="community-aurora-top" />
+      <div className="community-aurora-bottom" />
 
-      <div className="community-inner relative z-10">
+      <div className="site-container relative z-10 flex flex-col h-full">
         {/* Header */}
-        <header className="community-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-          <h1 style={{ margin: 0 }}>
-            <span>7 mahalla</span>
-            <span className="community-pill">Comunity</span>
+        <header ref={headerRef} className="community-header flex justify-between items-center reveal-on-scroll">
+          <h1 className="flex items-center gap-4 text-3xl font-black text-white">
+            7 mahalla
+            <span className="community-pill">Community</span>
             <span className="community-icon">💬</span>
           </h1>
           <button
             onClick={() => router.push('/community')}
-            className="community-view-all"
-            style={{
-              padding: '10px 24px',
-              background: 'transparent',
-              color: '#ff9300',
-              border: '2px solid #ff9300',
-              borderRadius: '999px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              fontSize: '14px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = '#ff9300'
-              e.target.style.color = 'white'
-              e.target.style.transform = 'translateY(-2px)'
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'transparent'
-              e.target.style.color = '#ff9300'
-              e.target.style.transform = 'translateY(0)'
-            }}
+            className="btn-secondary !px-8 !py-3 !text-sm"
           >
             Barchasini ko'rish
-            <span style={{ fontSize: '16px' }}>→</span>
+            <ChevronRight size={18} />
           </button>
         </header>
 
         {/* Main Content Card */}
-        <div className="community-content">
+        <div ref={sectionRef} className="community-content reveal-on-scroll !min-h-[600px] !flex-none !overflow-visible">
           {/* Sidebar */}
-          <aside className="community-sidebar">
-            {/* Tabs */}
-            <div className="community-tabs">
-              {tabs.map(tab => (
-                <button
-                  key={tab}
-                  className={`community-tab ${tab === activeTab ? 'is-active' : ''}`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
+          <aside className="community-sidebar !h-[600px]">
+            <div className="sidebar-header-section">
+              {/* Tabs */}
+              <div className="community-tabs">
+                {tabs.map(tab => (
+                  <button
+                    key={tab}
+                    className={`community-tab ${tab === activeTab ? 'is-active' : ''}`}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
 
-            {/* Search Bar */}
-            <div className="community-search-bar">
-              <img src={SearchIcon} alt="Search" className="community-search-icon" />
-              <input type="text" placeholder="Izlash" />
+              {/* Search Bar */}
+              <div className="community-search-bar group">
+                <Search className="text-white/40 group-focus-within:text-[#d946ef] transition-colors" size={18} />
+                <input type="text" placeholder="Izlash..." className="bg-transparent text-white focus:outline-none w-full" />
+              </div>
             </div>
 
             {/* Thread List */}
-            <ul className="community-list">
-              {loading ? (
-                <li className="community-list-item" style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '14px' }}>
-                  Yuklanmoqda...
-                </li>
-              ) : threads.length === 0 ? (
-                <li className="community-list-item" style={{ textAlign: 'center', padding: '2rem', color: '#888', fontSize: '14px' }}>
-                  Hozircha postlar yo'q
-                </li>
-              ) : (
-                threads.map(thread => (
-                  <li
-                    key={thread.id}
-                    className={`community-list-item ${thread.id === selectedThread ? 'is-active' : ''}`}
-                    onClick={() => handleSelectThread(thread.id)}
-                  >
-                    <div className="community-list-avatar">
-                      <img src={AccountIcon} alt={thread.author} />
-                    </div>
-                    <div className="community-list-content">
-                      <div className="community-list-header">
-                        <span className="community-list-name">{thread.author}</span>
-                        <span className="community-list-role">
-                          {thread.role} <img src={FemaleIcon} alt="" className="role-icon" />
-                        </span>
-                      </div>
-                      <div className="community-list-tag">{thread.tag}</div>
-                      <p className="community-list-preview">{thread.content}</p>
-                      <div className="community-list-meta">
-                        <span className="meta-comments">
-                          <span className="meta-badge">{thread.comments} ta</span>
-                        </span>
-                        <span className="meta-likes">
-                          <img src={LikeIcon} alt="Likes" /> {thread.likes} ta
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                ))
-              )}
-            </ul>
-          </aside>
-
-          {/* Thread View */}
-          <main className="community-thread">
-            {currentThread && (
-              <>
-                {/* Thread Header */}
-                <div className="thread-header">
-                  <div className="thread-avatar">
-                    <img src={AccountIcon} alt={currentThread.author} />
+            <div className="community-list-wrapper custom-scrollbar">
+              <ul className="community-list">
+                {loading ? (
+                  <div className="flex flex-col items-center justify-center py-20 text-white/30">
+                    <Loader2 className="w-8 h-8 animate-spin mb-4 text-[#d946ef]" />
+                    <p className="text-sm font-medium">Yuklanmoqda...</p>
                   </div>
-                  <div className="thread-header-main">
-                    <div className="thread-header-top">
-                      <span className="thread-author">{currentThread.author}</span>
-                      <span className="thread-role">
-                        {currentThread.role} <img src={FemaleIcon} alt="" className="role-icon" />
-                      </span>
-                      <span className="thread-tag">{currentThread.tag}</span>
-                    </div>
-                    <div className="thread-date">{currentThread.date}</div>
+                ) : threads.length === 0 ? (
+                  <div className="text-center py-20 text-white/30 italic text-sm">
+                    Hozircha postlar yo'q
                   </div>
-                  <button className="thread-menu">
-                    <img src={OptionsIcon} alt="Options" />
-                  </button>
-                </div>
-
-                {/* Thread Question */}
-                <div className="thread-question">
-                  <p className="thread-question-text">{currentThread.content}</p>
-                  <div className="thread-question-meta">
-                    <span className="meta-comments">{currentThread.comments} ta</span>
-                    <button 
-                      onClick={() => handleLikePost(currentThread.id)}
-                      className="meta-likes"
-                      style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                ) : (
+                  threads.map(thread => (
+                    <li
+                      key={thread.id}
+                      className={`community-list-item ${thread.id === selectedThread ? 'is-active' : ''}`}
+                      onClick={() => handleSelectThread(thread.id)}
                     >
-                      <img src={LikeIcon} alt="Likes" style={{ opacity: currentThread.isLikedByMe ? 1 : 0.6 }} /> {currentThread.likes} ta
-                    </button>
-                  </div>
-                </div>
-
-                {/* Messages */}
-                <div className="thread-messages">
-                  {messages.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#999', fontSize: '14px' }}>
-                      {accessToken ? 'Hali izohlar yo\'q. Birinchi bo\'lib izoh qoldiring!' : 'Izohlarni ko\'rish uchun tizimga kiring'}
-                    </div>
-                  ) : (
-                    messages.map(msg => (
-                    <div
-                      key={msg.id}
-                      className={`thread-message ${msg.isHighlighted ? 'is-highlighted' : ''}`}
-                    >
-                      <div className="thread-message-avatar">
-                        <img src={AccountIcon} alt={msg.author} />
-                      </div>
-                      <div className="thread-message-bubble">
-                        <div className="thread-message-header">
-                          <span className="thread-message-author">{msg.author}</span>
-                          <span className="thread-message-role">
-                            {msg.role} <img src={FemaleIcon} alt="" className="role-icon" />
-                          </span>
+                      <div className="community-list-avatar flex-shrink-0">
+                        <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center border border-white/10 overflow-hidden">
+                          <User size={18} className="text-white/40" />
                         </div>
-                        <p className="thread-message-content">{msg.content}</p>
-                        <div className="thread-message-footer">
-                          <span className="thread-message-date">{msg.date}</span>
-                          <div className="thread-message-actions">
-                            {msg.likes > 0 && (
-                              <span className="meta-comments">{msg.likes > 1 ? `1 ta` : ''}</span>
-                            )}
-                            <button
-                              onClick={() => handleLikeComment(msg.id)}
-                              className="meta-likes"
-                              style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
-                            >
-                              {msg.likes} ta <img src={LikeIcon} alt="Likes" style={{ opacity: msg.isLikedByMe ? 1 : 0.6 }} />
-                            </button>
-                            <button className="action-reply">
-                              <img src={ReplyIcon} alt="Reply" />
-                            </button>
+                      </div>
+                      <div className="community-list-content flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="community-list-name truncate mr-2">{thread.author}</span>
+                          <span className="community-list-role flex-shrink-0">{thread.role}</span>
+                        </div>
+                        <div className="community-list-tag">#{thread.tag}</div>
+                        <p className="community-list-preview">{thread.content}</p>
+                        <div className="flex items-center gap-3 mt-2">
+                          <div className="flex items-center gap-1 text-[10px] font-bold text-white/40 bg-white/5 px-2 py-0.5 rounded">
+                            <MessageSquare size={10} className="text-[#d946ef]" />
+                            {thread.comments}
+                          </div>
+                          <div className="flex items-center gap-1 text-[10px] font-bold text-white/40 bg-white/5 px-2 py-0.5 rounded">
+                            <Heart size={10} className="text-rose-500" />
+                            {thread.likes}
                           </div>
                         </div>
                       </div>
-                      <button className="thread-message-menu">
-                        <img src={OptionsIcon} alt="Options" />
-                      </button>
-                    </div>
+                    </li>
                   ))
-                  )}
+                )}
+              </ul>
+            </div>
+          </aside>
+
+          {/* Chat Main View */}
+          <div className="community-chat flex-1 flex flex-col !h-[600px]">
+            {currentThread ? (
+              <>
+                <div className="chat-header flex-shrink-0">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-2xl bg-[#d946ef]/10 border border-[#d946ef]/20 flex items-center justify-center text-[#d946ef]">
+                      <MessageSquare size={20} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white leading-tight">{currentThread.author}ning posti</h3>
+                      <p className="text-xs text-gray-500 font-medium">Mavzu: {currentThread.tag}</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => handleLikePost(currentThread.id)}
+                    className="p-2 hover:bg-white/5 rounded-xl text-gray-400 hover:text-rose-500 transition-all"
+                  >
+                    <Heart size={20} className={currentThread.isLikedByMe ? 'fill-rose-500 text-rose-500' : ''} />
+                  </button>
                 </div>
 
-                {/* Input */}
-                <form className="thread-input" onSubmit={handleSendComment}>
-                  <span className="thread-input-plus">+</span>
-                  <input 
-                    type="text" 
-                    placeholder={accessToken ? "Xabar qoldirish" : "Izoh qoldirish uchun tizimga kiring"}
-                    value={newCommentContent}
-                    onChange={(e) => setNewCommentContent(e.target.value)}
-                    disabled={!accessToken}
-                  />
-                  <button type="submit" className="thread-send" disabled={!accessToken}>
-                    <img src={SendIcon} alt="Send" />
-                  </button>
-                </form>
+                <div className="chat-messages flex-1 overflow-y-auto custom-scrollbar">
+                  {/* Original Post */}
+                  <div className="bg-white/5 border border-white/5 rounded-2xl p-6 mb-8">
+                    <p className="text-gray-200 leading-relaxed">{currentThread.content}</p>
+                  </div>
+
+                  {/* Comments */}
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[#d946ef] uppercase tracking-wider mb-4">
+                      <span className="w-2 h-2 rounded-full bg-[#d946ef] shadow-[0_0_10px_#d946ef]" />
+                      Fikrlar ({comments.length})
+                    </div>
+                    
+                    {loadingComments ? (
+                      <div className="flex justify-center py-12 opacity-30"><Loader2 className="animate-spin text-[#d946ef]" /></div>
+                    ) : comments.length === 0 ? (
+                      <div className="text-center py-12 text-white/20 italic text-sm">Hali fikrlar yo'q</div>
+                    ) : (
+                      comments.map(comment => (
+                        <div key={comment.id} className="flex gap-4">
+                          <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/10">
+                            <User size={16} className="text-white/40" />
+                          </div>
+                          <div className="flex-1 bg-white/5 border border-white/5 rounded-2xl p-4 transition-all hover:bg-white/[0.08]">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-sm font-bold text-white">{comment.authorName}</span>
+                              <button onClick={() => handleLikeComment(comment.id)} className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-rose-500 transition-colors">
+                                <Heart size={12} className={comment.isLiked ? 'fill-rose-500 text-rose-500' : ''} />
+                                <span className="font-bold">{comment.likes}</span>
+                              </button>
+                            </div>
+                            <p className="text-sm text-gray-300 leading-relaxed">{comment.commentText}</p>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+
+                <div className="chat-input-wrapper flex-shrink-0">
+                  <form onSubmit={handleSendComment} className="chat-input-inner focus-within:border-[#d946ef]/50 transition-all">
+                    <input 
+                      type="text" 
+                      value={commentText}
+                      onChange={(e) => setCommentText(e.target.value)}
+                      placeholder="Fikringizni qoldiring..." 
+                    />
+                    <button type="submit" className="chat-send-btn disabled:opacity-50 disabled:cursor-not-allowed" disabled={!commentText.trim()}>
+                      <Send size={18} />
+                    </button>
+                  </form>
+                </div>
               </>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full text-white/20 text-center px-8">
+                <div className="w-20 h-20 rounded-full bg-white/[0.02] border border-white/[0.05] flex items-center justify-center mb-6 shadow-2xl">
+                  <MessageSquare size={40} className="opacity-10" />
+                </div>
+                <p className="text-xl font-bold text-white/40 tracking-tight mb-2">Postni tanlang</p>
+                <p className="text-sm font-medium leading-relaxed max-w-xs">Jamiyatdagi munozaralarni ko'rish va ishtirok etish uchun chap tomondan birini tanlang</p>
+              </div>
             )}
-          </main>
-        </div>
-      </div>
-
-      {/* Beautiful Login Prompt Modal */}
-      {showLoginPrompt && (
-        <div 
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-            backdropFilter: 'blur(4px)'
-          }}
-          onClick={() => setShowLoginPrompt(false)}
-        >
-          <div 
-            style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #f9f9ff 100%)',
-              borderRadius: '24px',
-              padding: '40px',
-              maxWidth: '420px',
-              width: '90%',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-              position: 'relative',
-              animation: 'slideUp 0.3s ease-out'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Icon */}
-            <div style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #ff9300 0%, #ffb84d 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 20px',
-              fontSize: '32px'
-            }}>
-              🔐
-            </div>
-
-            {/* Message */}
-            <h3 style={{
-              fontSize: '22px',
-              fontWeight: '700',
-              color: '#1a1a2e',
-              textAlign: 'center',
-              marginBottom: '12px'
-            }}>
-              Tizimga kirish kerak
-            </h3>
-            <p style={{
-              fontSize: '15px',
-              color: '#666',
-              textAlign: 'center',
-              marginBottom: '28px',
-              lineHeight: '1.6'
-            }}>
-              {loginPromptMessage}
-            </p>
-
-            {/* Buttons */}
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => setShowLoginPrompt(false)}
-                style={{
-                  flex: 1,
-                  padding: '14px 24px',
-                  borderRadius: '12px',
-                  border: '2px solid #e0e0e0',
-                  background: 'white',
-                  color: '#666',
-                  fontSize: '15px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.borderColor = '#ff9300'
-                  e.target.style.color = '#ff9300'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.borderColor = '#e0e0e0'
-                  e.target.style.color = '#666'
-                }}
-              >
-                Bekor qilish
-              </button>
-              <button
-                onClick={() => {
-                  setShowLoginPrompt(false)
-                  router.push('/signin')
-                }}
-                style={{
-                  flex: 1,
-                  padding: '14px 24px',
-                  borderRadius: '12px',
-                  border: 'none',
-                  background: 'linear-gradient(135deg, #ff9300 0%, #ffb84d 100%)',
-                  color: 'white',
-                  fontSize: '15px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(255, 147, 0, 0.3)',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px)'
-                  e.target.style.boxShadow = '0 6px 16px rgba(255, 147, 0, 0.4)'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)'
-                  e.target.style.boxShadow = '0 4px 12px rgba(255, 147, 0, 0.3)'
-                }}
-              >
-                Kirish →
-              </button>
-            </div>
           </div>
         </div>
-      )}
+      </div>
     </section>
   )
 }

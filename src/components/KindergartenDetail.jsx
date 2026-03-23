@@ -226,7 +226,7 @@ const KindergartenDetail = ({ id }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0f0a1f] flex items-center justify-center">
+      <div className="min-h-screen bg-[#090318] flex items-center justify-center">
         <Loader2 className="w-12 h-12 text-[#d946ef] animate-spin" />
       </div>
     )
@@ -234,7 +234,7 @@ const KindergartenDetail = ({ id }) => {
 
   if (error || !kindergarten) {
     return (
-      <div className="min-h-screen bg-[#0f0a1f] flex flex-col items-center justify-center text-white p-4 text-center">
+      <div className="min-h-screen bg-[#090318] flex flex-col items-center justify-center text-white p-4 text-center">
         <p className="text-xl mb-4 text-gray-400">Ma'lumot topilmadi</p>
         <button
           onClick={() => router.push('/search')}
@@ -252,11 +252,11 @@ const KindergartenDetail = ({ id }) => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f0a1f] selection:bg-[#d946ef]/30 font-sans pb-24 lg:pb-0">
-      <Header className="relative" />
+    <div className="min-h-screen bg-[#090318] selection:bg-[#d946ef]/30 font-sans pb-24 lg:pb-0">
+      <Header className="fixed top-0 left-0 right-0 z-50" hideOnScroll enableSticky />
 
       {/* Sticky Top Bar & Navigation */}
-      <div className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled ? 'bg-[#0f0a1f]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'bg-transparent'}`}>
+      <div className={`sticky top-16 z-40 transition-all duration-300 ${isScrolled ? 'bg-[#090318]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             <button
@@ -284,7 +284,7 @@ const KindergartenDetail = ({ id }) => {
           <div className="lg:col-span-8 space-y-8">
 
             {/* Immersive Hero Card */}
-            <div className="relative rounded-[2.5rem] overflow-hidden bg-[#1a152e] border border-white/10 group shadow-2xl">
+            <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 group shadow-2xl backdrop-blur-xl">
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0f0a1f] via-[#0f0a1f]/40 to-transparent" />
               <div className="relative h-[28rem] sm:h-[32rem] overflow-hidden cursor-pointer" onClick={() => setLightboxOpen(true)}>
                 <img
@@ -356,8 +356,9 @@ const KindergartenDetail = ({ id }) => {
             </div>
 
             {/* Tab Content */}
-            <div className="bg-[#1a152e] border border-white/5 rounded-[2.5rem] p-6 sm:p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#d946ef]/5 rounded-full blur-[80px] pointer-events-none" />
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 sm:p-8 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-[#d946ef]/5 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#ec4899]/5 rounded-full blur-[100px] pointer-events-none" />
 
               {/* Info Tab */}
               {activeTab === 'info' && (
@@ -585,39 +586,44 @@ const KindergartenDetail = ({ id }) => {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-[100px]">
 
             {/* Price Card */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-[#d946ef] to-[#ec4899] rounded-[2.5rem] p-8 text-white shadow-xl shadow-[#d946ef]/20">
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+            <div className="relative overflow-hidden bg-gradient-to-br from-[#d946ef]/20 to-[#ec4899]/10 rounded-[2.5rem] p-8 text-white border border-[#d946ef]/20 backdrop-blur-xl shadow-2xl shadow-[#d946ef]/10">
+              <div className="absolute -right-12 -top-12 w-40 h-40 bg-[#d946ef]/10 rounded-full blur-3xl" />
+              <div className="absolute -left-12 -bottom-12 w-40 h-40 bg-[#ec4899]/10 rounded-full blur-3xl" />
               <div className="relative z-10">
-                <p className="text-white/80 font-bold text-xs tracking-wider uppercase mb-1">Oylik to'lov</p>
-                <p className="text-3xl font-extrabold mb-6">{formatPrice(kindergarten.price)}</p>
-                <button className="w-full py-4 bg-white text-[#d946ef] rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2">
+                <p className="text-[#d946ef] font-bold text-xs tracking-wider uppercase mb-2">Oylik to'lov</p>
+                <p className="text-4xl font-extrabold mb-1 text-white">{formatPrice(kindergarten.price)}</p>
+                <p className="text-gray-400 text-sm mb-6">Sifatli ta'lim uchun</p>
+                <button className="w-full py-4 bg-[#d946ef] text-white rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-[#d946ef]/30 flex items-center justify-center gap-2">
                   <CheckCircle2 size={20} /> Ariza qoldirish
                 </button>
-                <p className="text-center text-white/60 text-xs mt-3 font-medium">To'lovlar xavfsiz himoyalangan</p>
+                <p className="text-center text-white/50 text-xs mt-4 font-medium">Xavfsiz va tezkor ro'yxatga olish</p>
               </div>
             </div>
 
             {/* Info Card */}
-            <div className="bg-[#1a152e] rounded-[2.5rem] p-8 border border-white/10 space-y-6">
+            <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-xl space-y-6">
+              <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-6">
+                <span className="w-3 h-3 rounded-full bg-[#d946ef]" /> Asosiy ma'lumot
+              </h3>
               {[
                 { icon: Phone, label: "Telefon", value: kindergarten.phoneNumber, href: `tel:${kindergarten.phoneNumber}` },
                 { icon: MapPin, label: "Manzil", value: kindergarten.address, id: "map" },
                 { icon: Clock, label: "Ish vaqti", value: `${formatTime(kindergarten.workingStartHour)} - ${formatTime(kindergarten.workingEndHour)}` },
                 { icon: Utensils, label: "Ovqatlanish", value: mealsLabels[kindergarten.meals] || "Mavjud emas" }
               ].map((item, i) => item.value && (
-                <div key={i} className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-gray-400 group-hover:text-[#d946ef] group-hover:bg-[#d946ef]/10 transition-all flex-shrink-0">
+                <div key={i} className="flex items-start gap-4 group pb-4 border-b border-white/5 last:pb-0 last:border-b-0 transition-all">
+                  <div className="w-12 h-12 rounded-2xl bg-[#d946ef]/10 flex items-center justify-center text-[#d946ef] group-hover:bg-[#d946ef]/20 transition-all flex-shrink-0">
                     <item.icon size={20} />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-gray-500 font-bold uppercase mb-0.5">{item.label}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">{item.label}</p>
                     {item.href ? (
                       <a href={item.href} className="text-white font-medium hover:text-[#d946ef] transition-colors truncate block">{item.value}</a>
                     ) : (
-                      <p className="text-white font-medium break-words leading-snug">{item.value}</p>
+                      <p className="text-gray-300 font-medium break-words leading-snug">{item.value}</p>
                     )}
                   </div>
                 </div>

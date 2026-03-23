@@ -3,51 +3,58 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, User } from 'lucide-react'
 import { getCurrentUser } from '../services/api'
-// Assets now served from public folder
-const Logo = '/assets/birbola.svg'
-const ChatIcon = '/assets/banner/over-button-chat.svg'
-const UserIcon = '/assets/banner/account-user.svg'
 
-const Header = ({ className = '', enableSticky = false }) => {
+const Logo = '/assets/birbola.svg'
+
+  const Header = ({ className = '', enableSticky = false, hideOnScroll = false, isTransparentInitially = true }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [isSticky, setIsSticky] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
-    if (!enableSticky) return
-    
     const handleScroll = () => {
-      const shouldBeSticky = window.scrollY > 20
-      setIsSticky(shouldBeSticky)
-      console.log('Scroll position:', window.scrollY, 'Sticky:', shouldBeSticky)
+      const currentScrollY = window.scrollY
+      
+      // Calculate scroll progress
+      const winHeight = window.innerHeight
+      const docHeight = document.documentElement.scrollHeight
+      const totalDocScrollLength = docHeight - winHeight
+      const scrollPostion = totalDocScrollLength > 0 
+        ? Math.floor((currentScrollY / totalDocScrollLength) * 100)
+        : 0
+      setScrollProgress(scrollPostion)
+
+      if (enableSticky) {
+        setIsSticky(currentScrollY > 50) // More scroll before sticky kicks in
+      }
+
+      if (hideOnScroll) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false)
+        } else {
+          setIsVisible(true)
+        }
+      }
+      setLastScrollY(currentScrollY)
     }
-    
-    // Check initial scroll position
+
     handleScroll()
-    
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [enableSticky])
+  }, [enableSticky, hideOnScroll, lastScrollY])
 
   useEffect(() => {
     const checkAuth = () => {
       if (typeof window === 'undefined') return
-
       const token = localStorage.getItem('accessToken')
-      if (!token) {
-        setUser(null)
-        return
-      }
-
-      getCurrentUser(token)
-        .then(setUser)
-        .catch(() => {
-          setUser(null)
-        })
+      if (!token) { setUser(null); return }
+      getCurrentUser(token).then(setUser).catch(() => setUser(null))
     }
-
     checkAuth()
     window.addEventListener('auth-change', checkAuth)
     return () => window.removeEventListener('auth-change', checkAuth)
@@ -55,7 +62,6 @@ const Header = ({ className = '', enableSticky = false }) => {
 
   const handleLogout = () => {
     if (typeof window === 'undefined') return
-
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
     localStorage.removeItem('user_token')
@@ -63,9 +69,25 @@ const Header = ({ className = '', enableSticky = false }) => {
     window.location.href = '/'
   }
 
+  // Close menu on outside click
+  useEffect(() => {
+    if (!isMenuOpen) return
+    const handler = (e) => {
+      if (!e.target.closest('.header')) setIsMenuOpen(false)
+    }
+    document.addEventListener('click', handler)
+    return () => document.removeEventListener('click', handler)
+  }, [isMenuOpen])
+
   return (
-    <header className={`header ${className} ${isSticky ? 'is-sticky' : ''}`}>
-      <div className="header-inner">
+    <>
+      <div className="scroll-progress-container">
+        <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
+      </div>
+      <header 
+        className={`header ${className} ${isSticky ? 'is-sticky' : ''} ${hideOnScroll && !isVisible ? 'is-hidden' : ''} ${isTransparentInitially && !isSticky ? 'is-transparent' : ''}`}
+      >
+        <div className="header-inner">
         {/* Logo */}
         <div className="header-left">
           <Link href="/" className="logo">
@@ -73,93 +95,81 @@ const Header = ({ className = '', enableSticky = false }) => {
           </Link>
         </div>
 
+        {/* Desktop Navigation */}
+        <nav className="header-nav">
+          <Link href="/about" className="nav-link">
+            Biz haqimizda
+          </Link>
+          <Link href="/search" className="nav-link">
+            Bog&apos;chalar
+          </Link>
+          <Link href="/community" className="nav-link">
+            7 mahalla
+            <span className="nav-mahalla-badge">New</span>
+          </Link>
+        </nav>
 
-
-        {/* Right side utilities */}
+        {/* Right side */}
         <div className="header-right">
-          {/* Desktop Navigation */}
-          <nav className="header-nav">
-            <Link href="/about" className="nav-link flex items-center gap-2">
-              Biz haqimizda
-            </Link>
-            <Link href="/search" className="nav-link flex items-center gap-2">
-              Bog'chalar
-            </Link>
-            <Link href="/community" className="nav-pill">
-              7 mahalla
-              <div className="nav-pill-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 10C22 14.4183 17.5228 18 12 18C10.9704 18 9.98297 17.8529 9.05742 17.5806C8.63468 17.4563 8.18348 17.4436 7.75336 17.5442L4.54581 18.2941C3.97441 18.4277 3.47953 17.8863 3.66442 17.3323L4.52208 14.7621C4.66172 14.3437 4.65487 13.8893 4.5024 13.4764C3.54125 12.4411 3 11.2666 3 10C3 5.58172 7.47715 2 13 2C18.5228 2 22 5.58172 22 10Z" fill="white" stroke="#E5E7EB" strokeWidth="0.5" />
-                  <circle cx="8" cy="10" r="1.5" fill="#4A4A4A" />
-                  <circle cx="12" cy="10" r="1.5" fill="#4A4A4A" />
-                  <circle cx="16" cy="10" r="1.5" fill="#4A4A4A" />
-                </svg>
-              </div>
-            </Link>
-            {user ? (
-              <>
-                <Link href="/cabinet" className="nav-link flex items-center gap-2">
-                  Kabinet
-                  <img src={UserIcon} alt="Kabinet" style={{ width: '20px', height: '20px' }} />
-                </Link>
-                <button onClick={handleLogout} className="nav-link">
-                  Chiqish
-                </button>
-              </>
-            ) : (
-              <Link href="/signin" className="nav-link flex items-center gap-2">
-                Kirish
-                <img src={UserIcon} alt="Kirish" style={{ width: '20px', height: '20px' }} />
+          {user ? (
+            <>
+              <Link href="/cabinet" className="nav-auth-btn flex items-center gap-2">
+                <User size={16} />
+                Kabinet
               </Link>
-            )}
-          </nav>
+              <button onClick={handleLogout} className="nav-link">
+                Chiqish
+              </button>
+            </>
+          ) : (
+            <Link href="/signin" className="nav-auth-btn flex items-center gap-2">
+              <User size={16} />
+              Kirish
+            </Link>
+          )}
+
           {/* Mobile Menu Button */}
           <button
             className="mobile-menu-btn"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="mobile-menu">
-          <nav className="mobile-nav">
-            <a href="#about" className="mobile-nav-link">Biz haqimizda</a>
-            <a href="#kindergartens" className="mobile-nav-link">Bog'chalar</a>
-            <Link href="/community" className="nav-pill mobile-nav-pill">
-              7 mahalla
-              <div className="nav-pill-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22 10C22 14.4183 17.5228 18 12 18C10.9704 18 9.98297 17.8529 9.05742 17.5806C8.63468 17.4563 8.18348 17.4436 7.75336 17.5442L4.54581 18.2941C3.97441 18.4277 3.47953 17.8863 3.66442 17.3323L4.52208 14.7621C4.66172 14.3437 4.65487 13.8893 4.5024 13.4764C3.54125 12.4411 3 11.2666 3 10C3 5.58172 7.47715 2 13 2C18.5228 2 22 5.58172 22 10Z" fill="white" stroke="#E5E7EB" strokeWidth="0.5" />
-                  <circle cx="8" cy="10" r="1.5" fill="#4A4A4A" />
-                  <circle cx="12" cy="10" r="1.5" fill="#4A4A4A" />
-                  <circle cx="16" cy="10" r="1.5" fill="#4A4A4A" />
-                </svg>
-              </div>
-            </Link>
-            {user ? (
-              <>
-                <Link href="/cabinet" className="mobile-nav-link flex items-center gap-2">
-                  <img src={UserIcon} alt="Kabinet" style={{ width: '20px', height: '20px' }} />
-                  Kabinet
-                </Link>
-                <button onClick={handleLogout} className="mobile-nav-link">
-                  Chiqish
-                </button>
-              </>
-            ) : (
-              <Link href="/signin" className="mobile-nav-link flex items-center gap-2">
-                <img src={UserIcon} alt="Kirish" style={{ width: '20px', height: '20px' }} />
-                Kirish
+      <div className={`mobile-menu ${isMenuOpen ? 'is-open' : ''}`}>
+        <nav className="mobile-nav">
+          <Link href="/about" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+            Biz haqimizda
+          </Link>
+          <Link href="/search" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+            Bog&apos;chalar
+          </Link>
+          <Link href="/community" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+            7 mahalla
+          </Link>
+          {user ? (
+            <>
+              <Link href="/cabinet" className="mobile-nav-link flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
+                <User size={18} />
+                Kabinet
               </Link>
-            )}
-          </nav>
-        </div>
-      )}
+              <button onClick={() => { handleLogout(); setIsMenuOpen(false) }} className="mobile-nav-link text-left">
+                Chiqish
+              </button>
+            </>
+          ) : (
+            <Link href="/signin" className="mobile-nav-auth-btn text-center block" onClick={() => setIsMenuOpen(false)}>
+              Kirish
+            </Link>
+          )}
+        </nav>
+      </div>
     </header>
+  </>
   )
 }
 
