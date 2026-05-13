@@ -158,24 +158,32 @@ const Community = () => {
   const currentThread = threads.find(t => t.id === selectedThread)
 
   return (
-    <section className="community-section z-10 relative">
-      {/* Background Aurora Effects */}
-      <div className="community-aurora-top" />
-      <div className="community-aurora-bottom" />
+    <section id="jamiyat" className="community-section relative z-10" aria-labelledby="jamiyat-heading">
+      <div className="community-aurora-merged" aria-hidden />
 
-      <div className="site-container relative z-10 flex flex-col h-full">
-        {/* Header */}
-        <header ref={headerRef} className="community-header flex justify-between items-center reveal-on-scroll">
-          <h1 className="flex items-center gap-4 text-3xl font-black text-white">
-            7 mahalla
-            <span className="community-pill">Community</span>
-            <span className="community-icon">💬</span>
-          </h1>
+      <div className="site-container relative z-10 flex h-full flex-col">
+        <header ref={headerRef} className="community-header reveal-on-scroll flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span className="mb-2 block text-sm font-bold uppercase tracking-widest text-[#d946ef]">
+              Fikr almashish
+            </span>
+            <h2 id="jamiyat-heading" className="flex flex-wrap items-center gap-3 text-2xl font-black text-white md:text-3xl">
+              <span className="inline-flex items-center gap-2">
+                <MessageSquare className="text-[#d946ef]" size={28} strokeWidth={2} aria-hidden />
+                7 mahalla
+              </span>
+              <span className="community-pill">Community</span>
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-white/55 md:text-base">
+              Savol-javob, maslahat va tajriba — barchasi bir joyda.
+            </p>
+          </div>
           <button
+            type="button"
             onClick={() => router.push('/community')}
-            className="btn-secondary !px-8 !py-3 !text-sm"
+            className="btn-secondary shrink-0 self-start sm:self-auto !px-8 !py-3 !text-sm"
           >
-            Barchasini ko'rish
+            Barchasini ko&apos;rish
             <ChevronRight size={18} />
           </button>
         </header>

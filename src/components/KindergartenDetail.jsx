@@ -4,9 +4,9 @@ import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import {
   ChevronLeft, Star, MapPin, Clock, Phone, Globe, Users, BookOpen,
-  Heart, Send, Loader2, Calendar, Utensils, Share2, CheckCircle2,
+  Heart, Loader2, Calendar, Utensils, Share2, CheckCircle2,
   ImageIcon, Navigation, X, Waves, Moon, MessageSquare, Sparkles,
-  Gamepad2, Stethoscope
+  Gamepad2, Stethoscope, Check
 } from 'lucide-react'
 import Header from './Header'
 import Footer from './Footer'
@@ -98,18 +98,30 @@ const KindergartenDetail = ({ id }) => {
     score: 5
   })
   const [submittingReview, setSubmittingReview] = useState(false)
+  const [reviewSubmitError, setReviewSubmitError] = useState('')
 
   // Lightbox state
   const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [headerVisible, setHeaderVisible] = useState(true)
+  const [shareHint, setShareHint] = useState(null)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY)
       setIsScrolled(window.scrollY > 50)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setLightboxOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightboxOpen])
 
   useEffect(() => {
     async function fetchData() {
@@ -172,6 +184,7 @@ const KindergartenDetail = ({ id }) => {
 
   const handleSubmitReview = async (e) => {
     e.preventDefault()
+    setReviewSubmitError('')
     setSubmittingReview(true)
 
     try {
@@ -184,10 +197,11 @@ const KindergartenDetail = ({ id }) => {
       const newReviews = await getReviews(id)
       setReviews(Array.isArray(newReviews) ? newReviews : newReviews?.data || [])
       setReviewForm({ authorName: '', commentText: '', score: 5 })
+      setReviewSubmitError('')
       setShowReviewForm(false)
     } catch (err) {
       console.error('Error submitting review:', err)
-      alert('Xatolik yuz berdi')
+      setReviewSubmitError("Yuborib bo'lmadi. Internetni tekshirib, qayta urinib ko'ring.")
     } finally {
       setSubmittingReview(false)
     }
@@ -224,24 +238,69 @@ const KindergartenDetail = ({ id }) => {
     return `${h}:${m}`;
   }
 
+  const goBack = () => {
+    if (typeof window === 'undefined') {
+      router.push('/search')
+      return
+    }
+    if (window.history.length > 1) router.back()
+    else router.push('/search')
+  }
+
+  const handleShare = async () => {
+    if (!kindergarten) return
+    const url = typeof window !== 'undefined' ? window.location.href : ''
+    const title = kindergarten.name
+    try {
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        await navigator.share({ title, url })
+        setShareHint('shared')
+        setTimeout(() => setShareHint(null), 2000)
+        return
+      }
+    } catch (err) {
+      if (err?.name === 'AbortError') return
+    }
+    try {
+      await navigator.clipboard.writeText(url)
+      setShareHint('copied')
+      setTimeout(() => setShareHint(null), 2000)
+    } catch {
+      setShareHint('fail')
+      setTimeout(() => setShareHint(null), 2500)
+    }
+  }
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#090318] flex items-center justify-center">
-        <Loader2 className="w-12 h-12 text-[#d946ef] animate-spin" />
+      <div className="kg-detail-shell flex min-h-screen flex-col items-center justify-center bg-[#090318] px-4 pt-11 text-center">
+        <Loader2 className="h-10 w-10 animate-spin text-[#d946ef]" aria-hidden />
+        <p className="mt-4 text-sm text-white/50">Ma&apos;lumot yuklanmoqda…</p>
       </div>
     )
   }
 
   if (error || !kindergarten) {
     return (
-      <div className="min-h-screen bg-[#090318] flex flex-col items-center justify-center text-white p-4 text-center">
-        <p className="text-xl mb-4 text-gray-400">Ma'lumot topilmadi</p>
-        <button
-          onClick={() => router.push('/search')}
-          className="px-8 py-3 bg-[#d946ef] text-white rounded-2xl hover:opacity-90 font-bold shadow-lg shadow-[#d946ef]/20 transition-all"
-        >
-          Qidiruvga qaytish
-        </button>
+      <div className="kg-detail-shell flex min-h-screen flex-col items-center justify-center bg-[#090318] px-4 pt-11 text-center text-white">
+        <p className="mb-2 text-lg text-gray-400">Ma&apos;lumot topilmadi</p>
+        <p className="mb-6 max-w-sm text-sm text-white/40">Bog&apos;cha o&apos;chirilgan yoki havola noto&apos;g&apos;ri bo&apos;lishi mumkin.</p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => router.push('/search')}
+            className="rounded-2xl bg-[#d946ef] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#d946ef]/20 transition-opacity hover:opacity-90"
+          >
+            Qidiruvga o&apos;tish
+          </button>
+          <button
+            type="button"
+            onClick={() => router.push('/')}
+            className="rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-bold text-white/90 transition-colors hover:bg-white/10"
+          >
+            Bosh sahifa
+          </button>
+        </div>
       </div>
     )
   }
@@ -251,42 +310,104 @@ const KindergartenDetail = ({ id }) => {
     transform: `translateY(${scrollY * 0.4}px)`,
   }
 
-  return (
-    <div className="min-h-screen bg-[#090318] selection:bg-[#d946ef]/30 font-sans pb-24 lg:pb-0">
-      <Header className="fixed top-0 left-0 right-0 z-50" hideOnScroll enableSticky />
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ChildCare',
+    name: kindergarten.name,
+    description: kindergarten.description || undefined,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: kindergarten.address || undefined,
+      addressLocality: kindergarten.districtName || kindergarten.district?.districtName || 'Toshkent',
+      addressCountry: 'UZ',
+    },
+    telephone: kindergarten.phoneNumber || undefined,
+    geo: kindergarten.latitude && kindergarten.longitude ? {
+      '@type': 'GeoCoordinates',
+      latitude: kindergarten.latitude,
+      longitude: kindergarten.longitude,
+    } : undefined,
+    aggregateRating: reviews.length > 0 ? {
+      '@type': 'AggregateRating',
+      ratingValue: kindergarten.score?.toFixed(1),
+      reviewCount: reviews.length,
+      bestRating: '5',
+      worstRating: '1',
+    } : undefined,
+    image: kindergarten.profilePhoto || undefined,
+    url: `https://birbola.uz/kindergarten/${kindergarten.id}`,
+  }
 
-      {/* Sticky Top Bar & Navigation */}
-      <div className={`sticky top-16 z-40 transition-all duration-300 ${isScrolled ? 'bg-[#090318]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between gap-4">
+  return (
+    <div className="kg-detail-shell min-h-screen bg-[#090318] pb-24 font-sans selection:bg-[#d946ef]/30 lg:pb-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <Header
+        className="fixed top-0 left-0 right-0 z-50"
+        compact
+        hideOnScroll
+        enableSticky={false}
+        isTransparentInitially={false}
+        onScrollHideChange={setHeaderVisible}
+      />
+
+      <div
+        className={`kg-sticky-subnav sticky z-40 transition-all duration-300 ${!headerVisible ? 'kg-sticky-subnav--lifted' : ''} ${isScrolled ? 'border-b border-white/5 bg-[#090318]/90 shadow-lg backdrop-blur-xl' : 'border-b border-transparent bg-transparent'}`}
+      >
+        <div className="relative mx-auto max-w-7xl px-3 py-2 sm:px-5 sm:py-2.5 lg:px-6">
+          <div className="flex items-center justify-between gap-3">
             <button
-              onClick={() => router.back()}
-              className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#d946ef] hover:border-[#d946ef] transition-all flex-shrink-0"
+              type="button"
+              onClick={goBack}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all hover:border-[#d946ef] hover:bg-[#d946ef] hover:text-white"
+              aria-label="Orqaga"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} />
             </button>
 
-            <h1 className={`text-lg font-bold text-white truncate text-center flex-1 transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
+            <p
+              className={`min-w-0 flex-1 truncate text-center text-sm font-bold text-white transition-opacity duration-300 sm:text-base ${isScrolled ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+              role="status"
+            >
               {kindergarten.name}
-            </h1>
+            </p>
 
-            <button className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#d946ef] hover:border-[#d946ef]/50 transition-all flex-shrink-0">
-              <Share2 size={20} />
+            <button
+              type="button"
+              onClick={handleShare}
+              className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all hover:border-[#d946ef]/50 hover:text-[#d946ef]"
+              aria-label="Ulashish"
+            >
+              {shareHint === 'copied' || shareHint === 'shared' ? <Check size={18} className="text-emerald-400" /> : <Share2 size={18} />}
             </button>
           </div>
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <main className="mx-auto max-w-7xl px-3 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-6">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
 
           {/* Main Content Column */}
-          <div className="lg:col-span-8 space-y-8">
+          <div className="lg:col-span-8 space-y-6 lg:space-y-7">
 
             {/* Immersive Hero Card */}
-            <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 group shadow-2xl backdrop-blur-xl">
+            <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] shadow-2xl backdrop-blur-xl sm:rounded-[2rem]">
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0f0a1f] via-[#0f0a1f]/40 to-transparent" />
-              <div className="relative h-[28rem] sm:h-[32rem] overflow-hidden cursor-pointer" onClick={() => setLightboxOpen(true)}>
+              <div
+                className="relative h-[18rem] cursor-pointer overflow-hidden sm:h-[22rem] lg:h-[26rem]"
+                onClick={() => setLightboxOpen(true)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    setLightboxOpen(true)
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Rasmni kattalashtirish"
+              >
                 <img
                   style={heroStyle}
                   src={kindergarten.profilePhoto || Logo}
@@ -304,8 +425,8 @@ const KindergartenDetail = ({ id }) => {
                 </div>
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 z-20 transform translate-y-0 transition-transform">
-                <div className="space-y-4">
+              <div className="absolute bottom-0 left-0 right-0 z-20 p-4 sm:p-6 lg:p-8">
+                <div className="space-y-3 sm:space-y-4">
                   <div className="flex flex-wrap gap-2">
                     {kindergarten.isPremium && (
                       <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg shadow-orange-500/20">PREMIUM</span>
@@ -317,7 +438,7 @@ const KindergartenDetail = ({ id }) => {
                     )}
                   </div>
 
-                  <h1 className="text-3xl sm:text-5xl font-extrabold text-white leading-tight">{kindergarten.name}</h1>
+                  <h1 className="text-2xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">{kindergarten.name}</h1>
 
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-gray-300">
                     <a href="#map" className="flex items-center gap-2 text-white/80 hover:text-[#d946ef] transition-colors">
@@ -334,8 +455,8 @@ const KindergartenDetail = ({ id }) => {
               </div>
             </div>
 
-            {/* Tabs Navigation */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-4 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+            <nav className="-mx-3 flex items-center gap-1.5 overflow-x-auto px-3 pb-1 no-scrollbar sm:mx-0 sm:gap-2 sm:px-0" aria-label="Bog'cha bo'limlari">
+              <div className="flex min-w-0 gap-1.5 sm:gap-2" role="tablist">
               {[
                 { id: 'info', label: "Ma'lumot", icon: BookOpen },
                 { id: 'groups', label: `Guruhlar (${groups.length})`, icon: Users },
@@ -343,26 +464,38 @@ const KindergartenDetail = ({ id }) => {
               ].map(tab => (
                 <button
                   key={tab.id}
+                  type="button"
+                  role="tab"
+                  id={`kg-tab-${tab.id}`}
+                  aria-selected={activeTab === tab.id}
+                  aria-controls={`kg-panel-${tab.id}`}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-5 py-3 rounded-2xl whitespace-nowrap font-bold text-sm transition-all border ${activeTab === tab.id
-                    ? 'bg-[#d946ef] text-white border-[#d946ef] shadow-lg shadow-[#d946ef]/25'
-                    : 'bg-[#1a152e] text-gray-400 border-white/5 hover:text-white hover:border-white/10'
-                    }`}
+                  className={`flex shrink-0 items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-bold whitespace-nowrap transition-all sm:gap-2 sm:rounded-2xl sm:px-4 sm:py-2.5 sm:text-sm ${
+                    activeTab === tab.id
+                      ? 'border-[#d946ef] bg-[#d946ef] text-white shadow-lg shadow-[#d946ef]/25'
+                      : 'border-white/5 bg-[#1a152e] text-gray-400 hover:border-white/10 hover:text-white'
+                  }`}
                 >
-                  <tab.icon size={16} />
+                  <tab.icon size={16} aria-hidden />
                   {tab.label}
                 </button>
               ))}
-            </div>
+              </div>
+            </nav>
 
             {/* Tab Content */}
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-6 sm:p-8 relative overflow-hidden">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl sm:rounded-[2rem] sm:p-7">
               <div className="absolute top-0 right-0 w-96 h-96 bg-[#d946ef]/5 rounded-full blur-[100px] pointer-events-none" />
               <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#ec4899]/5 rounded-full blur-[100px] pointer-events-none" />
 
               {/* Info Tab */}
               {activeTab === 'info' && (
-                <div className="space-y-10 animate-fadeIn relative z-10">
+                <div
+                  id="kg-panel-info"
+                  role="tabpanel"
+                  aria-labelledby="kg-tab-info"
+                  className="relative z-10 animate-fadeIn space-y-8 sm:space-y-10"
+                >
                   {kindergarten.description && (
                     <div className="prose prose-invert max-w-none">
                       <h3 className="text-xl font-bold text-white mb-4">Bog'cha haqida</h3>
@@ -428,7 +561,12 @@ const KindergartenDetail = ({ id }) => {
 
               {/* Groups Tab */}
               {activeTab === 'groups' && (
-                <div className="animate-fadeIn relative z-10">
+                <div
+                  id="kg-panel-groups"
+                  role="tabpanel"
+                  aria-labelledby="kg-tab-groups"
+                  className="relative z-10 animate-fadeIn"
+                >
                   {groups.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-12 text-gray-500">
                       <Users size={48} className="mb-4 opacity-50 stroke-1" />
@@ -466,7 +604,12 @@ const KindergartenDetail = ({ id }) => {
 
               {/* Reviews Tab */}
               {activeTab === 'reviews' && (
-                <div className="animate-fadeIn space-y-8 relative z-10">
+                <div
+                  id="kg-panel-reviews"
+                  role="tabpanel"
+                  aria-labelledby="kg-tab-reviews"
+                  className="relative z-10 animate-fadeIn space-y-6 sm:space-y-8"
+                >
 
                   {/* Reviews Summary */}
                   <div className="bg-white/5 rounded-2xl p-6 border border-white/5">
@@ -497,7 +640,11 @@ const KindergartenDetail = ({ id }) => {
 
                       <div className="w-full md:w-auto">
                         <button
-                          onClick={() => setShowReviewForm(!showReviewForm)}
+                          type="button"
+                          onClick={() => {
+                            setReviewSubmitError('')
+                            setShowReviewForm(!showReviewForm)
+                          }}
                           className="w-full md:w-auto px-6 py-3 bg-[#d946ef] text-white rounded-xl font-bold shadow-lg shadow-[#d946ef]/20 hover:scale-105 transition-transform"
                         >
                           Sharh yozish
@@ -507,8 +654,11 @@ const KindergartenDetail = ({ id }) => {
                   </div>
 
                   {showReviewForm && (
-                    <form onSubmit={handleSubmitReview} className="bg-[#1a152e] border border-white/10 rounded-2xl p-6 animate-fadeIn">
-                      <h4 className="text-lg font-bold text-white mb-4">Sizning fikringiz</h4>
+                    <form onSubmit={handleSubmitReview} className="animate-fadeIn rounded-2xl border border-white/10 bg-[#1a152e] p-5 sm:p-6">
+                      <h4 className="mb-3 text-base font-bold text-white sm:text-lg">Sizning fikringiz</h4>
+                      {reviewSubmitError ? (
+                        <p className="mb-3 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">{reviewSubmitError}</p>
+                      ) : null}
                       <div className="space-y-4">
                         <input
                           type="text"
@@ -560,7 +710,11 @@ const KindergartenDetail = ({ id }) => {
                               </div>
                             </div>
                           </div>
-                          <button onClick={() => handleLikeReview(review.id)} className="flex items-center gap-1 text-gray-500 hover:text-red-500 transition-colors">
+                          <button
+                            type="button"
+                            onClick={() => handleLikeReview(review.id)}
+                            className="flex items-center gap-1 text-gray-500 transition-colors hover:text-red-500"
+                          >
                             <Heart size={16} /> <span className="text-xs">{review.likes || 0}</span>
                           </button>
                         </div>
@@ -574,9 +728,9 @@ const KindergartenDetail = ({ id }) => {
 
             {/* Similar Kindergartens */}
             {similarKindergartens.length > 0 && (
-              <div className="pt-8">
-                <h3 className="text-2xl font-bold text-white mb-6">O'xshash bog'chalar</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="pt-6 lg:pt-7">
+                <h3 className="mb-4 text-xl font-bold text-white sm:text-2xl">O&apos;xshash bog&apos;chalar</h3>
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
                   {similarKindergartens.map(kg => (
                     <KindergartenCard key={kg.id} kg={kg} onClick={() => router.push(`/kindergarten/${kg.id}`)} />
                   ))}
@@ -586,26 +740,28 @@ const KindergartenDetail = ({ id }) => {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-[100px]">
+          <div
+            className={`kg-detail-sidebar space-y-5 lg:sticky lg:col-span-4 lg:self-start ${!headerVisible ? 'kg-sticky-subnav--lifted' : ''}`}
+          >
 
             {/* Price Card */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-[#d946ef]/20 to-[#ec4899]/10 rounded-[2.5rem] p-8 text-white border border-[#d946ef]/20 backdrop-blur-xl shadow-2xl shadow-[#d946ef]/10">
+            <div className="relative overflow-hidden rounded-2xl border border-[#d946ef]/20 bg-gradient-to-br from-[#d946ef]/20 to-[#ec4899]/10 p-6 text-white shadow-2xl shadow-[#d946ef]/10 backdrop-blur-xl sm:rounded-[2rem] sm:p-7">
               <div className="absolute -right-12 -top-12 w-40 h-40 bg-[#d946ef]/10 rounded-full blur-3xl" />
               <div className="absolute -left-12 -bottom-12 w-40 h-40 bg-[#ec4899]/10 rounded-full blur-3xl" />
               <div className="relative z-10">
                 <p className="text-[#d946ef] font-bold text-xs tracking-wider uppercase mb-2">Oylik to'lov</p>
                 <p className="text-4xl font-extrabold mb-1 text-white">{formatPrice(kindergarten.price)}</p>
                 <p className="text-gray-400 text-sm mb-6">Sifatli ta'lim uchun</p>
-                <button className="w-full py-4 bg-[#d946ef] text-white rounded-2xl font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-[#d946ef]/30 flex items-center justify-center gap-2">
-                  <CheckCircle2 size={20} /> Ariza qoldirish
+                <button type="button" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#d946ef] py-3.5 text-sm font-bold text-white shadow-lg shadow-[#d946ef]/30 transition-transform active:scale-[0.99] sm:rounded-2xl sm:py-4">
+                  <CheckCircle2 size={18} aria-hidden /> Ariza qoldirish
                 </button>
                 <p className="text-center text-white/50 text-xs mt-4 font-medium">Xavfsiz va tezkor ro'yxatga olish</p>
               </div>
             </div>
 
             {/* Info Card */}
-            <div className="bg-white/5 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-xl space-y-6">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-6">
+            <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl sm:rounded-[2rem] sm:p-6">
+              <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-white sm:text-lg">
                 <span className="w-3 h-3 rounded-full bg-[#d946ef]" /> Asosiy ma'lumot
               </h3>
               {[
@@ -630,9 +786,8 @@ const KindergartenDetail = ({ id }) => {
               ))}
             </div>
 
-            {/* Map Placeholder */}
-            <div className="bg-[#1a152e] rounded-[2.5rem] p-2 border border-white/10 overflow-hidden h-72 relative group transition-all transform hover:scale-[1.01] hover:shadow-2xl hover:shadow-[#d946ef]/10">
-              <div className="w-full h-full rounded-[2rem] bg-[#0f0a1f] relative overflow-hidden z-0">
+            <div className="group relative h-60 overflow-hidden rounded-2xl border border-white/10 bg-[#1a152e] p-1.5 transition-transform hover:scale-[1.01] hover:shadow-2xl hover:shadow-[#d946ef]/10 sm:h-72 sm:rounded-[2rem] sm:p-2">
+              <div id="map" className="relative z-0 h-full w-full overflow-hidden rounded-[1.25rem] bg-[#0f0a1f] sm:rounded-[2rem]">
                 <KindergartenMap
                   lat={kindergarten.latitude || 41.2995}
                   lng={kindergarten.longitude || 69.2401}
@@ -642,17 +797,39 @@ const KindergartenDetail = ({ id }) => {
               </div>
             </div>
 
+            {kindergarten.latitude != null && kindergarten.longitude != null && (
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${kindergarten.latitude},${kindergarten.longitude}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              >
+                <Navigation size={18} aria-hidden /> Marshrut (Google xarita)
+              </a>
+            )}
           </div>
         </div>
       </main>
 
       {/* Mobile Sticky Bottom Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#1a152e]/90 backdrop-blur-xl border-t border-white/10 p-4 z-50 pb-safe">
-        <div className="flex gap-4 max-w-lg mx-auto">
-          <a href={`tel:${kindergarten.phoneNumber}`} className="flex-1 py-3.5 bg-white/5 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-white/10 active:scale-95 transition-all">
-            <Phone size={18} /> Qo'ng'iroq
-          </a>
-          <button className="flex-[2] py-3.5 bg-[#d946ef] text-white rounded-xl font-bold shadow-lg shadow-[#d946ef]/20 active:scale-95 transition-all">
+      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-[#1a152e]/90 p-3 backdrop-blur-xl pb-safe lg:hidden">
+        <div className="mx-auto flex max-w-lg gap-3">
+          {kindergarten.phoneNumber ? (
+            <a
+              href={`tel:${kindergarten.phoneNumber}`}
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white/5 py-3 text-sm font-bold text-white transition-all hover:bg-white/10 active:scale-[0.99]"
+            >
+              <Phone size={18} aria-hidden /> Qo&apos;ng&apos;iroq
+            </a>
+          ) : (
+            <span className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-sm font-medium text-white/35">
+              <Phone size={18} aria-hidden /> Telefon yo&apos;q
+            </span>
+          )}
+          <button
+            type="button"
+            className="flex-[1.4] rounded-xl bg-[#d946ef] py-3 text-sm font-bold text-white shadow-lg shadow-[#d946ef]/20 transition-transform active:scale-[0.99]"
+          >
             Ariza qoldirish
           </button>
         </div>
@@ -660,14 +837,27 @@ const KindergartenDetail = ({ id }) => {
 
       {/* Lightbox Modal */}
       {lightboxOpen && (
-        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn" onClick={() => setLightboxOpen(false)}>
-          <button className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors p-2">
-            <X size={32} />
+        <div
+          className="fixed inset-0 z-[100] flex animate-fadeIn items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
+          onClick={() => setLightboxOpen(false)}
+          role="presentation"
+        >
+          <button
+            type="button"
+            className="absolute right-4 top-4 z-[1] rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+            onClick={(e) => {
+              e.stopPropagation()
+              setLightboxOpen(false)
+            }}
+            aria-label="Yopish"
+          >
+            <X size={28} />
           </button>
           <img
             src={kindergarten.profilePhoto || Logo}
             alt={kindergarten.name}
-            className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            className="max-h-[90vh] max-w-full rounded-lg object-contain shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
           />
         </div>
       )}

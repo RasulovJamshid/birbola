@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 
 // Assets now served from public folder
@@ -109,30 +111,32 @@ const WhyChooseUs = () => {
   }, [])
 
   return (
-    <section className="why-choose-us py-32 relative">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] pointer-events-none opacity-20">
-        <div className="absolute top-0 left-0 w-full h-full bg-grid opacity-30" />
-        <div className="section-glow glow-gold opacity-30 blur-[150px] scale-[1.5]" />
+    <section
+      id="afzalliklar"
+      className="why-choose-us relative overflow-hidden py-20 md:py-28"
+      aria-labelledby="afzalliklar-heading"
+    >
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[min(100vw,720px)] w-[min(100vw,720px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.08]">
+        <div className="bg-grid absolute inset-0 opacity-40" />
       </div>
 
       <div className="site-container relative z-10">
-        <div ref={titleRef} className="reveal-on-scroll text-center mb-24">
-          <span className="text-[#d946ef] font-bold text-sm tracking-widest uppercase mb-4 block">Afzalliklarimiz</span>
-          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight mb-6">
-            Nega ota-onalar <span className="text-[#d946ef]">"birbola"</span> ni tanlaydi?
+        <div ref={titleRef} className="reveal-on-scroll mb-16 text-center md:mb-20">
+          <span className="mb-4 block text-sm font-bold uppercase tracking-widest text-[#d946ef]">Afzalliklarimiz</span>
+          <h2 id="afzalliklar-heading" className="mb-6 text-3xl font-black tracking-tight text-white md:text-5xl">
+            Nega ota-onalar <span className="text-[#d946ef]">&quot;birbola&quot;</span> ni tanlaydi?
           </h2>
-          <div className="w-24 h-1 bg-[#d946ef] mx-auto rounded-full opacity-50" />
+          <div className="mx-auto h-1.5 w-24 rounded-full bg-gradient-to-r from-transparent via-[#d946ef] to-transparent opacity-80" />
         </div>
 
         <div className="why-grid-v2 relative">
-          {/* Central Animated Element */}
-          <div className="why-connector">
+          <div className="why-connector" aria-hidden>
             <div className="why-connector-inner">
               <div className="why-connector-ring" />
               <div className="why-connector-ring" />
-              <div className="why-center-orb !animate-none !shadow-none !translate-x-0 !translate-y-0 !static !w-32 !h-32 !p-4 !m-auto flex items-center justify-center">
-                <img src={logoIcon} alt="Birbola" className="why-orb-icon !w-20 !h-20" />
+              <div className="why-center-orb relative m-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-white/10 to-transparent border border-white/10 shadow-[0_0_30px_rgba(217,70,239,0.2)] backdrop-blur-xl md:h-28 md:w-28">
+                <div className="absolute inset-0 rounded-full bg-[#d946ef]/10 blur-xl" />
+                <img src={logoIcon} alt="" className="why-orb-icon relative z-10 h-12 w-12 opacity-90 drop-shadow-[0_0_15px_rgba(217,70,239,0.5)] md:h-14 md:w-14" width={64} height={64} />
               </div>
             </div>
           </div>

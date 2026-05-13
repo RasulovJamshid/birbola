@@ -253,6 +253,7 @@ export async function getCurrentUser(accessToken) {
  * @param {number} params.score - Minimum rating score
  * @param {number} params.pageNumber - Page number (1-indexed)
  * @param {number} params.pageSize - Items per page (5-100)
+ * @param {number} params.sort - Optional list sort (e.g. 0: recent / newest first), if supported by API
  */
 export async function getKindergartens(params = {}, options = {}) {
   const queryParams = new URLSearchParams()
@@ -263,6 +264,9 @@ export async function getKindergartens(params = {}, options = {}) {
   if (params.score) queryParams.append('Score', params.score)
   if (params.pageNumber) queryParams.append('PageNumber', params.pageNumber)
   if (params.pageSize) queryParams.append('PageSize', params.pageSize)
+  if (params.sort !== undefined && params.sort !== null && params.sort !== '') {
+    queryParams.append('Sort', params.sort)
+  }
 
   // Handle array parameters
   if (params.districtId?.length) {

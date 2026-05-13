@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Providers } from './providers'
+import Toast from '@/src/components/Toast'
 
 export const metadata: Metadata = {
   title: {
@@ -67,10 +68,21 @@ export default function RootLayout({
       <head>
         {/* Telegram Login Widget */}
         <script async src="https://telegram.org/js/telegram-widget.js"></script>
+        <link rel="preconnect" href="https://api.birbola.uz" />
+        <link rel="preconnect" href="https://auth.birbola.uz" />
       </head>
       <body className="antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#d946ef] focus:text-white focus:rounded-xl focus:font-bold focus:outline-none"
+        >
+          Asosiy kontentga o&apos;tish
+        </a>
         <Providers>
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
+          <Toast />
         </Providers>
       </body>
     </html>

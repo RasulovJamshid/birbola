@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import {
-  MessageCircle, Heart, Send, Trash2, MoreVertical,
+  MessageCircle, Heart, Send, Trash2,
   Search, Plus, X, AlertCircle, CheckCircle2,
-  ChevronRight, ArrowLeft, Loader2
+  ArrowLeft, Loader2, Lock
 } from 'lucide-react'
 import {
   getCommunityFeed,
@@ -74,20 +74,6 @@ const CommunityFeed = () => {
   const [user, setUser] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  // Scroll hide state
-  const [isHeaderHidden, setIsHeaderHidden] = useState(false)
-  const lastScrollYRef = useRef(0)
-
-  const handleScroll = (e) => {
-    const currentScrollY = e.target.scrollTop
-    if (currentScrollY > lastScrollYRef.current && currentScrollY > 50) {
-      if (!isHeaderHidden) setIsHeaderHidden(true)
-    } else if (currentScrollY < lastScrollYRef.current) {
-      if (isHeaderHidden) setIsHeaderHidden(false)
-    }
-    lastScrollYRef.current = currentScrollY
-  }
-
   // Toasts
   const [toasts, setToasts] = useState([])
 
@@ -143,6 +129,18 @@ const CommunityFeed = () => {
   useEffect(() => {
     fetchPosts()
   }, [accessToken, activeTab, sortBy])
+
+  useEffect(() => {
+    if (!showCreatePost && !showLoginPrompt) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setShowCreatePost(false)
+        setShowLoginPrompt(false)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [showCreatePost, showLoginPrompt])
 
   const addToast = (message, type = 'success') => {
     const id = Date.now()
@@ -277,7 +275,8 @@ const CommunityFeed = () => {
       await createComment({ postId: selectedPost.id, content: newCommentContent }, accessToken)
       setNewCommentContent('')
       addToast("Izohingiz qo'shildi")
-      fetchComments(selectedPost.id)
+      await fetchComments(selectedPost.id)
+      setTimeout(scrollCommentsToEnd, 120)
     } catch (err) {
       addToast('Izoh qoldirishda xatolik', 'error')
     } finally {
@@ -324,65 +323,126 @@ const CommunityFeed = () => {
     fetchPosts()
   }
 
+  const filteredPosts = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase()
+    if (!q) return posts
+    return posts.filter((p) => p.content?.toLowerCase().includes(q))
+  }, [posts, searchQuery])
+
+  const scrollCommentsToEnd = useCallback(() => {
+    commentsEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+  }, [])
+
   return (
     <div className={`community-page-wrapper selection:bg-[#d946ef]/30 fixed inset-0 overflow-hidden flex flex-col bg-[#090318] ${selectedPost ? 'is-post-selected' : ''}`}>
       <div className="community-aurora-top" />
       <div className="community-aurora-bottom" />
       <div className="community-header">
-        <Header className="!static !bg-transparent !backdrop-blur-0 !border-none !p-0" isHiddenProp={false} isTransparentInitially={false} />
+        <Header className="!static !bg-transparent !backdrop-blur-0 !border-none !p-0" enableSticky={false} isTransparentInitially={false} />
       </div>
-      <main className="community-content">
+      <main className="community-content" id="community-main">
         <aside className="community-sidebar">
           <div className="sidebar-header-section">
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-2xl font-black text-white italic">7 <span className="text-[#d946ef]">Mahalla</span></h1>
-              <button onClick={() => isLoggedIn ? setShowCreatePost(true) : router.push('/signin')} className="p-2 bg-[#d946ef] text-white rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all">
-                <Plus size={20} />
+              <button
+                type="button"
+                onClick={() => (isLoggedIn ? setShowCreatePost(true) : router.push('/signin'))}
+                className="rounded-xl bg-[#d946ef] p-2 text-white shadow-lg transition-all hover:scale-105 active:scale-95"
+                aria-label={isLoggedIn ? 'Yangi post' : 'Tizimga kirish'}
+              >
+                <Plus size={20} aria-hidden />
               </button>
             </div>
             <div className="community-tabs">
               {[{ label: 'Barchasi', value: null }, { label: 'Savol', value: 1 }, { label: 'Umumiy', value: 0 }].map((tab) => (
-                <button key={tab.label} onClick={() => setActiveTab(tab.value)} className={`community-tab ${activeTab === tab.value ? 'is-active' : ''}`}>
+                <button key={tab.label} type="button" onClick={() => setActiveTab(tab.value)} className={`community-tab ${activeTab === tab.value ? 'is-active' : ''}`} aria-pressed={activeTab === tab.value}>
                   {tab.label}
                 </button>
               ))}
             </div>
+            <div className="mb-3 flex rounded-xl border border-white/5 bg-white/[0.03] p-1" role="group" aria-label="Saralash">
+              <button
+                type="button"
+                onClick={() => setSortBy(0)}
+                className={`flex-1 rounded-lg py-2 text-center text-xs font-bold transition-all ${sortBy === 0 ? 'bg-[#d946ef] text-white shadow-md shadow-[#d946ef]/25' : 'text-white/45 hover:text-white/80'}`}
+                aria-pressed={sortBy === 0}
+              >
+                Yangi
+              </button>
+              <button
+                type="button"
+                onClick={() => setSortBy(1)}
+                className={`flex-1 rounded-lg py-2 text-center text-xs font-bold transition-all ${sortBy === 1 ? 'bg-[#d946ef] text-white shadow-md shadow-[#d946ef]/25' : 'text-white/45 hover:text-white/80'}`}
+                aria-pressed={sortBy === 1}
+              >
+                Mashhur
+              </button>
+            </div>
             <div className="community-search-bar group">
-              <Search className="text-white/40 group-focus-within:text-[#d946ef] transition-colors" size={18} />
-              <input type="text" placeholder="Jamiyatdan izlash..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+              <Search className="flex-shrink-0 text-white/40 transition-colors group-focus-within:text-[#d946ef]" size={18} aria-hidden />
+              <input type="search" autoComplete="off" placeholder="Jamiyatdan izlash..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} aria-label="Postlarni qidirish" />
+              {searchQuery ? (
+                <button type="button" onClick={() => setSearchQuery('')} className="flex-shrink-0 rounded-lg p-1.5 text-white/40 transition-colors hover:bg-white/10 hover:text-white" aria-label="Qidiruvni tozalash">
+                  <X size={16} />
+                </button>
+              ) : null}
             </div>
           </div>
           <div className="community-list-wrapper custom-scrollbar">
             <ul className="community-list">
-              {loading ? Array(5).fill(0).map((_, i) => <SkeletonPost key={i} />) : posts.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-20 text-white/20 p-8 text-center">
-                  <MessageCircle size={48} className="mb-4 opacity-20" />
-                  <p className="font-medium">Hozircha hech narsa yo'q</p>
-                </div>
-              ) : posts.filter(p => !searchQuery || p.content?.toLowerCase().includes(searchQuery.toLowerCase())).map(post => (
-                <li key={post.id} onClick={() => handleSelectPost(post)} className={`community-list-item ${selectedPost?.id === post.id ? 'is-active' : ''}`}>
-                  <div className="community-list-avatar flex-shrink-0">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#d946ef]/20 to-[#c026d3]/20 flex items-center justify-center border border-white/10 overflow-hidden shadow-lg">
-                      {post.authorPhoto ? <img src={post.authorPhoto} alt="" className="w-full h-full object-cover" /> : <span className="text-[#d946ef] font-black text-lg">{post.authorName?.[0] || 'U'}</span>}
-                    </div>
-                  </div>
-                  <div className="community-list-content flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="community-list-name truncate mr-2">{post.authorName || 'Anonim'}</span>
-                      <span className="community-list-role flex-shrink-0">{PostTypeLabels[post.type] || 'Umumiy'}</span>
-                    </div>
-                    <p className="community-list-preview">{post.content}</p>
-                    <div className="flex items-center gap-3 mt-2">
-                      <div className="flex items-center gap-1 text-[10px] font-bold text-white/40 bg-white/5 px-2 py-0.5 rounded">
-                        <MessageCircle size={10} className="text-[#d946ef]" /> {post.commentsCount || 0}
-                      </div>
-                      <div className="flex items-center gap-1 text-[10px] font-bold text-white/40 bg-white/5 px-2 py-0.5 rounded">
-                        <Heart size={10} className="text-rose-500" /> {post.likesCount || 0}
-                      </div>
-                    </div>
-                  </div>
+              {loading ? Array(5).fill(0).map((_, i) => (
+                <li key={i} className="list-none">
+                  <SkeletonPost />
                 </li>
-              ))}
+              )) : posts.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-20 text-white/20 p-8 text-center">
+                  <MessageCircle size={48} className="mb-4 opacity-20" aria-hidden />
+                  <p className="font-medium text-white/50">Hozircha postlar yo&apos;q</p>
+                  <p className="mt-2 max-w-xs text-xs text-white/35">Yangi mavzu ochish uchun yuqoridagi + tugmasidan foydalaning.</p>
+                </div>
+              ) : filteredPosts.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-16 px-6 text-center text-white/40">
+                  <Search size={40} className="mb-3 opacity-30" aria-hidden />
+                  <p className="text-sm font-medium text-white/55">Natija topilmadi</p>
+                  <p className="mt-1 text-xs text-white/35">Boshqa kalit so&apos;z yoki filtrlarni sinab ko&apos;ring.</p>
+                  <button type="button" onClick={() => setSearchQuery('')} className="mt-4 text-xs font-bold text-[#d946ef] underline-offset-2 hover:underline">
+                    Qidiruvni tozalash
+                  </button>
+                </div>
+              ) : (
+                filteredPosts.map((post) => (
+                  <li key={post.id} className="list-none">
+                    <button
+                      type="button"
+                      onClick={() => handleSelectPost(post)}
+                      className={`community-list-item ${selectedPost?.id === post.id ? 'is-active' : ''}`}
+                      aria-current={selectedPost?.id === post.id ? 'true' : 'false'}
+                    >
+                      <div className="community-list-avatar flex-shrink-0">
+                        <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#d946ef]/20 to-[#c026d3]/20 shadow-lg">
+                          {post.authorPhoto ? <img src={post.authorPhoto} alt="" className="h-full w-full object-cover" /> : <span className="text-lg font-black text-[#d946ef]">{post.authorName?.[0] || 'U'}</span>}
+                        </div>
+                      </div>
+                      <div className="community-list-content min-w-0 flex-1">
+                        <div className="mb-1 flex items-center justify-between gap-2">
+                          <span className="community-list-name mr-2 truncate">{post.authorName || 'Anonim'}</span>
+                          <span className="community-list-role flex-shrink-0">{PostTypeLabels[post.type] || 'Umumiy'}</span>
+                        </div>
+                        <p className="community-list-preview">{post.content}</p>
+                        <div className="mt-2 flex items-center gap-3">
+                          <div className="flex items-center gap-1 rounded bg-white/5 px-2 py-0.5 text-[10px] font-bold text-white/40">
+                            <MessageCircle size={10} className="text-[#d946ef]" aria-hidden /> {post.commentsCount || 0}
+                          </div>
+                          <div className="flex items-center gap-1 rounded bg-white/5 px-2 py-0.5 text-[10px] font-bold text-white/40">
+                            <Heart size={10} className="text-rose-500" aria-hidden /> {post.likesCount || 0}
+                          </div>
+                        </div>
+                      </div>
+                    </button>
+                  </li>
+                ))
+              )}
             </ul>
           </div>
         </aside>
@@ -390,29 +450,29 @@ const CommunityFeed = () => {
           {selectedPost ? (
             <>
               <div className="chat-header">
-                <div className="flex items-center gap-4">
-                  <button onClick={handleBackToList} className="p-2 lg:hidden bg-white/5 rounded-lg mr-1">
-                    <ArrowLeft size={20} />
+                <div className="flex min-w-0 flex-1 items-start gap-3 lg:items-center">
+                  <button type="button" onClick={handleBackToList} className="mr-1 shrink-0 rounded-lg bg-white/5 p-2 lg:hidden" aria-label="Ro&apos;yxatga qaytish">
+                    <ArrowLeft size={20} aria-hidden />
                   </button>
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#d946ef]/20 to-[#c026d3]/20 flex items-center justify-center border border-white/10 shadow-lg">
-                    {selectedPost.authorPhoto ? <img src={selectedPost.authorPhoto} alt="" className="w-full h-full rounded-xl object-cover" /> : <span className="text-[#d946ef] font-black text-xl">{selectedPost.authorName?.[0] || 'U'}</span>}
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#d946ef]/20 to-[#c026d3]/20 shadow-lg">
+                    {selectedPost.authorPhoto ? <img src={selectedPost.authorPhoto} alt="" className="h-full w-full rounded-xl object-cover" /> : <span className="text-xl font-black text-[#d946ef]">{selectedPost.authorName?.[0] || 'U'}</span>}
                   </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-0.5">
-                      <h3 className="text-white font-black text-base">{selectedPost.authorName || 'Anonim'}</h3>
-                      <span className="px-2 py-0.5 bg-[#d946ef]/10 text-[#d946ef] text-[9px] font-black uppercase rounded-full border border-[#d946ef]/20">{PostTypeLabels[selectedPost.type] || 'Umumiy'}</span>
+                  <div className="min-w-0 flex-1 pr-2">
+                    <div className="mb-0.5 flex flex-wrap items-center gap-2">
+                      <h3 className="text-base font-black text-white">{selectedPost.authorName || 'Anonim'}</h3>
+                      <span className="rounded-full border border-[#d946ef]/20 bg-[#d946ef]/10 px-2 py-0.5 text-[9px] font-black uppercase text-[#d946ef]">{PostTypeLabels[selectedPost.type] || 'Umumiy'}</span>
                     </div>
-                    <p className="text-white/40 text-[10px] font-medium">{formatDate(selectedPost.createdAt)}</p>
+                    <p className="text-[10px] font-medium text-white/40">{formatDate(selectedPost.createdAt)}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex shrink-0 items-center gap-2 self-start pt-0.5 lg:self-auto lg:pt-0">
                   {selectedPost.authorId === user?.userId && (
-                    <button onClick={() => { if (confirm("O'chirilsinmi?")) deletePost(selectedPost.id, accessToken).then(fetchPosts) }} className="p-2 hover:bg-red-500/10 hover:text-red-400 rounded-xl transition-all">
-                      <Trash2 size={18} />
+                    <button type="button" onClick={() => { if (confirm("O'chirilsinmi?")) deletePost(selectedPost.id, accessToken).then(fetchPosts) }} className="rounded-xl p-2 transition-all hover:bg-red-500/10 hover:text-red-400" aria-label="Postni o&apos;chirish">
+                      <Trash2 size={18} aria-hidden />
                     </button>
                   )}
-                  <button onClick={() => handleLikePost(selectedPost.id)} className={`p-2 rounded-xl transition-all ${selectedPost.isLikedByMe ? 'text-red-500' : 'text-white/40 hover:text-white'}`}>
-                    <Heart size={20} className={selectedPost.isLikedByMe ? 'fill-red-500' : ''} />
+                  <button type="button" onClick={() => handleLikePost(selectedPost.id)} className={`rounded-xl p-2 transition-all ${selectedPost.isLikedByMe ? 'text-red-500' : 'text-white/40 hover:text-white'}`} aria-label={selectedPost.isLikedByMe ? 'Laykni olib tashlash' : 'Layk qo&apos;shish'}>
+                    <Heart size={20} className={selectedPost.isLikedByMe ? 'fill-red-500' : ''} aria-hidden />
                   </button>
                 </div>
               </div>
@@ -483,10 +543,12 @@ const CommunityFeed = () => {
               </div>
             </>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center p-12 text-center opacity-60">
-              <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6"><ArrowLeft size={32} className="text-white/20" /></div>
-              <h3 className="text-xl font-bold text-white mb-2">Suhbatga qo'shiling</h3>
-              <p className="text-white/40 text-sm max-w-sm mx-auto">Chap tomondagi ro'yxatdan postni tanlang yoki o'zingiz yangi mavzu oching</p>
+            <div className="flex flex-1 flex-col items-center justify-center p-8 text-center opacity-70 sm:p-12">
+              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-white/5">
+                <MessageCircle size={36} className="text-white/25" aria-hidden />
+              </div>
+              <h3 className="mb-2 text-xl font-bold text-white">Post tanlang</h3>
+              <p className="mx-auto max-w-sm text-sm text-white/45">Chapdagi ro&apos;yxatdan mavzuni tanlang. Mobil qurilmada post ochilganda to&apos;liq suhbat ochiladi.</p>
             </div>
           )}
         </div>
@@ -521,7 +583,9 @@ const CommunityFeed = () => {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" onClick={() => setShowLoginPrompt(false)} />
           <div className="relative w-full max-w-sm bg-white rounded-[40px] p-10 text-center shadow-2xl animate-fadeIn">
-            <div className="w-20 h-20 bg-[#d946ef]/10 rounded-3xl flex items-center justify-center mx-auto mb-6"><span className="text-4xl">🔐</span></div>
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-[#d946ef]/10 text-[#d946ef]">
+              <Lock size={40} strokeWidth={1.75} aria-hidden />
+            </div>
             <h3 className="text-2xl font-black text-[#090318] mb-3 tracking-tight">Tizimga kiring</h3>
             <p className="text-[#090318]/60 font-medium mb-8 leading-relaxed">{loginPromptMessage}</p>
             <div className="flex flex-col gap-3">

@@ -1,5 +1,33 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { getKindergartens, getDistricts, getKindergartenById, getReviews, getKindergartenGroups, getSubjects } from '../services/api'
+
+/** Paged list body from Kindergarten/GetAll (camelCase or PascalCase). */
+function extractPagedItems(response) {
+  if (Array.isArray(response)) return response
+  if (!response || typeof response !== 'object') return []
+  const topItems = response.items ?? response.Items
+  if (Array.isArray(topItems)) return topItems
+  const data = response.data ?? response.Data
+  if (Array.isArray(data)) return data
+  if (data && typeof data === 'object') {
+    const nested = data.items ?? data.Items
+    if (Array.isArray(nested)) return nested
+  }
+  return []
+}
+
+function readPagedMeta(response, filters, itemsLength) {
+  const pageNumber = response.pageNumber ?? response.PageNumber ?? filters.pageNumber
+  const pageSize = response.pageSize ?? response.PageSize ?? filters.pageSize
+  const totalCount = response.totalCount ?? response.TotalCount ?? itemsLength
+  const totalPages = response.totalPages ?? response.TotalPages
+  return {
+    pageNumber,
+    pageSize,
+    totalCount: typeof totalCount === 'number' ? totalCount : itemsLength,
+    totalPages: typeof totalPages === 'number' ? totalPages : null,
+  }
+}
 
 /**
  * Custom hook for fetching and managing kindergartens data
@@ -7,7 +35,9 @@ import { getKindergartens, getDistricts, getKindergartenById, getReviews, getKin
 export function useKindergartens(initialFilters = {}) {
   const [kindergartens, setKindergartens] = useState([])
   const [loading, setLoading] = useState(true)
+  const [isFetching, setIsFetching] = useState(false)
   const [error, setError] = useState(null)
+  const isFirstFetchRef = useRef(true)
   const [filters, setFilters] = useState({
     search: '',
     districtId: [],
@@ -29,31 +59,66 @@ export function useKindergartens(initialFilters = {}) {
   })
 
   const fetchKindergartens = useCallback(async () => {
-    setLoading(true)
+    if (isFirstFetchRef.current) {
+      setLoading(true)
+    }
+    setIsFetching(true)
     setError(null)
-    
+
     try {
       const response = await getKindergartens(filters)
       
       if (response) {
-        // Handle different response formats
         if (Array.isArray(response)) {
           setKindergartens(response)
           setPagination({
             currentPage: filters.pageNumber,
             totalPages: Math.ceil(response.length / filters.pageSize) || 1,
-            totalItems: response.length
-          })
-        } else if (response.data || response.items) {
-          const items = response.data || response.items || []
-          setKindergartens(items)
-          setPagination({
-            currentPage: response.pageNumber || filters.pageNumber,
-            totalPages: response.totalPages || Math.ceil((response.totalCount || items.length) / filters.pageSize),
-            totalItems: response.totalCount || items.length
+            totalItems: response.length,
           })
         } else {
-          setKindergartens([])
+          const items = extractPagedItems(response)
+          const meta = readPagedMeta(response, filters, items.length)
+          const apiTotal = meta.totalCount
+          const pageSize = filters.pageSize
+          const pageNum = filters.pageNumber
+
+          // API sometimes reports a huge totalCount but only returns rows for "page 1"
+          // and empty lists for page 2+ — avoid false totals and useless pagination.
+          const shouldSnapToFirstPage =
+            items.length === 0 &&
+            pageNum > 1 &&
+            apiTotal > pageSize * (pageNum - 1)
+
+          if (shouldSnapToFirstPage) {
+            setFilters((prev) => ({ ...prev, pageNumber: 1 }))
+            return
+          }
+
+          setKindergartens(items)
+
+          let totalItems = apiTotal
+          let totalPages =
+            meta.totalPages != null && meta.totalPages > 0
+              ? meta.totalPages
+              : Math.ceil(apiTotal / pageSize) || 1
+
+          const shortFirstPage =
+            pageNum === 1 &&
+            items.length > 0 &&
+            items.length < pageSize &&
+            apiTotal > items.length
+
+          if (shortFirstPage) {
+            totalItems = items.length
+            totalPages = 1
+          }
+
+          setPagination({
+            currentPage: meta.pageNumber || pageNum,
+            totalPages,
+            totalItems,
+          })
         }
       } else {
         setKindergartens([])
@@ -63,7 +128,9 @@ export function useKindergartens(initialFilters = {}) {
       setError(err.message)
       setKindergartens([])
     } finally {
+      setIsFetching(false)
       setLoading(false)
+      isFirstFetchRef.current = false
     }
   }, [filters])
 
@@ -102,6 +169,7 @@ export function useKindergartens(initialFilters = {}) {
   return {
     kindergartens,
     loading,
+    isFetching,
     error,
     filters,
     pagination,

@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { ChevronLeft, ChevronDown, Star, MapPin, Search, SlidersHorizontal, X, Filter, RotateCcw, Utensils, Languages, CalendarDays } from 'lucide-react'
+import { useState, useEffect, useMemo, useRef } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { ChevronLeft, ChevronDown, Star, Search, X, Filter, RotateCcw, Utensils, Languages, CalendarDays, LayoutGrid } from 'lucide-react'
 import Header from './Header'
 import Footer from './Footer'
 import KindergartenCard from './KindergartenCard'
@@ -64,8 +64,11 @@ const ratingOptions = [
 
 const SearchResults = () => {
   const router = useRouter()
-  const [searchQuery, setSearchQuery] = useState('')
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('')
+  const searchParams = useSearchParams()
+  const qFromUrl = searchParams.get('q') ?? ''
+  const [searchQuery, setSearchQuery] = useState(qFromUrl)
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(qFromUrl)
+  const [sortBy, setSortBy] = useState(0)
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [selectedFeatures, setSelectedFeatures] = useState([])
   const [selectedLanguages, setSelectedLanguages] = useState([])
@@ -76,29 +79,55 @@ const SearchResults = () => {
   const [priceRange, setPriceRange] = useState([0, 250000000])
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false)
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
   const [isScrolled, setIsScrolled] = useState(false)
+  const searchScrollYRef = useRef(0)
 
   useEffect(() => {
+    searchScrollYRef.current = typeof window !== 'undefined' ? window.scrollY : 0
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      setIsScrolled(currentScrollY > 40)
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      const y = window.scrollY
+      setIsScrolled(y > 40)
+
+      const prev = searchScrollYRef.current
+      const delta = y - prev
+      if (y < 20) {
+        setIsHeaderVisible(true)
+      } else if (delta > 2 && y > 40) {
         setIsHeaderVisible(false)
-      } else {
+      } else if (delta < -2) {
         setIsHeaderVisible(true)
       }
-      setLastScrollY(currentScrollY)
+      searchScrollYRef.current = y
     }
 
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
+  }, [])
+
+  useEffect(() => {
+    if (!isMobileFilterOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [isMobileFilterOpen])
+
+  useEffect(() => {
+    if (!isMobileFilterOpen) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setIsMobileFilterOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [isMobileFilterOpen])
 
   const { 
     kindergartens, 
     loading, 
+    isFetching,
     error, 
     pagination, 
     updateFilters, 
@@ -113,6 +142,18 @@ const SearchResults = () => {
     }, 500)
     return () => clearTimeout(timer)
   }, [searchQuery])
+
+  useEffect(() => {
+    setSearchQuery((prev) => (qFromUrl !== prev ? qFromUrl : prev))
+    setDebouncedSearchQuery((prev) => (qFromUrl !== prev ? qFromUrl : prev))
+  }, [qFromUrl])
+
+  useEffect(() => {
+    const qs = debouncedSearchQuery.trim()
+      ? `?q=${encodeURIComponent(debouncedSearchQuery.trim())}`
+      : ''
+    router.replace(`/search${qs}`, { scroll: false })
+  }, [debouncedSearchQuery, router])
 
   // Debounced auto-apply filters
   useEffect(() => {
@@ -132,12 +173,13 @@ const SearchResults = () => {
         score: selectedRating ? parseFloat(selectedRating) : undefined,
         priceRangeStart: priceRange[0] > 0 ? priceRange[0] : null,
         priceRangeEnd: priceRange[1] < 250000000 ? priceRange[1] : null,
-        pageNumber: 1
+        pageNumber: 1,
+        sort: sortBy === 1 ? 1 : undefined
       })
     }, 300)
     
     return () => clearTimeout(timer)
-  }, [debouncedSearchQuery, selectedDistrict, selectedFeatures, selectedLanguages, selectedWorkingDays, selectedMeals, selectedRating, workingSchedule, priceRange])
+  }, [debouncedSearchQuery, selectedDistrict, selectedFeatures, selectedLanguages, selectedWorkingDays, selectedMeals, selectedRating, workingSchedule, priceRange, sortBy, updateFilters])
 
 
   const handleResetFilters = () => {
@@ -151,6 +193,7 @@ const SearchResults = () => {
     setWorkingSchedule('')
     setPriceRange([0, 250000000])
     
+    setSortBy(0)
     updateFilters({
       search: '',
       districtId: [],
@@ -161,7 +204,8 @@ const SearchResults = () => {
       score: undefined,
       priceRangeStart: null,
       priceRangeEnd: null,
-      pageNumber: 1
+      pageNumber: 1,
+      sort: undefined
     })
   }
 
@@ -182,54 +226,121 @@ const SearchResults = () => {
     if (e.key === 'Enter') setDebouncedSearchQuery(searchQuery)
   }
 
-  const getActiveFiltersCount = () => {
+  const getActiveFiltersCount = useMemo(() => {
     let count = 0
     if (selectedDistrict) count++
     count += selectedFeatures.length
     count += selectedLanguages.length
-    count += selectedWorkingDays.length
+    if (workingSchedule) count++
+    else count += selectedWorkingDays.length
     if (selectedMeals) count++
     if (selectedRating) count++
-    if (workingSchedule) count++
     if (priceRange[0] > 0 || priceRange[1] < 250000000) count++
+    if (sortBy !== 0) count++
     return count
-  }
+  }, [selectedDistrict, selectedFeatures, selectedLanguages, selectedWorkingDays, selectedMeals, selectedRating, workingSchedule, priceRange, sortBy])
 
   const renderActiveChips = () => {
     const chips = []
-    
+
     if (selectedDistrict) {
-      const district = districts.find(d => d.id.toString() === selectedDistrict)
-      if (district) chips.push({ label: district.districtName || district.name, type: 'district' })
+      const district = districts.find((d) => d.id.toString() === selectedDistrict)
+      if (district) {
+        chips.push({
+          key: 'district',
+          label: district.districtName || district.name,
+          onRemove: () => setSelectedDistrict(''),
+        })
+      }
     }
-    
-    selectedFeatures.forEach(f => chips.push({ label: featureLabels[f], type: 'feature', value: f }))
-    selectedLanguages.forEach(l => chips.push({ label: languageLabels[l], type: 'language', value: l }))
-    
+
+    selectedFeatures.forEach((f) =>
+      chips.push({
+        key: `f-${f}`,
+        label: featureLabels[f],
+        onRemove: () => toggleFeature(f),
+      })
+    )
+    selectedLanguages.forEach((l) =>
+      chips.push({
+        key: `l-${l}`,
+        label: languageLabels[l],
+        onRemove: () => toggleLanguage(l),
+      })
+    )
+
+    if (workingSchedule) {
+      const wo = workingScheduleOptions.find((o) => o.value.toString() === workingSchedule)
+      chips.push({
+        key: 'schedule',
+        label: wo?.label || workingSchedule,
+        onRemove: () => setWorkingSchedule(''),
+      })
+    } else {
+      selectedWorkingDays.forEach((d) =>
+        chips.push({
+          key: `wd-${d}`,
+          label: workingDaysLabels[d],
+          onRemove: () => toggleWorkingDay(d),
+        })
+      )
+    }
+
+    if (selectedMeals) {
+      chips.push({
+        key: 'meals',
+        label: mealsLabels[selectedMeals],
+        onRemove: () => setSelectedMeals(''),
+      })
+    }
+
+    if (selectedRating) {
+      const ro = ratingOptions.find((o) => String(o.value) === String(selectedRating))
+      chips.push({
+        key: 'rating',
+        label: ro?.label || `Reyting ${selectedRating}+`,
+        onRemove: () => setSelectedRating(''),
+      })
+    }
+
+    if (priceRange[0] > 0 || priceRange[1] < 250000000) {
+      chips.push({
+        key: 'price',
+        label: `Narx: ${(priceRange[0] / 1e6).toFixed(0)}–${(priceRange[1] / 1e6).toFixed(0)} mln`,
+        onRemove: () => setPriceRange([0, 250000000]),
+      })
+    }
+
+    if (sortBy !== 0) {
+      chips.push({
+        key: 'sort',
+        label: sortBy === 1 ? 'Reyting bo‘yicha' : 'Saralash',
+        onRemove: () => setSortBy(0),
+      })
+    }
+
     if (chips.length === 0) return null
 
     return (
-      <div className="flex flex-wrap gap-2 mb-6 animate-fadeIn">
-        {chips.map((chip, idx) => (
-          <div key={idx} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-white/70 hover:border-[#d946ef]/40 transition-colors">
-            {chip.label}
-            <button 
-              onClick={() => {
-                if (chip.type === 'district') setSelectedDistrict('')
-                if (chip.type === 'feature') toggleFeature(chip.value)
-                if (chip.type === 'language') toggleLanguage(chip.value)
-              }}
-              className="hover:text-[#d946ef] transition-colors"
+      <div className="flex flex-wrap gap-2 mb-4 animate-fadeIn" aria-label="Faol filtrlar">
+        {chips.map((chip) => (
+          <div
+            key={chip.key}
+            className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-white/80 hover:border-[#d946ef]/40 transition-colors"
+          >
+            <span className="max-w-[200px] sm:max-w-[280px] truncate">{chip.label}</span>
+            <button
+              type="button"
+              onClick={chip.onRemove}
+              className="shrink-0 rounded-full p-0.5 text-white/50 hover:text-[#d946ef] transition-colors"
+              aria-label={`${chip.label} filtrini olib tashlash`}
             >
               <X size={12} />
             </button>
           </div>
         ))}
-        <button 
-          onClick={handleResetFilters}
-          className="text-xs font-bold text-[#d946ef] hover:text-[#c026d3] ml-2 transition-colors"
-        >
-          Tozalash
+        <button type="button" onClick={handleResetFilters} className="text-xs font-bold text-[#d946ef] hover:text-[#c026d3] ml-1 transition-colors self-center">
+          Hammasini tozalash
         </button>
       </div>
     )
@@ -279,97 +390,180 @@ const SearchResults = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#090318] selection:bg-[#d946ef]/30 font-sans pt-[64px]">
-      <Header className="fixed top-0 left-0 right-0 z-50" hideOnScroll={true} enableSticky={false} isTransparentInitially={false} />
+    <div className="search-shell min-h-screen bg-[#090318] selection:bg-[#d946ef]/30 font-sans">
+      <Header
+        className="fixed top-0 left-0 right-0 z-50"
+        compact
+        hideOnScroll={true}
+        enableSticky={false}
+        isTransparentInitially={false}
+      />
 
-      <div className={`sticky top-[60px] z-100 sticky-search-bar ${!isHeaderVisible ? 'at-top' : ''} ${isScrolled ? 'is-scrolled' : ''} border-b border-white/5 py-4 px-4 sm:px-6 lg:px-8`}>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-4">
-          <div className={`flex items-center gap-4 transition-all duration-500 ${!isHeaderVisible ? 'md:mr-4' : ''}`}>
-            <button 
-              onClick={() => router.push('/')}
-              className="group w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-[#d946ef]/50 transition-all"
-            >
-              <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
-            </button>
-            <div className="flex flex-col">
-              <h1 className="text-xl font-bold text-white tracking-tight leading-tight">
-                Bog'chalar
-              </h1>
-              <span className={`text-[#d946ef] text-[10px] font-bold uppercase tracking-widest transition-all duration-500 ${!isHeaderVisible ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'}`}>
-                {pagination.totalItems} ta natija
-              </span>
+      <div
+        className={`sticky z-[100] sticky-search-bar ${!isHeaderVisible ? 'at-top' : ''} ${isScrolled ? 'is-scrolled' : ''} border-b border-white/5 py-2 px-3 sm:px-5 lg:px-6`}
+      >
+        <div className="max-w-7xl mx-auto flex flex-col gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-2 lg:flex-nowrap">
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              <button
+                type="button"
+                onClick={() => router.push('/')}
+                className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all hover:border-[#d946ef]/50 hover:text-white"
+                aria-label="Bosh sahifaga qaytish"
+              >
+                <ChevronLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
+              </button>
+
+              <div className="min-w-0 flex-1" aria-live="polite">
+                <h1 className="truncate text-base font-bold leading-tight tracking-tight text-white sm:text-lg">
+                  Bog&apos;chalarni qidirish
+                  {!loading && (
+                    <span className="font-normal text-white/40">
+                      {' '}
+                      · <span className="text-white/70">{pagination.totalItems}</span> ta
+                      {pagination.totalPages > 1 && (
+                        <span className="text-white/35">
+                          {' '}
+                          ({pagination.currentPage}/{pagination.totalPages})
+                        </span>
+                      )}
+                    </span>
+                  )}
+                  {isFetching && <span className="font-normal text-white/35"> — qidirilmoqda…</span>}
+                </h1>
+              </div>
+            </div>
+
+            <div className="flex w-full shrink-0 items-center gap-2 sm:ml-auto sm:w-auto lg:ml-0">
+              <label className="sr-only" htmlFor="search-sort">
+                Saralash
+              </label>
+              <div className="relative flex min-w-0 flex-1 sm:min-w-[180px] sm:flex-none">
+                <LayoutGrid size={14} className="pointer-events-none absolute left-2.5 top-1/2 z-[1] -translate-y-1/2 text-gray-500" aria-hidden />
+                <select
+                  id="search-sort"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(Number(e.target.value))}
+                  className="h-9 w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-[#1a152e] py-1.5 pl-9 pr-8 text-sm text-white outline-none transition-colors hover:border-white/20 focus:border-[#d946ef]/50 focus:ring-2 focus:ring-[#d946ef]/20"
+                >
+                  <option value={0} className="bg-[#1a152e] text-white">
+                    Eng yangilari
+                  </option>
+                  <option value={1} className="bg-[#1a152e] text-white">
+                    Reyting bo&apos;yicha
+                  </option>
+                </select>
+                <ChevronDown
+                  size={14}
+                  className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500"
+                  aria-hidden
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsMobileFilterOpen(true)}
+                className="btn-primary relative h-9 shrink-0 px-3 lg:hidden"
+                aria-expanded={isMobileFilterOpen}
+                aria-controls="search-filters-panel"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Filter size={16} aria-hidden />
+                  <span className="text-xs font-bold sm:text-sm">Filtr</span>
+                </span>
+                {getActiveFiltersCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full border border-[#d946ef]/30 bg-white px-0.5 text-[9px] font-black text-[#d946ef] shadow-lg">
+                    {getActiveFiltersCount}
+                  </span>
+                )}
+              </button>
             </div>
           </div>
 
-          <div className="flex-1 relative group h-12">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#d946ef] transition-colors" size={18} />
+          <div className="relative group">
+            <Search
+              className="pointer-events-none absolute left-3 top-1/2 z-[1] -translate-y-1/2 text-gray-500 transition-colors group-focus-within:text-[#d946ef]"
+              size={18}
+              aria-hidden
+            />
             <input
-              type="text"
-              placeholder="Nomi bo'yicha izlash..."
+              id="search-page-query"
+              type="search"
+              autoComplete="off"
+              placeholder="Bog'cha nomi yoki manzil…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleSearchKeyDown}
-              className="w-full h-full bg-[#1a152e] text-white placeholder-gray-400 pl-12 pr-12 rounded-2xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#d946ef]/20 focus:border-[#d946ef]/50 transition-all text-sm"
+              className="h-10 w-full rounded-xl border border-white/10 bg-[#1a152e] py-2 pl-10 pr-10 text-sm text-white shadow-inner placeholder:text-gray-500 transition-all focus:border-[#d946ef]/50 focus:outline-none focus:ring-2 focus:ring-[#d946ef]/20"
             />
-            {searchQuery && (
-              <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+            {searchQuery ? (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-md p-1 text-gray-400 transition-colors hover:bg-white/10 hover:text-white"
+                aria-label="Qidiruvni tozalash"
+              >
                 <X size={16} />
               </button>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 h-12">
-            <div className="flex bg-[#1a152e] p-1 rounded-2xl border border-white/10 mr-2">
-              <button className="p-2 rounded-xl bg-[#d946ef] text-white shadow-lg"><SlidersHorizontal size={18} /></button>
-              <button className="p-2 rounded-xl text-gray-500 hover:text-white transition-colors" onClick={() => {/* Toggle Map logic would go here if implemented */}}><MapPin size={18} /></button>
-            </div>
-            
-            <button 
-              onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden btn-primary h-full px-5 relative"
-            >
-              <Filter size={18} />
-              {getActiveFiltersCount() > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-[#d946ef] rounded-full text-[10px] font-black flex items-center justify-center shadow-lg border border-[#d946ef]/20">
-                  {getActiveFiltersCount()}
-                </span>
-              )}
-            </button>
-            <div className="hidden md:flex items-center gap-2 h-full px-4 bg-[#1a152e] rounded-2xl border border-white/10 transition-colors hover:bg-white/10 group relative">
-              <SlidersHorizontal size={16} className="text-gray-400 group-hover:text-[#d946ef] transition-colors" />
-              <select className="bg-transparent text-white text-sm outline-none cursor-pointer h-full border-none appearance-none pr-6">
-                <option value="new" className="bg-[#1a152e] text-white">Eng yangilari</option>
-                <option value="rating" className="bg-[#1a152e] text-white">Reyting baland</option>
-              </select>
-              <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none group-hover:text-white transition-colors" />
-            </div>
+            ) : null}
           </div>
         </div>
       </div>
 
-      <main className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 items-start relative">
+      <main className="px-3 py-5 sm:px-5 sm:py-5 lg:px-6 lg:py-5">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-5 lg:gap-6 items-start relative">
           
           {isMobileFilterOpen && (
-            <div className="fixed inset-0 z-[60] bg-[#0f0a1f]/80 backdrop-blur-sm lg:hidden" onClick={() => setIsMobileFilterOpen(false)} />
+            <button
+              type="button"
+              className="fixed inset-0 z-[60] cursor-default border-0 bg-[#0f0a1f]/80 p-0 backdrop-blur-sm lg:hidden"
+              aria-label="Filtrlarni yopish"
+              onClick={() => setIsMobileFilterOpen(false)}
+            />
           )}
 
-          <aside className={`
-            fixed inset-y-4 left-4 right-4 z-[70] bg-[#1a152e] rounded-[2.5rem] p-8 overflow-y-auto custom-scrollbar transition-all duration-500
-            lg:static lg:block lg:w-72 lg:flex-shrink-0 lg:sticky sticky-sidebar lg:bg-white/5 lg:border lg:border-white/10 lg:p-8 lg:z-30 lg:rounded-[2.5rem]
-            ${!isHeaderVisible ? 'at-top' : 'lg:top-[140px]'}
-            ${isMobileFilterOpen ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-full opacity-0 scale-95 lg:translate-y-0 lg:opacity-100 lg:scale-100 hidden'}
-          `}>
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Filter size={18} className="text-[#d946ef]" /> Filterlar
-              </h2>
-              <button onClick={handleResetFilters} className="p-2 rounded-xl hover:bg-white/5 text-gray-500 hover:text-[#d946ef] transition-all">
-                <RotateCcw size={16} />
-              </button>
+          <aside
+            id="search-filters-panel"
+            className={`
+            fixed inset-x-3 bottom-3 z-[70] flex max-h-[calc(100dvh-3.25rem)] flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#1a152e] p-4 shadow-2xl transition-all duration-300 sm:inset-x-5 sm:p-5
+            ${isHeaderVisible ? 'max-lg:top-[44px]' : 'max-lg:top-[108px]'}
+            lg:sticky lg:max-h-none lg:w-72 lg:flex-shrink-0 lg:self-start lg:rounded-2xl lg:border lg:bg-white/5 lg:p-6 lg:shadow-none sticky-sidebar
+            ${!isHeaderVisible ? 'at-top' : ''}
+            ${isMobileFilterOpen ? 'flex translate-y-0 opacity-100' : 'pointer-events-none hidden translate-y-[110%] opacity-0 lg:pointer-events-auto lg:flex lg:flex-col lg:translate-y-0 lg:opacity-100'}
+          `}
+          >
+            <div className="mb-4 flex shrink-0 items-start justify-between gap-2 sm:mb-4">
+              <div>
+                <h2 className="flex items-center gap-2 text-base font-bold text-white">
+                  <Filter size={16} className="text-[#d946ef]" aria-hidden />
+                  Filtrlar
+                </h2>
+                <p className="mt-0.5 text-[10px] leading-snug text-white/40 lg:text-[11px]">
+                  Tanlang — ro&apos;yxat avtomatik yangilanadi.
+                </p>
+              </div>
+              <div className="flex shrink-0 items-center gap-1">
+                <button
+                  type="button"
+                  onClick={handleResetFilters}
+                  className="rounded-xl p-2 text-gray-500 transition-colors hover:bg-white/5 hover:text-[#d946ef]"
+                  title="Filtrlarni tiklash"
+                  aria-label="Filtrlarni tiklash"
+                >
+                  <RotateCcw size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="rounded-xl p-2 text-gray-500 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
+                  aria-label="Filtrlarni yopish"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain pr-1 custom-scrollbar lg:overflow-visible lg:pr-0">
               <div>
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Tuman</label>
                 <div className="relative">
@@ -393,6 +587,7 @@ const SearchResults = () => {
                   {workingScheduleOptions.map(opt => (
                     <button
                       key={opt.value}
+                      type="button"
                       onClick={() => setWorkingSchedule(opt.value.toString())}
                       className={`px-4 py-2 text-sm rounded-xl border transition-all ${
                         workingSchedule === opt.value.toString() ? 'bg-[#d946ef] border-[#d946ef] text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
@@ -406,6 +601,7 @@ const SearchResults = () => {
                   {Object.entries(workingDaysLabels).map(([key, label]) => (
                     <button
                       key={key}
+                      type="button"
                       onClick={() => toggleWorkingDay(parseInt(key))}
                       className={`w-9 h-9 flex items-center justify-center text-[10px] font-bold rounded-lg border transition-all ${
                         selectedWorkingDays.includes(parseInt(key)) ? 'bg-cyan-500 border-cyan-500 text-white' : 'border-white/10 text-gray-500 hover:border-white/20'
@@ -415,6 +611,9 @@ const SearchResults = () => {
                     </button>
                   ))}
                 </div>
+                <p className="mt-2 text-[11px] leading-relaxed text-white/35">
+                  Haftalik shablon yoki alohida kunlarni tanlang (masalan, faqat dush–juma).
+                </p>
               </div>
 
               <div>
@@ -425,6 +624,7 @@ const SearchResults = () => {
                   {Object.entries(mealsLabels).map(([key, label]) => (
                     <button
                       key={key}
+                      type="button"
                       onClick={() => setSelectedMeals(selectedMeals === key ? '' : key)}
                       className={`px-3 py-1.5 text-xs font-bold rounded-lg border transition-all ${
                         selectedMeals === key ? 'bg-orange-500 border-orange-500 text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
@@ -438,12 +638,38 @@ const SearchResults = () => {
 
               <div>
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Star size={14} className="text-[#d946ef]" /> Minimal reyting
+                </label>
+                <p className="mb-2 text-[11px] text-white/35">Kamida shuncha yulduz va undan yuqori bog&apos;chalar.</p>
+                <div className="flex flex-wrap gap-2">
+                  {ratingOptions.map((opt) => (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() =>
+                        setSelectedRating(selectedRating === String(opt.value) ? '' : String(opt.value))
+                      }
+                      className={`px-3 py-2 text-xs font-bold rounded-xl border transition-all ${
+                        selectedRating === String(opt.value)
+                          ? 'bg-amber-500 border-amber-500 text-white'
+                          : 'border-white/10 text-gray-400 hover:border-white/20'
+                      }`}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500">
                   <Languages size={14} className="text-[#d946ef]" /> Ta'lim tili
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(languageLabels).map(([key, label]) => (
                     <button
                       key={key}
+                      type="button"
                       onClick={() => toggleLanguage(parseInt(key))}
                       className={`px-3 py-1.5 text-xs font-bold rounded-lg border transition-all ${
                         selectedLanguages.includes(parseInt(key)) ? 'bg-indigo-500 border-indigo-500 text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
@@ -456,11 +682,11 @@ const SearchResults = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Narx (oylik)</label>
+                <label className="mb-3 block text-xs font-bold uppercase tracking-wider text-gray-500">Narx (oylik, mln so&apos;m)</label>
                 <div className="space-y-4 px-2">
                   <div className="flex justify-between text-[10px] font-bold text-gray-400">
-                    <span>{(priceRange[0] / 1000000).toFixed(1)}M</span>
-                    <span>{(priceRange[1] / 1000000).toFixed(0)}M</span>
+                    <span>{(priceRange[0] / 1000000).toFixed(1)} mln</span>
+                    <span>{(priceRange[1] / 1000000).toFixed(0)} mln</span>
                   </div>
                   <div className="relative h-2">
                     <input
@@ -485,6 +711,7 @@ const SearchResults = () => {
                   {Object.entries(featureLabels).map(([key, label]) => (
                     <button
                       key={key}
+                      type="button"
                       onClick={() => toggleFeature(parseInt(key))}
                       className={`px-3 py-1.5 text-[11px] font-bold rounded-lg border transition-all uppercase tracking-tight ${
                         selectedFeatures.includes(parseInt(key)) ? 'bg-[#d946ef] border-[#d946ef] text-white' : 'border-white/10 text-gray-400 hover:border-white/20'
@@ -496,6 +723,19 @@ const SearchResults = () => {
                 </div>
               </div>
 
+            </div>
+
+            <div className="mt-3 flex shrink-0 gap-2 border-t border-white/10 pt-3 lg:hidden">
+              <button type="button" onClick={handleResetFilters} className="btn-secondary flex-1 py-2.5 text-sm font-bold">
+                Tiklash
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsMobileFilterOpen(false)}
+                className="btn-primary flex-1 py-2.5 text-sm font-bold"
+              >
+                Natijalarni ko&apos;rish
+              </button>
             </div>
           </aside>
 
@@ -517,15 +757,24 @@ const SearchResults = () => {
                   <Search className="text-amber-500" size={40} />
                 </div>
                 <h3 className="text-2xl font-black text-white mb-3 tracking-tight">Hech narsa topilmadi</h3>
-                <p className="text-white/40 mb-8 max-w-xs mx-auto leading-relaxed">
-                  Qidiruvingizga mos bog'chalar mavjud emas. Filtrlarni o'zgartirib ko'ring.
+                <p className="mb-8 max-w-xs mx-auto leading-relaxed text-white/40">
+                  Qidiruvingizga mos bog&apos;chalar mavjud emas. Filtrlarni o&apos;zgartirib ko&apos;ring.
                 </p>
-                <button onClick={handleResetFilters} className="btn-primary">
-                  Filtrlarni tozalash
-                </button>
+                <div className="flex w-full max-w-md flex-col gap-3 sm:flex-row sm:justify-center">
+                  <button type="button" onClick={handleResetFilters} className="btn-primary sm:min-w-[200px]">
+                    Filtrlarni tozalash
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-secondary sm:min-w-[200px] lg:hidden"
+                    onClick={() => setIsMobileFilterOpen(true)}
+                  >
+                    Filtrlarni ochish
+                  </button>
+                </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {kindergartens.map((kg) => (
                   <KindergartenCard key={kg.id} kg={kg} onClick={() => router.push(`/kindergarten/${kg.id}`)} />
                 ))}
@@ -533,7 +782,7 @@ const SearchResults = () => {
             )}
 
             {!loading && kindergartens.length > 0 && (
-              <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 bg-white/5 rounded-[2rem] p-6 border border-white/10">
+              <div className="mt-8 flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
                 <p className="text-gray-400 text-sm font-medium">
                   Jami <span className="text-white">{pagination.totalItems}</span> ta natijadan <span className="text-white">{kindergartens.length}</span> tasi ko'rsatildi
                 </p>

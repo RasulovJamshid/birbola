@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { GoogleLogin } from '@react-oauth/google'
 import { FcGoogle } from 'react-icons/fc'
 import { RiTelegramFill } from 'react-icons/ri'
-import { Instagram, Facebook, Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react'
+import { Instagram, Facebook, Eye, EyeOff, Mail, Lock, Loader2, CheckCircle2 } from 'lucide-react'
 import axios from 'axios'
 import { loginWithPassword } from '../services/api'
 // Assets now served from public folder
@@ -180,42 +180,13 @@ const SignIn = () => {
       }
 
       if (provider === 'instagram') {
-        // Instagram OAuth flow
         const clientId = 'YOUR_INSTAGRAM_CLIENT_ID'
         const redirectUri = encodeURIComponent(window.location.origin + '/auth/instagram/callback')
         const instagramAuthUrl = `https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code`
 
-        // Store that we're doing Instagram auth
         sessionStorage.setItem('authProvider', 'instagram')
         window.location.href = instagramAuthUrl
-      } else if (provider === 'telegram') {
-        // Telegram Web Login Widget integration
-        // You'll need to implement Telegram Login Widget
-        // This is a placeholder
-        if (window.Telegram?.Login) {
-          window.Telegram.Login.auth(
-            { bot_id: 'YOUR_BOT_ID', request_access: true },
-            async (data) => {
-              if (data) {
-                try {
-                  response = await authWithTelegram({
-                    ...data,
-                    tenantId: 0
-                  })
-                  handleAuthSuccess(response)
-                } catch (err) {
-                  setError(err.message || 'Telegram authentication failed')
-                } finally {
-                  setSocialLoading(null)
-                }
-              }
-            }
-          )
-        } else {
-          throw new Error('Telegram Login not initialized')
-        }
       } else if (provider === 'facebook') {
-        // Facebook auth not provided in API, placeholder
         setError('Facebook authentication not yet implemented')
         setSocialLoading(null)
       }
@@ -228,69 +199,80 @@ const SignIn = () => {
 
   return (
     <div className="auth-page relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Purple Grid */}
-        <div className="absolute inset-0 bg-grid opacity-30" />
-
-        {/* Top-right Orange Glow */}
-        <div className="absolute top-[-120px] right-[-80px] w-[460px] h-[460px] rounded-full opacity-80 pointer-events-none"
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+        <div className="absolute inset-0 bg-grid opacity-[0.22]" />
+        <div
+          className="absolute top-[-100px] right-[-70px] w-[400px] h-[400px] rounded-full opacity-[0.32] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(255, 166, 0, 0.65) 0%, rgba(255, 166, 0, 0) 65%)'
+            background:
+              'radial-gradient(circle, rgba(139, 92, 246, 0.32) 0%, rgba(59, 130, 246, 0.1) 42%, rgba(9, 3, 24, 0) 72%)'
           }}
         />
-
-        {/* Bottom Pink Glow */}
-        <div className="absolute left-1/2 bottom-[-150px] -translate-x-1/2 w-[120%] h-[500px] rounded-t-full opacity-95 pointer-events-none"
+        <div
+          className="absolute left-[-18%] top-[28%] w-[50%] min-w-[280px] aspect-square rounded-full opacity-[0.16] pointer-events-none blur-3xl"
           style={{
-            background: 'radial-gradient(ellipse at top, rgba(255, 7, 222, 0.45) 0%, rgba(32, 13, 55, 0) 75%)',
-            filter: 'blur(60px)'
+            background: 'radial-gradient(circle, rgba(217, 70, 239, 0.28) 0%, transparent 68%)'
+          }}
+        />
+        <div
+          className="absolute left-1/2 bottom-[-140px] -translate-x-1/2 w-[min(120%,900px)] h-[420px] rounded-[50%] opacity-[0.22] pointer-events-none blur-[56px]"
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 55% at 50% 0%, rgba(192, 38, 211, 0.22) 0%, rgba(9, 3, 24, 0) 72%)'
           }}
         />
       </div>
 
-      {/* Simple Header with Logo */}
-      <header className="relative z-10 py-6 auth-header">
-        <div className="site-container">
+      <header className="relative z-10 auth-header">
+        <div className="site-container flex items-center justify-between gap-3">
           <button
+            type="button"
             onClick={() => router.push('/')}
-            className="flex items-center transition-transform hover:scale-105"
+            className="flex items-center gap-2 rounded-xl px-2 py-2 -ml-2 min-h-[44px] text-left transition-colors hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-500/60"
+            aria-label="Bosh sahifaga qaytish"
           >
-            <img src={Logo} alt="Birbola" className="h-9" />
+            <img src={Logo} alt="" className="h-9 w-auto" width={120} height={36} />
+            <span className="hidden sm:inline text-sm font-semibold text-white/65">Bosh sahifa</span>
           </button>
         </div>
       </header>
 
-      {/* Auth Container */}
-      <div className="relative z-10 px-4 auth-container">
+      <main className="relative z-10 auth-container" id="auth-main">
         <div className="w-full max-w-[400px]">
-          {/* Auth Card */}
-          <div className="relative bg-white/[0.03] backdrop-blur-2xl rounded-[2.5rem] p-8 border border-white/10 shadow-2xl auth-card">
-            {/* Title */}
-            <h1 className="text-3xl font-black text-white text-center mb-1 tracking-tight auth-title">
+          <div className="auth-card relative rounded-[2.5rem] p-6 sm:p-8">
+            <p className="text-center text-[11px] font-bold uppercase tracking-[0.18em] text-fuchsia-400/75 mb-2">
+              Kirish
+            </p>
+            <h1 className="auth-title text-2xl sm:text-3xl font-black text-white text-center mb-1 tracking-tight">
               Xush kelibsiz
             </h1>
-            <p className="text-white/40 text-center text-sm mb-6 font-medium auth-subtitle">
+            <p className="auth-subtitle text-white/45 text-center text-sm mb-6 font-medium">
               Hisobingizga kiring
             </p>
 
-            {/* Error Message */}
             {error && (
-              <div className="mb-6 p-3 bg-red-500/10 border border-red-500/20 rounded-2xl">
-                <p className="text-red-400 text-xs text-center font-medium">{error}</p>
+              <div
+                className="mb-5 rounded-2xl border border-red-500/25 bg-red-500/[0.08] px-3 py-3"
+                role="alert"
+              >
+                <p className="text-center text-sm font-medium text-red-300/95">{error}</p>
               </div>
             )}
 
-            {/* Social Auth Buttons */}
-            <div className="grid grid-cols-4 gap-3 mb-6">
-              <div className="relative flex items-center justify-center h-12 bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-2xl border border-white/5 transition-all duration-300 hover:scale-105 overflow-hidden">
-                {/* Visual Custom Button */}
+            <p className="mb-2 text-center text-[11px] font-semibold uppercase tracking-wider text-white/35">
+              Tez kirish
+            </p>
+            <div className="mb-2 grid grid-cols-2 gap-3 sm:grid-cols-2">
+              <div className="auth-social-btn relative overflow-hidden">
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                  {socialLoading === 'google' ? <Loader2 size={20} className="animate-spin" /> : <FcGoogle size={22} />}
+                  {socialLoading === 'google' ? (
+                    <Loader2 size={22} className="animate-spin text-white/70" />
+                  ) : (
+                    <FcGoogle size={24} />
+                  )}
                 </div>
-                {/* ... */}
-                <div className="absolute top-0 left-0 w-full h-full opacity-0 overflow-hidden">
-                  <div className="scale-[2.0] origin-top-left w-[200%] h-[200%]">
+                <div className="absolute inset-0 opacity-0">
+                  <div className="origin-top-left scale-[2] h-[200%] w-[200%]">
                     <GoogleLogin
                       onSuccess={handleGoogleSuccess}
                       onError={() => setError('Google Login Failed')}
@@ -306,86 +288,119 @@ const SignIn = () => {
               </div>
 
               <button
+                type="button"
                 onClick={() => handleSocialAuth('telegram')}
                 disabled={socialLoading !== null || telegramStatus === 'waiting'}
-                className="flex items-center justify-center h-12 bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-2xl border border-white/5 transition-all duration-300 hover:scale-105 disabled:opacity-50"
-                aria-label="Sign in with Telegram"
+                className="auth-social-btn disabled:pointer-events-none"
+                aria-label="Telegram orqali kirish"
               >
-                {(socialLoading === 'telegram' || telegramStatus === 'waiting') ? <Loader2 size={20} className="animate-spin text-[#0088cc]" /> : <RiTelegramFill size={22} className="text-[#0088cc]" />}
-              </button>
-
-              <button
-                onClick={() => handleSocialAuth('instagram')}
-                disabled={socialLoading !== null}
-                className="flex items-center justify-center h-12 bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-2xl border border-white/5 transition-all duration-300 hover:scale-105 disabled:opacity-50"
-                aria-label="Sign in with Instagram"
-              >
-                {socialLoading === 'instagram' ? <Loader2 size={20} className="animate-spin text-[#E4405F]" /> : <Instagram size={22} className="text-[#E4405F]" />}
-              </button>
-
-              <button
-                onClick={() => handleSocialAuth('facebook')}
-                disabled={socialLoading !== null}
-                className="flex items-center justify-center h-12 bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-2xl border border-white/5 transition-all duration-300 hover:scale-105 disabled:opacity-50"
-                aria-label="Sign in with Facebook"
-              >
-                {socialLoading === 'facebook' ? <Loader2 size={20} className="animate-spin text-[#1877F2]" /> : <Facebook size={22} className="text-[#1877F2]" />}
+                {socialLoading === 'telegram' || telegramStatus === 'waiting' ? (
+                  <Loader2 size={22} className="animate-spin text-[#0088cc]" />
+                ) : (
+                  <RiTelegramFill size={24} className="text-[#0088cc]" />
+                )}
               </button>
             </div>
 
-            {/* ... telegram messages ... */}
+            <p className="mb-3 text-center text-[10px] text-white/30">Boshqa tarmoqlar — tez orada</p>
+            <div className="mb-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                disabled
+                title="Tez orada"
+                className="auth-social-btn"
+                aria-disabled="true"
+                aria-label="Instagram — tez orada"
+              >
+                <Instagram size={22} className="text-[#E4405F]/55" />
+              </button>
+              <button
+                type="button"
+                disabled
+                title="Tez orada"
+                className="auth-social-btn"
+                aria-disabled="true"
+                aria-label="Facebook — tez orada"
+              >
+                <Facebook size={22} className="text-[#1877F2]/55" />
+              </button>
+            </div>
 
-            {/* Divider */}
-            <div className="relative flex items-center justify-center mb-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-white/5" />
+            {telegramStatus === 'waiting' && (
+              <div className="mb-5 rounded-2xl border border-[#0088cc]/25 bg-[#0088cc]/[0.08] px-3 py-3">
+                <p className="text-center text-xs font-medium leading-relaxed text-sky-200/95">
+                  Telegram oynasida <strong className="font-semibold">Start</strong> va{' '}
+                  <strong className="font-semibold">Kontaktni ulashish</strong> tugmalarini bosing.
+                </p>
               </div>
-              <div className="relative bg-[#090318] px-4 text-[10px] uppercase tracking-widest font-bold text-white/20">
+            )}
+
+            {telegramStatus === 'success' && (
+              <div className="mb-5 flex items-center justify-center gap-2 rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.08] px-3 py-3">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" aria-hidden />
+                <p className="text-center text-xs font-semibold text-emerald-200/95">
+                  Muvaffaqiyatli! Yo&apos;naltirilmoqda…
+                </p>
+              </div>
+            )}
+
+            <div className="relative mb-6 flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-white/[0.08]" />
+              </div>
+              <div className="relative bg-[#090318]/90 px-4 text-[10px] font-bold uppercase tracking-widest text-white/25 backdrop-blur-sm">
                 yoki
               </div>
             </div>
 
-            {/* Sign In Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <div className="relative group">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#d946ef] transition-colors">
-                    <Mail size={18} />
-                  </div>
-                  <input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="Email manzilingiz"
-                    className="w-full pl-12 pr-4 py-3 bg-black/20 border border-white/10 rounded-2xl text-white placeholder-white/20 focus:outline-none focus:border-[#d946ef]/50 transition-all text-sm font-medium"
-                    required
-                  />
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <div className="relative group">
+                <label htmlFor="email" className="sr-only">
+                  Email
+                </label>
+                <div className="pointer-events-none absolute left-4 top-1/2 z-[1] -translate-y-1/2 text-white/25 transition-colors group-focus-within:text-fuchsia-400/90">
+                  <Mail size={18} aria-hidden />
                 </div>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  inputMode="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Email manzilingiz"
+                  className="auth-field-input pl-12"
+                  required
+                />
               </div>
 
-              <div>
-                <div className="relative group">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-[#d946ef] transition-colors">
-                    <Lock size={18} />
-                  </div>
-                  <input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    value={formData.password}
-                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    placeholder="Parolingiz"
-                    className="w-full pl-12 pr-12 py-3 bg-black/20 border border-white/10 rounded-2xl text-white placeholder-white/20 focus:outline-none focus:border-[#d946ef]/50 transition-all text-sm font-medium"
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/20 hover:text-white transition-colors"
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+              <div className="relative group">
+                <label htmlFor="password" className="sr-only">
+                  Parol
+                </label>
+                <div className="pointer-events-none absolute left-4 top-1/2 z-[1] -translate-y-1/2 text-white/25 transition-colors group-focus-within:text-fuchsia-400/90">
+                  <Lock size={18} aria-hidden />
                 </div>
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  placeholder="Parolingiz"
+                  className="auth-field-input pl-12 pr-12"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2 top-1/2 flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-xl text-white/35 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-500/60"
+                  aria-label={showPassword ? 'Parolni yashirish' : 'Parolni ko‘rsatish'}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
               </div>
 
               <div className="text-right">
@@ -410,15 +425,18 @@ const SignIn = () => {
               </button>
             </form>
 
-            <p className="text-center text-white/30 text-sm mt-6 font-medium">
+            <p className="mt-6 text-center text-sm font-medium text-white/35">
               Hisobingiz yo'qmi?{' '}
-              <Link href="/signup" className="text-white hover:text-[#d946ef] font-bold transition-colors">
+              <Link
+                href="/signup"
+                className="font-bold text-white/90 underline-offset-4 transition-colors hover:text-fuchsia-400 hover:underline"
+              >
                 Ro'yxatdan o'tish
               </Link>
             </p>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
